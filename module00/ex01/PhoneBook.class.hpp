@@ -20,17 +20,20 @@ class	PhoneBook {
 	private:
 		Contact	_contacts[8];
 		int		_id;
-		void	_addContact(void);
-		void	_searchRecords(void);
-		void	_displayAllRecords(void);
-		void	_displayRecord(int id);
-		void	_usage(void);
-		void	_usageDetails(void);
-		std::string	_truncate(std::string);
-		std::string	_userCmd(void);
-		std::string	_dash(int n);
-		void	_nextId(void);
 
+		void	_nextId(void);
+		void	_addContact(void);
+
+		void	_searchRecords(void) const;
+		void	_displayAllRecords(void) const;
+		void	_displayRecord(int id) const;
+		void	_usage(void) const;
+		void	_usageDetails(void) const;
+		std::string	_readString(std::string msg) const;
+		std::string	_readNumber(std::string msg) const;
+		std::string	_truncate(std::string str) const;
+		std::string	_userCmd(void) const;
+		std::string	_dash(int n) const;
 	public:
 		PhoneBook(void);
 		void	run(void);

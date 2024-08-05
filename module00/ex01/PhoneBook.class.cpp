@@ -2,17 +2,22 @@
 
 PhoneBook::PhoneBook(void)
 {
-	this->_id = 0;
+	_id = 0;
 }
 
-std::string	PhoneBook::_truncate(std::string str)
+void	PhoneBook::_nextId(void)
 {
-	if (str.length() > 8)
-		return (str.substr(0, 7) + ".");
+	_id = (_id + 1) % 8;
+}
+
+std::string	PhoneBook::_truncate(std::string str) const
+{
+	if (str.length() > 10)
+		return (str.substr(0, 9) + ".");
 	return (str);
 }
 
-void	PhoneBook::_usage(void)
+void	PhoneBook::_usage(void) const
 {
 	std::cout << std::endl;
 	std::cout << YELLOW << "Phone Book usage:"<< RESET << std::endl;
@@ -24,7 +29,7 @@ void	PhoneBook::_usage(void)
 		<< BLACK << " : exit the programm" << RESET << std::endl << std::endl;
 }
 
-void	PhoneBook::_usageDetails(void)
+void	PhoneBook::_usageDetails(void) const
 {
 	std::cout << BLACK << "Enter contact's index [ " << MAGENTA << "0 - 7"
 		<< BLACK" ] to show contact's details" << RESET << std::endl;
@@ -32,7 +37,7 @@ void	PhoneBook::_usageDetails(void)
 		<< RESET << std::endl;
 }
 
-std::string	PhoneBook::_userCmd(void)
+std::string	PhoneBook::_userCmd(void) const
 {
 	std::string	cmd;
 
@@ -52,14 +57,44 @@ void	PhoneBook::run(void)
 	while (cmd.compare("EXIT"))
 	{
 		if (cmd.compare("ADD") == 0)
-			this->_addContact();
+			_addContact();
 		else if (cmd.compare("SEARCH") == 0)
-			this->_searchRecords();
+			_searchRecords();
 		else
-			std::cout << "You typed: " << cmd << std::endl;
+			std::cout << RED << "Unrecognized command: " << cmd << RESET << std::endl;
 		_usage();
 		cmd = _userCmd();
 	}
+}
+
+std::string	PhoneBook::_readString(std::string msg) const
+{
+	std::string	str;
+
+	std::cout << BLACK << msg + ": " << RESET;
+	std::getline (std::cin, str);
+	while (str.empty())
+	{
+		std::cout << RED << "field couldn't be empty" << RESET << std::endl;
+		std::cout << BLACK << msg + ": " << RESET;
+		std::getline (std::cin, str);
+	}
+	return (str);
+}
+
+std::string	PhoneBook::_readNumber(std::string msg) const
+{
+	std::string	str;
+
+	std::cout << BLACK << msg + ": " << RESET;
+	std::getline (std::cin, str);
+	while (str.empty() || str.find_first_not_of("0123456789") != std::string::npos)
+	{
+		std::cout << RED << "field couldn't be empty and should consist only from digits" << RESET << std::endl;
+		std::cout << BLACK << msg + ": " << RESET;
+		std::getline (std::cin, str);
+	}
+	return (str);
 }
 
 void	PhoneBook::_addContact(void)
@@ -71,22 +106,17 @@ void	PhoneBook::_addContact(void)
 	std::string secret;
 
 	std::cout << YELLOW << "adding new contact..." << RESET << std::endl;
-	std::cout << BLACK << "First Name: " << RESET;
-	std::getline (std::cin, fName);
-	std::cout << BLACK << "Last Name: " << RESET;
-	std::getline (std::cin, lName);
-	std::cout << BLACK << "Nick Name: " << RESET;
-	std::getline(std::cin, nName);
-	std::cout << BLACK << "Phone Number: " << RESET;
-	std::getline(std::cin, phone);
-	std::cout << BLACK << "Dark Secret: " << RESET;
-	std:getline(std::cin, secret);
+	fName = _readString("First name");
+	lName = _readString("Last name");
+	nName = _readString("Nickname");
+	phone = _readNumber("Phone number");
+	secret = _readString("Dark secret");
 	_contacts[_id] = Contact(fName, lName, nName, phone, secret);
 	_nextId();
 	std::cout << YELLOW << "new contact was successfully added" << RESET << std::endl;
 }
 
-void	PhoneBook::_searchRecords(void)
+void	PhoneBook::_searchRecords(void) const
 {
 	std:: string	userInput;
 	int				n;
@@ -106,12 +136,7 @@ void	PhoneBook::_searchRecords(void)
 	}
 }
 
-void	PhoneBook::_nextId(void)
-{
-	this->_id = (this->_id + 1) % 8;
-}
-
-void	PhoneBook::_displayAllRecords(void)
+void	PhoneBook::_displayAllRecords(void) const
 {
 	std::cout << CYAN << std::setw(10) << "index" << BLACK"|"
 		<< CYAN << std::setw(10) << "first name" << BLACK"|"
@@ -129,21 +154,21 @@ void	PhoneBook::_displayAllRecords(void)
 	}
 }
 
-void	PhoneBook::_displayRecord(int id)
+void	PhoneBook::_displayRecord(int id) const
 {
 	std::cout << BLACK << std::setw(14) << "first name: " << RESET
-		<< _contacts[id].getFirstName() << std::endl;
+		<< "\"" + _contacts[id].getFirstName() + "\"" << std::endl;
 	std::cout << BLACK << std::setw(14) << "last name: " << RESET
-		<< _contacts[id].getLastName() << std::endl;
+		<< "\"" + _contacts[id].getLastName() + "\"" << std::endl;
 	std::cout << BLACK << std::setw(14) << "nickname: " << RESET
-		<< _contacts[id].getNickName() << std::endl;
+		<< "\"" + _contacts[id].getNickName() + "\"" << std::endl;
 	std::cout << BLACK << std::setw(14) << "phone number: " << RESET
-		<< _contacts[id].getPhoneNumber() << std::endl;
+		<< "\"" + _contacts[id].getPhoneNumber() + "\"" << std::endl;
 	std::cout << BLACK << std::setw(14) << "dark secret: " << RESET
-		<< _contacts[id].getDarkSecret() << std::endl << std::endl;
+		<< "\"" + _contacts[id].getDarkSecret() + "\"" << std::endl << std::endl;
 }
 
-std::string	PhoneBook::_dash(int n)
+std::string	PhoneBook::_dash(int n) const
 {
 	std::string	str;
 
