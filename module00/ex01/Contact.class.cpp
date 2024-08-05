@@ -15,9 +15,7 @@ Contact::Contact(
 		_nickName(nick),
 		_phoneNumber(number),
 		_darkSecret(secret)
-{
-	std::cout << "Contact: constructor" << std::endl;
-}
+{}
 
 void	Contact::setFirstName(std::string firstName)
 {
