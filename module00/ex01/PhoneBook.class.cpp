@@ -2,13 +2,14 @@
 
 PhoneBook::PhoneBook(void)
 {
-	std::cout << "PhoneBook: constructor" << std::endl;
 	this->_id = 0;
 }
 
-PhoneBook::~PhoneBook(void)
+std::string	PhoneBook::_truncate(std::string str)
 {
-	std::cout << "PhoneBook: destructor" << std::endl;
+	if (str.length() > 8)
+		return (str.substr(0, 7) + ".");
+	return (str);
 }
 
 void	PhoneBook::_usage(void)
@@ -36,7 +37,7 @@ std::string	PhoneBook::_userCmd(void)
 	std::string	cmd;
 
 	std::cout << MAGENTA;
-	std::cin >> cmd;
+	std::getline(std::cin, cmd);
 	std::cout << RESET << std::endl;
 	return (cmd);
 }
@@ -71,15 +72,15 @@ void	PhoneBook::_addContact(void)
 
 	std::cout << YELLOW << "adding new contact..." << RESET << std::endl;
 	std::cout << BLACK << "First Name: " << RESET;
-	std::cin >> fName;
+	std::getline (std::cin, fName);
 	std::cout << BLACK << "Last Name: " << RESET;
-	std::cin >> lName;
+	std::getline (std::cin, lName);
 	std::cout << BLACK << "Nick Name: " << RESET;
-	std::cin >> nName;
+	std::getline(std::cin, nName);
 	std::cout << BLACK << "Phone Number: " << RESET;
-	std::cin >> phone;
+	std::getline(std::cin, phone);
 	std::cout << BLACK << "Dark Secret: " << RESET;
-	std::cin >> secret;
+	std:getline(std::cin, secret);
 	_contacts[_id] = Contact(fName, lName, nName, phone, secret);
 	_nextId();
 	std::cout << YELLOW << "new contact was successfully added" << RESET << std::endl;
@@ -121,9 +122,9 @@ void	PhoneBook::_displayAllRecords(void)
 	for (int i = 0; i < 8; i++)
 	{
 		std::cout << MAGENTA << std::setw(10) << i << BLACK"|"
-			<< RESET << std::setw(10) << _contacts[i].getFirstName() << BLACK"|"
-			<< RESET << std::setw(10) << _contacts[i].getLastName() << BLACK"|"
-			<< RESET << std::setw(10) << _contacts[i].getNickName() << RESET << std::endl;
+			<< RESET << std::setw(10) << _truncate(_contacts[i].getFirstName()) << BLACK"|"
+			<< RESET << std::setw(10) << _truncate(_contacts[i].getLastName()) << BLACK"|"
+			<< RESET << std::setw(10) << _truncate(_contacts[i].getNickName()) << RESET << std::endl;
 
 	}
 }

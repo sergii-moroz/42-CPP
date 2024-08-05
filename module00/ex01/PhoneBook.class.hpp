@@ -26,13 +26,13 @@ class	PhoneBook {
 		void	_displayRecord(int id);
 		void	_usage(void);
 		void	_usageDetails(void);
+		std::string	_truncate(std::string);
 		std::string	_userCmd(void);
 		std::string	_dash(int n);
 		void	_nextId(void);
 
 	public:
 		PhoneBook(void);
-		~PhoneBook(void);
 		void	run(void);
 };
 
