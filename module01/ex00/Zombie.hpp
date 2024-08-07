@@ -11,8 +11,9 @@ class Zombie
 		void	announce( void );
 	public:
 		Zombie( void );
-		Zombie( std::string );
+		Zombie( std::string name );
 		~Zombie( void );
+		void	randomChump( std::string name );
 };
 
 
