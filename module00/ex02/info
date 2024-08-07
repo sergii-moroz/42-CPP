@@ -1,0 +1,6 @@
+#use awk to compare files.
+
+./account > smoroz.log
+awk '{$1=""}1' smoroz.log > my.log
+awk '{$1=""}1' 19920104_091532.log > ref.log
+diff my.log ref.log
