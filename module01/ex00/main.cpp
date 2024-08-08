@@ -2,11 +2,14 @@
 
 int	main(void)
 {
-	Zombie	z1("Zombie-1");
-	Zombie	*z2;
+	Zombie	sven("Sven");
+	sven.announce();
 
-	z2 = z1.newZombie("Zombie-42");
-	z1.randomChump("Zombie-13");
-	z2->~Zombie();
+	Zombie	*max = newZombie("Max");
+	max->announce();
+	delete max;
+
+	randomChump("Bob");
+
 	return (0);
 }

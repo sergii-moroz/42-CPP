@@ -2,7 +2,7 @@
 
 Zombie::Zombie( void )
 {
-	std::cout << "Zombie " << _name << "created" << std::endl;
+	std::cout << "noname: created" << std::endl;
 }
 
 Zombie::~Zombie( void )
@@ -12,7 +12,7 @@ Zombie::~Zombie( void )
 
 Zombie::Zombie( std::string name) : _name(name)
 {
-	announce();
+	std::cout << _name << ": created" << std::endl;
 };
 
 void	Zombie::announce( void )
