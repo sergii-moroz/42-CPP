@@ -15,7 +15,7 @@ Zombie::Zombie( std::string name) : _name(name)
 	std::cout << _name << ": created" << std::endl;
 };
 
-void	Zombie::announce( void )
+void	Zombie::announce( void ) const
 {
 	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
