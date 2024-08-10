@@ -1,10 +1,8 @@
 #include "HumanA.hpp"
 #include <iostream>
 
-HumanA::HumanA(std::string const & name, std::string const & type) : _name(name)
-{
-	_weapon.setType(type);
-};
+HumanA::HumanA(std::string const & name, Weapon const & weapon) : _name(name), _weapon(weapon)
+{};
 
 HumanA::~HumanA( void ){};
 
