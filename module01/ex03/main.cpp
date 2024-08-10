@@ -1,14 +1,31 @@
-#include "Weapon.hpp"
 #include <iostream>
+#include "HumanA.hpp"
+#include "HumanB.hpp"
+
+void	check_leaks( void )
+{
+	system("leaks violence");
+}
 
 int	main(void)
 {
-	Weapon	w;
-	std::string	s = "sometype";
-	std::string&	ref = s;
+	atexit(check_leaks);
+	{
+		Weapon	club = Weapon("crude spliked club");
 
-	std::cout << "type: " << w.getType() << std::endl;
-	w.setType(ref);
-	std::cout << "type: " << w.getType() << std::endl;
+		HumanA	bob("Bob", club);
+		bob.attack();
+		club.setType("some other type of club");
+		bob.attack();
+	}
+	{
+		Weapon	club = Weapon("crude spliked club");
+
+		HumanB	jim("Bob");
+		jim.setWeapon(club);
+		jim.attack();
+		club.setType("some other type of club");
+		jim.attack();
+	}
 	return (0);
 }

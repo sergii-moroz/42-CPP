@@ -4,7 +4,7 @@ CPP			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM			=	rm -rf
 
-SRCS		=	Weapon.cpp main.cpp
+SRCS		=	Weapon.cpp HumanA.cpp HumanB.cpp main.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
 all:			$(NAME)
