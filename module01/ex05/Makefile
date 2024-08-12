@@ -12,7 +12,7 @@ all:			$(NAME)
 $(NAME):		$(OBJS)
 				$(CPP) $(CPPFLAGS) $(OBJS) -o $@
 
-%.o:			%.c
+%.o:			%.cpp
 				$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
@@ -23,4 +23,4 @@ fclean:			clean
 
 re:				fclean all
 
-.PHONY: all clean fclean re
+.PHONY:			all clean fclean re
