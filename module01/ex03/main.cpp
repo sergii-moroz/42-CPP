@@ -1,4 +1,3 @@
-#include <iostream>
 #include "HumanA.hpp"
 #include "HumanB.hpp"
 
@@ -9,7 +8,7 @@ void	check_leaks( void )
 
 int	main(void)
 {
-	atexit(check_leaks);
+	//atexit(check_leaks);
 	{
 		Weapon	club = Weapon("crude spliked club");
 
@@ -21,7 +20,7 @@ int	main(void)
 	{
 		Weapon	club = Weapon("crude spliked club");
 
-		HumanB	jim("Bob");
+		HumanB	jim("Jim");
 		jim.setWeapon(club);
 		jim.attack();
 		club.setType("some other type of club");
