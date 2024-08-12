@@ -9,5 +9,6 @@ int	main(void)
 	harl.complain("warning");
 	harl.complain("error");
 	harl.complain("bla-bla");
+	harl.complain("warning");
 	return (0);
 }
