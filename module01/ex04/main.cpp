@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 
 	if (infile.is_open())
 	{
-		outfile.open(outFileName.c_str(), std::ios::out);
+		outfile.open(outFileName, std::ios::out);
 		if (outfile.is_open())
 		{
 			std::string		line;
