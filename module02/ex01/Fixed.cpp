@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 20:45:10 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/13 21:30:10 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/13 21:59:59 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Fixed::Fixed( int const & nbr )
 Fixed::Fixed( float const & nbr )
 {
 	std::cout << "Float constructor called" << std::endl;
-	setRawBits( roundf(nbr * ( 1 << Fixed::_bits)) );
+	setRawBits( std::roundf(nbr * ( 1 << Fixed::_bits)) );
 }
 
 Fixed::~Fixed()
