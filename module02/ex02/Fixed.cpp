@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 20:45:10 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/14 08:14:50 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/14 09:07:52 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,40 @@ std::ostream &	operator<<(std::ostream & out, Fixed const & nbr )
 	return (out);
 }
 
+// ===== <, >, <=, >=, ==, != Operator's overloading =====
+
+bool	Fixed::operator<(Fixed const & nbr)
+{
+	return ( toFloat() < nbr.toFloat() );
+}
+
+bool	Fixed::operator>(Fixed const & nbr)
+{
+	return ( toFloat() > nbr.toFloat() );
+}
+
+bool	Fixed::operator<=(Fixed const & nbr)
+{
+	return ( toFloat() <= nbr.toFloat() );
+}
+
+bool	Fixed::operator>=(Fixed const & nbr)
+{
+	return ( toFloat() >= nbr.toFloat() );
+}
+
+bool	Fixed::operator==(Fixed const & nbr)
+{
+	return ( toFloat() == nbr.toFloat() );
+}
+
+bool	Fixed::operator!=(Fixed const & nbr)
+{
+	return ( toFloat() != nbr.toFloat() );
+}
+
+// ===== +, -, *, / Operator's overloading =====
+
 Fixed	Fixed::operator+(Fixed const & nbr)
 {
 	return ( Fixed( toFloat() + nbr.toFloat() ) );
@@ -97,6 +131,6 @@ Fixed	Fixed::operator/(Fixed const & nbr)
 
 Fixed & Fixed::operator++( void )
 {
-
+	setRawBits( getRawBits() + (1 << Fixed::_bits) );
 	return (*this);
 }
