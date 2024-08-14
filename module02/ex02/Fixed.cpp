@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 20:45:10 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/14 20:24:38 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/14 20:33:59 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,13 +153,13 @@ Fixed	Fixed::operator/(Fixed const & nbr)
 
 Fixed & Fixed::operator++( void )
 {
-	setRawBits( getRawBits() + (1 << Fixed::_bits) );
+	setRawBits( getRawBits() + 1 );
 	return (*this);
 }
 
 Fixed & Fixed::operator--( void )
 {
-	setRawBits( getRawBits() - (1 << Fixed::_bits));
+	setRawBits( getRawBits() - 1 );
 	return ( *this );
 }
 
@@ -171,7 +171,7 @@ Fixed Fixed::operator++( int )
 {
 	Fixed	temp(*this);
 
-	setRawBits( getRawBits() + (1 << Fixed::_bits) );
+	setRawBits( getRawBits() + 1 );
 	return ( temp );
 }
 
@@ -179,7 +179,7 @@ Fixed Fixed::operator--( int )
 {
 	Fixed	temp(*this);
 
-	setRawBits( getRawBits() - (1 << Fixed::_bits));
+	setRawBits( getRawBits() - 1 );
 	return ( temp );
 }
 
