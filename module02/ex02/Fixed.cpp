@@ -6,13 +6,17 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 20:45:10 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/14 11:01:05 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/14 19:38:17 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
 int	const Fixed::_bits = 8;
+
+// =========================================================
+// constructors
+// =========================================================
 
 Fixed::Fixed() : _rawBits(0)
 {
@@ -37,10 +41,18 @@ Fixed::Fixed( float const & nbr )
 	setRawBits( std::roundf(nbr * ( 1 << Fixed::_bits)) );
 }
 
+// =========================================================
+// destructor
+// =========================================================
+
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
 }
+
+// =========================================================
+// getters / setters
+// =========================================================
 
 int	Fixed::getRawBits( void ) const
 {
@@ -52,12 +64,9 @@ void	Fixed::setRawBits(int const raw)
 	_rawBits = raw;
 }
 
-Fixed &	Fixed::operator=( Fixed const & nbr )
-{
-	std::cout << "Copy assignment operator called" << std::endl;
-	setRawBits(nbr.getRawBits());
-	return (*this);
-}
+// =========================================================
+// member functions
+// =========================================================
 
 float	Fixed::toFloat( void ) const
 {
@@ -69,45 +78,54 @@ int	Fixed::toInt( void ) const
 	return (getRawBits() >> Fixed::_bits);
 }
 
-std::ostream &	operator<<(std::ostream & out, Fixed const & nbr )
-{
-	out << nbr.toFloat();
-	return (out);
-}
+// =========================================================
+// comparison <, >, <=, >=, ==, != operator's overloading
+// =========================================================
 
-// ===== <, >, <=, >=, ==, != Operator's overloading =====
-
-bool	Fixed::operator<(Fixed const & nbr)
+bool	Fixed::operator<(Fixed const & nbr) const
 {
 	return ( toFloat() < nbr.toFloat() );
 }
 
-bool	Fixed::operator>(Fixed const & nbr)
+bool	Fixed::operator>(Fixed const & nbr) const
 {
 	return ( toFloat() > nbr.toFloat() );
 }
 
-bool	Fixed::operator<=(Fixed const & nbr)
+bool	Fixed::operator<=(Fixed const & nbr) const
 {
 	return ( toFloat() <= nbr.toFloat() );
 }
 
-bool	Fixed::operator>=(Fixed const & nbr)
+bool	Fixed::operator>=(Fixed const & nbr) const
 {
 	return ( toFloat() >= nbr.toFloat() );
 }
 
-bool	Fixed::operator==(Fixed const & nbr)
+bool	Fixed::operator==(Fixed const & nbr) const
 {
 	return ( toFloat() == nbr.toFloat() );
 }
 
-bool	Fixed::operator!=(Fixed const & nbr)
+bool	Fixed::operator!=(Fixed const & nbr) const
 {
 	return ( toFloat() != nbr.toFloat() );
 }
 
-// ===== +, -, *, / Operator's overloading =====
+// =========================================================
+// equal = operator's overloading
+// =========================================================
+
+Fixed &	Fixed::operator=( Fixed const & nbr )
+{
+	std::cout << "Copy assignment operator called" << std::endl;
+	setRawBits(nbr.getRawBits());
+	return (*this);
+}
+
+// =========================================================
+// arithmetic *, -, *, / operator's overloading
+// =========================================================
 
 Fixed	Fixed::operator+(Fixed const & nbr)
 {
@@ -129,6 +147,10 @@ Fixed	Fixed::operator/(Fixed const & nbr)
 	return ( Fixed( toFloat() / nbr.toFloat() ) );
 }
 
+// =========================================================
+// pre-increment, pre-decrement operator's overloading
+// =========================================================
+
 Fixed & Fixed::operator++( void )
 {
 	setRawBits( getRawBits() + (1 << Fixed::_bits) );
@@ -140,6 +162,10 @@ Fixed & Fixed::operator--( void )
 	setRawBits( getRawBits() - (1 << Fixed::_bits));
 	return ( *this );
 }
+
+// =========================================================
+// post-increment, post-decrement operator's overloading
+// =========================================================
 
 Fixed Fixed::operator++( int value )
 {
@@ -155,4 +181,46 @@ Fixed Fixed::operator--( int value)
 	value = 1;
 	setRawBits( getRawBits() - (value << Fixed::_bits));
 	return ( temp );
+}
+
+// =========================================================
+// static functions
+// =========================================================
+
+Fixed & Fixed::min(Fixed & a, Fixed & b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+Fixed & Fixed::max(Fixed & a, Fixed & b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+Fixed const & Fixed::min(Fixed const & a, Fixed const & b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+Fixed const & Fixed::max(Fixed const & a, Fixed const & b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+// =========================================================
+// std::ostream << operator's overloading
+// =========================================================
+
+std::ostream &	operator<<(std::ostream & out, Fixed const & nbr )
+{
+	out << nbr.toFloat();
+	return (out);
 }

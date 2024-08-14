@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 20:46:00 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/14 11:01:33 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/14 19:19:00 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ class	Fixed
 		void	setRawBits( int const raw );
 		Fixed &	operator=(Fixed const & nbr);
 
-		bool	operator<(Fixed const & nbr);
-		bool	operator>(Fixed const & nbr);
-		bool	operator==(Fixed const & nbr);
-		bool	operator!=(Fixed const & nbr);
-		bool	operator<=(Fixed const & nbr);
-		bool	operator>=(Fixed const & nbr);
+		bool	operator<(Fixed const & nbr) const;
+		bool	operator>(Fixed const & nbr) const;
+		bool	operator==(Fixed const & nbr) const;
+		bool	operator!=(Fixed const & nbr) const;
+		bool	operator<=(Fixed const & nbr) const;
+		bool	operator>=(Fixed const & nbr) const;
 
 		Fixed	operator+(Fixed const & nbr);
 		Fixed	operator-(Fixed const & nbr);
@@ -44,12 +44,18 @@ class	Fixed
 		Fixed	operator/(Fixed const & nbr);
 
 		Fixed & operator++( void );
-		Fixed operator++( int value );
 		Fixed &	operator--( void );
+
+		Fixed operator++( int value );
 		Fixed operator--( int value );
 
 		float	toFloat( void ) const;
 		int		toInt( void ) const;
+
+		static Fixed &	min(Fixed & a, Fixed & b);
+		static Fixed &	max(Fixed & a, Fixed & b);
+		static Fixed const &	min(Fixed const & a, Fixed const & b);
+		static Fixed const &	max(Fixed const & a, Fixed const & b);
 };
 
 std::ostream &	operator<<(std::ostream & out, Fixed const & nbr);
