@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 20:45:10 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/14 20:17:40 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/14 20:24:38 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,19 +167,19 @@ Fixed & Fixed::operator--( void )
 // post-increment, post-decrement operator's overloading
 // =========================================================
 
-Fixed Fixed::operator++( int value )
+Fixed Fixed::operator++( int )
 {
 	Fixed	temp(*this);
-	value = 1;
-	setRawBits( getRawBits() + (value << Fixed::_bits) );
+
+	setRawBits( getRawBits() + (1 << Fixed::_bits) );
 	return ( temp );
 }
 
-Fixed Fixed::operator--( int value)
+Fixed Fixed::operator--( int )
 {
 	Fixed	temp(*this);
-	value = 1;
-	setRawBits( getRawBits() - (value << Fixed::_bits));
+
+	setRawBits( getRawBits() - (1 << Fixed::_bits));
 	return ( temp );
 }
 
