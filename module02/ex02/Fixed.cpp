@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 20:45:10 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/14 19:38:17 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/14 20:17:40 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ int	const Fixed::_bits = 8;
 
 Fixed::Fixed() : _rawBits(0)
 {
-	std::cout << "Default constructor called" << std::endl;
+	// std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed( Fixed const & nbr )
 {
-	std::cout << "Copy constructor called" << std::endl;
+	// std::cout << "Copy constructor called" << std::endl;
 	*this = nbr;
 }
 
 Fixed::Fixed( int const & nbr )
 {
-	std::cout << "Int contructor called" << std::endl;
+	// std::cout << "Int contructor called" << std::endl;
 	setRawBits(nbr << Fixed::_bits);
 }
 
@@ -47,7 +47,7 @@ Fixed::Fixed( float const & nbr )
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
+	// std::cout << "Destructor called" << std::endl;
 }
 
 // =========================================================
@@ -118,7 +118,7 @@ bool	Fixed::operator!=(Fixed const & nbr) const
 
 Fixed &	Fixed::operator=( Fixed const & nbr )
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	// std::cout << "Copy assignment operator called" << std::endl;
 	setRawBits(nbr.getRawBits());
 	return (*this);
 }
