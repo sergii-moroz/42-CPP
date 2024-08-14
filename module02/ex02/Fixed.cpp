@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 20:45:10 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/14 07:53:48 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/14 08:14:50 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ Fixed::Fixed( int const & nbr )
 
 Fixed::Fixed( float const & nbr )
 {
-	std::cout << "Float constructor called" << std::endl;
+	// std::cout << "Float constructor called" << std::endl;
 	setRawBits( std::roundf(nbr * ( 1 << Fixed::_bits)) );
 }
 
@@ -75,9 +75,24 @@ std::ostream &	operator<<(std::ostream & out, Fixed const & nbr )
 	return (out);
 }
 
+Fixed	Fixed::operator+(Fixed const & nbr)
+{
+	return ( Fixed( toFloat() + nbr.toFloat() ) );
+}
+
+Fixed	Fixed::operator-(Fixed const & nbr)
+{
+	return ( Fixed( toFloat() - nbr.toFloat() ) );
+}
+
 Fixed	Fixed::operator*(Fixed const & nbr)
 {
 	return ( Fixed( toFloat() * nbr.toFloat() ) );
+}
+
+Fixed	Fixed::operator/(Fixed const & nbr)
+{
+	return ( Fixed( toFloat() / nbr.toFloat() ) );
 }
 
 Fixed & Fixed::operator++( void )
