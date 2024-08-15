@@ -6,13 +6,17 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 20:45:10 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/13 21:59:59 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/15 13:12:02 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
 int	const Fixed::_bits = 8;
+
+// =========================================================
+// constructors
+// =========================================================
 
 Fixed::Fixed() : _rawBits(0)
 {
@@ -37,10 +41,18 @@ Fixed::Fixed( float const & nbr )
 	setRawBits( std::roundf(nbr * ( 1 << Fixed::_bits)) );
 }
 
+// =========================================================
+// destructor
+// =========================================================
+
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
 }
+
+// =========================================================
+// getters / setters
+// =========================================================
 
 int	Fixed::getRawBits( void ) const
 {
@@ -52,12 +64,9 @@ void	Fixed::setRawBits(int const raw)
 	_rawBits = raw;
 }
 
-Fixed &	Fixed::operator=( Fixed const & nbr )
-{
-	std::cout << "Copy assignment operator called" << std::endl;
-	setRawBits(nbr.getRawBits());
-	return (*this);
-}
+// =========================================================
+// member functions
+// =========================================================
 
 float	Fixed::toFloat( void ) const
 {
@@ -68,6 +77,21 @@ int	Fixed::toInt( void ) const
 {
 	return (getRawBits() >> Fixed::_bits);
 }
+
+// =========================================================
+// equal = operator's overloading
+// =========================================================
+
+Fixed &	Fixed::operator=( Fixed const & nbr )
+{
+	std::cout << "Copy assignment operator called" << std::endl;
+	setRawBits(nbr.getRawBits());
+	return (*this);
+}
+
+// =========================================================
+// std::ostream << operator's overloading
+// =========================================================
 
 std::ostream &	operator<<(std::ostream & out, Fixed const & nbr )
 {
