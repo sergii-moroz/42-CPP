@@ -6,13 +6,17 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 21:02:33 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/13 21:24:47 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/15 13:20:05 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
 int	const Fixed::_fractionalBits = 8;
+
+// =========================================================
+// constructors
+// =========================================================
 
 Fixed::Fixed() : _rawBits(0)
 {
@@ -25,10 +29,18 @@ Fixed::Fixed( Fixed const & nbr )
 	*this = nbr;
 }
 
+// =========================================================
+// destructor
+// =========================================================
+
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
 }
+
+// =========================================================
+// getters / setters
+// =========================================================
 
 int	Fixed::getRawBits( void ) const
 {
@@ -40,6 +52,10 @@ void	Fixed::setRawBits(int const raw)
 {
 	_rawBits = raw;
 }
+
+// =========================================================
+// equal = operator's overloading
+// =========================================================
 
 Fixed &	Fixed::operator=( Fixed const & nbr )
 {
