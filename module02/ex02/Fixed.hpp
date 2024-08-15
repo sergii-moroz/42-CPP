@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 20:46:00 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/14 20:25:00 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/15 08:08:06 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ class	Fixed
 		bool	operator<=(Fixed const & nbr) const;
 		bool	operator>=(Fixed const & nbr) const;
 
-		Fixed	operator+(Fixed const & nbr);
-		Fixed	operator-(Fixed const & nbr);
-		Fixed	operator*(Fixed const & nbr);
-		Fixed	operator/(Fixed const & nbr);
+		Fixed	operator+(Fixed const & nbr) const;
+		Fixed	operator-(Fixed const & nbr) const;
+		Fixed	operator*(Fixed const & nbr) const;
+		Fixed	operator/(Fixed const & nbr) const;
 
 		Fixed & operator++( void );
 		Fixed &	operator--( void );

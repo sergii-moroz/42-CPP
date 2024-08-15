@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 20:45:10 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/14 20:33:59 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/15 08:07:26 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,22 +127,22 @@ Fixed &	Fixed::operator=( Fixed const & nbr )
 // arithmetic *, -, *, / operator's overloading
 // =========================================================
 
-Fixed	Fixed::operator+(Fixed const & nbr)
+Fixed	Fixed::operator+(Fixed const & nbr) const
 {
 	return ( Fixed( toFloat() + nbr.toFloat() ) );
 }
 
-Fixed	Fixed::operator-(Fixed const & nbr)
+Fixed	Fixed::operator-(Fixed const & nbr) const
 {
 	return ( Fixed( toFloat() - nbr.toFloat() ) );
 }
 
-Fixed	Fixed::operator*(Fixed const & nbr)
+Fixed	Fixed::operator*(Fixed const & nbr) const
 {
 	return ( Fixed( toFloat() * nbr.toFloat() ) );
 }
 
-Fixed	Fixed::operator/(Fixed const & nbr)
+Fixed	Fixed::operator/(Fixed const & nbr) const
 {
 	return ( Fixed( toFloat() / nbr.toFloat() ) );
 }

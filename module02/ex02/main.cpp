@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 20:46:41 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/14 19:47:22 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/14 20:42:16 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main( void )
 	std::cout << "min(a, c): " << Fixed::max(a, c) << std::endl;
 	std::cout << "max(a, b): " << Fixed::min(a, b) << std::endl;
 	std::cout << "max(a, b): " << Fixed::max(a, b) << std::endl;
-*/
+//*/
 
 	return (0);
 }
