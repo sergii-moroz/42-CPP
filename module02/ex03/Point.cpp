@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 11:38:06 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/15 14:49:22 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/17 14:52:12 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ Point::Point( void ) : _x(0), _y(0) {}
 
 Point::Point( float const & x, float const & y) : _x(x), _y(y) {}
 
-Point::Point( Point const & p)
-{
-	*this = p;
-}
+Point::Point( Point const & p) : _x(p.getX()), _y(p.getY()) {}
 
 // =========================================================
 // destructor
@@ -32,7 +29,7 @@ Point::Point( Point const & p)
 Point::~Point( void ) {}
 
 // =========================================================
-// member functions
+// getters
 // =========================================================
 
 Fixed	Point::getX( void ) const
@@ -45,29 +42,21 @@ Fixed	Point::getY( void ) const
 	return ( _y );
 }
 
-void	Point::setX( Fixed const & fx )
-{
-	_x.setRawBits;
-}
-
-void	Point::setY( Fixed const & fx )
-{
-	_y = fx;
-}
-
-void	Point::setXY( Fixed const & fx, Fixed cont & fy )
-{
-	_x = Fixed();
-	_y = Fixed();
-}
-
 // =========================================================
 // assignment operator "=" overloading
 // =========================================================
 
-Point &	Point::operator=(Point const & p)
+Point	Point::operator=(Point const & p)
 {
-	setX( p.getX() );
-	setY( p.getY() )
-	return ( *this );
+	return ( Point(p) );
+}
+
+// =========================================================
+// std::ostream << operator's overloading
+// =========================================================
+
+std::ostream &	operator<<(std::ostream & out, Point const & p)
+{
+	out << "[ " << p.getX() << ", " << p.getY() << " ]";
+	return (out);
 }
