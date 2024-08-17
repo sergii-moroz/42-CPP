@@ -4,7 +4,7 @@ CPP			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM			=	rm -rf
 
-SRCS		=	Fixed.cpp Point.cpp main.cpp
+SRCS		=	Fixed.cpp Point.cpp bsp.cpp main.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
 all:			$(NAME)
