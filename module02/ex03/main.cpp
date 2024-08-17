@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 21:42:35 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/17 14:51:10 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/17 16:21:20 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	main( void )
 	std::cout << "B: " << b << std::endl;
 	std::cout << "C: " << c << std::endl;
 	std::cout << "P: " << p << std::endl;
+
+	if (bsp(a, b, c, p))
+		std::cout << "INSIDE" << std::endl;
+	else
+		std::cout << "OUTSIDE" << std::endl;
 
 	return (0);
 }
