@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:48:32 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/20 13:11:24 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/22 08:16:51 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,30 @@ ClapTrap & ClapTrap::operator=( ClapTrap const & copy)
 // =========================================================
 // member functions
 // =========================================================
+
+void	ClapTrap::attack(std::string const & target)
+{
+	std::cout << "ClapTrap " << getName() << " attacks "
+		<< target << ", causing " << getAttackDamage()
+		<< " points of damage!" << std::endl;
+
+	setEnergyPoints(getEnergyPoints() - 1);
+}
+
+void	ClapTrap::takeDamage(unsigned int amount)
+{
+	setHitPoints(getHitPoints() - amount);
+	std::cout << "ClapTrap " << getName() << " takes "
+		<< amount << " points of damage!" << std::endl;
+}
+
+void	ClapTrap::beRepaired(unsigned int amount)
+{
+	setHitPoints(getHitPoints() + amount);
+	setEnergyPoints(getEnergyPoints() - 1);
+	std::cout << "ClapTrap " << getName() << " recovers "
+		<< amount << " hit points!" << std::endl;
+}
 
 // =========================================================
 // std::ostream << operator's overloading
