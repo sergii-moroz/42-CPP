@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 09:40:40 by smoroz            #+#    #+#             */
-/*   Updated: 2024/08/20 13:00:22 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/08/26 10:30:04 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class ClapTrap
 		int			_energyPoints;
 		int			_attackDamage;
 	public:
+		ClapTrap();
 		ClapTrap(std::string const & name);
 		ClapTrap(ClapTrap const & copy);
 		~ClapTrap();
