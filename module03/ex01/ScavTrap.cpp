@@ -145,13 +145,13 @@ void	ScavTrap::beRepaired(unsigned int amount)
 		std::cout << "ScavTrap: " << getName() << " is not able to repair itself"
 			<< ", because he has " << getHitPoints()
 			<< " hit points" << std::endl;
-	else if (getHitPoints() >= 10)
+	else if (getHitPoints() >= 100)
 		std::cout << "ScaveTrap: " << getName() << " is not able to repair itself"
 			<< ", because he has maximum amount of hit points: " << getHitPoints() << std::endl;
-	if (getHitPoints() > 0 && getHitPoints() < 10 && getEnergyPoints() > 0 )
+	if (getHitPoints() > 0 && getHitPoints() < 100 && getEnergyPoints() > 0 )
 	{
-		if (getHitPoints() + amount > 10)
-			setHitPoints(10);
+		if (getHitPoints() + amount > 100)
+			setHitPoints(100);
 		else
 			setHitPoints(getHitPoints() + amount);
 		std::cout << "ScaveTrap " << getName() << " recovers "
