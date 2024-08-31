@@ -17,12 +17,19 @@
 
 class ScavTrap : public ClapTrap
 {
+	private:
+		bool	_guardGate;
 	public:
 		ScavTrap();
 		ScavTrap( ScavTrap const & );
+		ScavTrap( std::string const & );
 		ScavTrap & operator=( ScavTrap const & );
 		~ScavTrap();
-		void	guardGate();
+
+		bool	getGuardGate() const;
+		void	setGuardGate( bool );
+
+		void	guardGate() const;
 };
 
 #endif
