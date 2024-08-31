@@ -17,8 +17,6 @@
 
 class FragTrap : public ClapTrap
 {
-	private:
-		bool	_guardGate;
 	public:
 		FragTrap();
 		FragTrap( FragTrap const & );
