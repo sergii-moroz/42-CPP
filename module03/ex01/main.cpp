@@ -22,10 +22,12 @@ int	main(void)
 	std::cout << bob << std::endl;
 	std::cout << bob2 << std::endl;
 
+	bob.attack(noname.getName());
 	bob.guardGate();
 	std::cout << bob << std::endl;
 	noname = bob;
 	std::cout << noname << std::endl;
+
 
 	return (0);
 }
