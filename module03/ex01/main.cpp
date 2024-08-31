@@ -10,24 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main(void)
 {
-	ClapTrap	bob("Bob");
-	ClapTrap	sven("Sven");
+	ScavTrap	noname;
+	ScavTrap	bob("bob");
+	ScavTrap	bob2 = bob;
 
+	std::cout << noname << std::endl;
 	std::cout << bob << std::endl;
-	std::cout << sven << std::endl;
-	bob.setAttackDamage(2);
-	bob.attack(sven.getName());
-	sven.takeDamage(bob.getAttackDamage());
-	sven.beRepaired(1);
-	sven.beRepaired(1);
-	sven.beRepaired(1);
+	std::cout << bob2 << std::endl;
+
+	bob.guardGate();
 	std::cout << bob << std::endl;
-	std::cout << sven << std::endl;
-	//ct1 = ct2;
-	//std::cout << ct1 << std::endl;
+	noname = bob;
+	std::cout << noname << std::endl;
+
 	return (0);
 }
