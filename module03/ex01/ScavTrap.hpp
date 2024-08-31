@@ -29,7 +29,9 @@ class ScavTrap : public ClapTrap
 		bool	getGuardGate() const;
 		void	setGuardGate( bool );
 
-		void	guardGate() const;
+		void	guardGate();
 };
+
+std::ostream & operator<<(std::ostream & out, ScavTrap const & st);
 
 #endif

@@ -62,3 +62,44 @@ void	ScavTrap::setGuardGate( bool guarding )
 {
 	_guardGate = guarding;
 }
+
+// =========================================================
+// Assignment = operator's overloading
+// =========================================================
+
+ScavTrap & ScavTrap::operator=(ScavTrap const & copy)
+{
+	setName( copy.getName() );
+	setHitPoints( copy.getHitPoints() );
+	setEnergyPoints( copy.getEnergyPoints() );
+	setAttackDamage( copy.getAttackDamage() );
+	setGuardGate(copy.getGuardGate());
+	return (*this);
+}
+
+// =========================================================
+// member functions
+// =========================================================
+
+void	ScavTrap::guardGate()
+{
+	setGuardGate(true);
+	std::cout << "ScavTrap[ " << getName() << " ] : has entered the Gate Keeper mode" << std::endl;
+}
+
+// =========================================================
+// std::ostream << operator's overloading
+// =========================================================
+
+std::ostream & operator<<(std::ostream & out, ScavTrap const & st)
+{
+	out << "ScavTrap:" << std::endl
+		<< "{" << std::endl
+		<< "\tname: " << st.getName() << std::endl
+		<< "\thit points: " << st.getHitPoints() << std::endl
+		<< "\tenergy points: " << st.getEnergyPoints() << std::endl
+		<< "\tattack damage: " << st.getAttackDamage() << std::endl
+		<< "\tis guarding gate: " << st.getGuardGate() << std::endl
+		<< "}" << std::endl;
+	return (out);
+}
