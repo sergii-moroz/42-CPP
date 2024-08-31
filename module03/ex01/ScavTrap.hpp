@@ -26,10 +26,13 @@ class ScavTrap : public ClapTrap
 		ScavTrap & operator=( ScavTrap const & );
 		~ScavTrap();
 
-		bool	getGuardGate() const;
-		void	setGuardGate( bool );
+		bool		getGuardGate() const;
+		void		setGuardGate( bool );
 
-		void	guardGate();
+		void		attack(std::string const & target);
+		void		takeDamage(unsigned int amount);
+		void		beRepaired(unsigned int amount);
+		void		guardGate();
 };
 
 std::ostream & operator<<(std::ostream & out, ScavTrap const & st);

@@ -83,8 +83,81 @@ ScavTrap & ScavTrap::operator=(ScavTrap const & copy)
 
 void	ScavTrap::guardGate()
 {
-	setGuardGate(true);
-	std::cout << "ScavTrap[ " << getName() << " ] : has entered the Gate Keeper mode" << std::endl;
+	if (getHitPoints() <= 0)
+		std::cout << "ScavTrap: " << getName() << " is not able to enter in gate keeper mode"
+			<< ", because he has " << getHitPoints()
+			<< " hit points" << std::endl;
+	if (getHitPoints() > 0)
+	{
+		if (getGuardGate())
+			std::cout << "ScavTrap[ " << getName() << " ] : is already keep the Gate." << std::endl;
+		else
+		{
+			std::cout << "ScavTrap[ " << getName() << " ] : has entered the Gate Keeper mode" << std::endl;
+			setGuardGate(true);
+		}
+	}
+}
+
+void	ScavTrap::attack(std::string const & target)
+{
+	if (getAttackDamage() <= 0)
+		std::cout << "ScavTrap: " << getName() << " is not able to attack "
+			<< target << ", because he has " << getAttackDamage()
+			<< " attack damage points" << std::endl;
+	else if (getEnergyPoints() < 1)
+		std::cout << "ScavTrap: " << getName() << " is not able to attack "
+			<< target << ", because he has " << getEnergyPoints()
+			<< " energy points" << std::endl;
+	else if (getHitPoints() <= 0)
+		std::cout << "ScavTrap: " << getName() << " is not able to attack "
+			<< target << ", because he has " << getHitPoints()
+			<< " hit points" << std::endl;
+	if (getAttackDamage() > 0 && getEnergyPoints() > 0 && getHitPoints() > 0)
+	{
+		std::cout << "ScavTrap " << getName() << " attacks "
+			<< target << ", causing " << getAttackDamage()
+			<< " points of damage!" << std::endl;
+		setEnergyPoints(getEnergyPoints() - 1);
+	}
+}
+
+void	ScavTrap::takeDamage(unsigned int amount)
+{
+	if (getHitPoints() <= 0)
+	{
+		std::cout << "It has no senseto to attack ScavTrap" << getName()
+			<< " he has " << getHitPoints() << " hit points" << std::endl;
+		return ;
+	}
+	setHitPoints(getHitPoints() - amount);
+	std::cout << "ScavTrap " << getName() << " takes "
+		<< amount << " points of damage!" << std::endl;
+}
+
+void	ScavTrap::beRepaired(unsigned int amount)
+{
+	if (getEnergyPoints() < 1)
+		std::cout << "ScavTrap: " << getName() << " is not able to repair itself"
+			<< ", because he has " << getEnergyPoints()
+			<< " energy points" << std::endl;
+	else if (getHitPoints() <= 0)
+		std::cout << "ScavTrap: " << getName() << " is not able to repair itself"
+			<< ", because he has " << getHitPoints()
+			<< " hit points" << std::endl;
+	else if (getHitPoints() >= 10)
+		std::cout << "ScaveTrap: " << getName() << " is not able to repair itself"
+			<< ", because he has maximum amount of hit points: " << getHitPoints() << std::endl;
+	if (getHitPoints() > 0 && getHitPoints() < 10 && getEnergyPoints() > 0 )
+	{
+		if (getHitPoints() + amount > 10)
+			setHitPoints(10);
+		else
+			setHitPoints(getHitPoints() + amount);
+		std::cout << "ScaveTrap " << getName() << " recovers "
+			<< amount << " hit points!" << std::endl;
+		setEnergyPoints(getEnergyPoints() - 1);
+	}
 }
 
 // =========================================================
