@@ -27,6 +27,6 @@ class FragTrap : virtual public ClapTrap
 		void		highFivesGuys();
 };
 
-std::ostream & operator<<(std::ostream & out, FragTrap const & st);
+std::ostream & operator<<(std::ostream & out, FragTrap const & ft);
 
 #endif

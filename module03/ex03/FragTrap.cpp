@@ -79,14 +79,14 @@ void	FragTrap::highFivesGuys()
 // std::ostream << operator's overloading
 // =========================================================
 
-std::ostream & operator<<(std::ostream & out, FragTrap const & st)
+std::ostream & operator<<(std::ostream & out, FragTrap const & ft)
 {
 	out << "FragTrap:" << std::endl
 		<< "{" << std::endl
-		<< "\tname: " << st.getName() << std::endl
-		<< "\thit points: " << st.getHitPoints() << std::endl
-		<< "\tenergy points: " << st.getEnergyPoints() << std::endl
-		<< "\tattack damage: " << st.getAttackDamage() << std::endl
+		<< "\tname: " << ft.getName() << std::endl
+		<< "\thit points: " << ft.getHitPoints() << std::endl
+		<< "\tenergy points: " << ft.getEnergyPoints() << std::endl
+		<< "\tattack damage: " << ft.getAttackDamage() << std::endl
 		<< "}" << std::endl;
 	return (out);
 }
