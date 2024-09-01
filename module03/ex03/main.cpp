@@ -38,7 +38,12 @@ int	main(void)
 	b.guardGate();
 
 	// Die
+	b.takeDamage(1000);
+	std::cout << b << std::endl;
+
 	// Do something after death
+	b.beRepaired(5);
+	b.attack("Robot");
 
 	return (0);
 }
