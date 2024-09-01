@@ -17,8 +17,6 @@
 
 class ScavTrap : public ClapTrap
 {
-	private:
-		bool	_guardGate;
 	public:
 		ScavTrap();
 		ScavTrap( ScavTrap const & );
@@ -26,12 +24,7 @@ class ScavTrap : public ClapTrap
 		ScavTrap & operator=( ScavTrap const & );
 		~ScavTrap();
 
-		bool		getGuardGate() const;
-		void		setGuardGate( bool );
-
 		void		attack(std::string const & target);
-		void		takeDamage(unsigned int amount);
-		void		beRepaired(unsigned int amount);
 		void		guardGate();
 };
 
