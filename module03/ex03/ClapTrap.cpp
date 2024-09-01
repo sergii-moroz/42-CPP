@@ -130,11 +130,14 @@ void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (getHitPoints() <= 0)
 	{
-		std::cout << "It has no senseto to attack ClapTrap" << getName()
+		std::cout << "It has no sense to attack " << getName()
 			<< " he has " << getHitPoints() << " hit points" << std::endl;
 		return ;
 	}
-	setHitPoints(getHitPoints() - amount);
+	if (getHitPoints() <= amount)
+		setHitPoints(0);
+	else
+		setHitPoints(getHitPoints() - amount);
 	std::cout << "ClapTrap " << getName() << " takes "
 		<< amount << " points of damage!" << std::endl;
 }
@@ -149,15 +152,9 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap: " << getName() << " is not able to repair itself"
 			<< ", because he has " << getHitPoints()
 			<< " hit points" << std::endl;
-	else if (getHitPoints() >= 10)
-		std::cout << "ClapTrap: " << getName() << " is not able to repair itself"
-			<< ", because he has maximum amount of hit points: " << getHitPoints() << std::endl;
-	if (getHitPoints() > 0 && getHitPoints() < 10 && getEnergyPoints() > 0 )
+	if (getHitPoints() > 0 && getEnergyPoints() > 0 )
 	{
-		if (getHitPoints() + amount > 10)
-			setHitPoints(10);
-		else
-			setHitPoints(getHitPoints() + amount);
+		setHitPoints(getHitPoints() + amount);
 		std::cout << "ClapTrap " << getName() << " recovers "
 			<< amount << " hit points!" << std::endl;
 		setEnergyPoints(getEnergyPoints() - 1);
