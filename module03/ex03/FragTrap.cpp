@@ -75,67 +75,6 @@ void	FragTrap::highFivesGuys()
 	}
 }
 
-void	FragTrap::attack(std::string const & target)
-{
-	if (getAttackDamage() <= 0)
-		std::cout << "FragTrap: " << getName() << " is not able to attack "
-			<< target << ", because he has " << getAttackDamage()
-			<< " attack damage points" << std::endl;
-	else if (getEnergyPoints() < 1)
-		std::cout << "FragTrap: " << getName() << " is not able to attack "
-			<< target << ", because he has " << getEnergyPoints()
-			<< " energy points" << std::endl;
-	else if (getHitPoints() <= 0)
-		std::cout << "FragTrap: " << getName() << " is not able to attack "
-			<< target << ", because he has " << getHitPoints()
-			<< " hit points" << std::endl;
-	if (getAttackDamage() > 0 && getEnergyPoints() > 0 && getHitPoints() > 0)
-	{
-		std::cout << "FragTrap " << getName() << " attacks "
-			<< target << ", causing " << getAttackDamage()
-			<< " points of damage!" << std::endl;
-		setEnergyPoints(getEnergyPoints() - 1);
-	}
-}
-
-void	FragTrap::takeDamage(unsigned int amount)
-{
-	if (getHitPoints() <= 0)
-	{
-		std::cout << "It has no senseto to attack FragTrap" << getName()
-			<< " he has " << getHitPoints() << " hit points" << std::endl;
-		return ;
-	}
-	setHitPoints(getHitPoints() - amount);
-	std::cout << "FragTrap " << getName() << " takes "
-		<< amount << " points of damage!" << std::endl;
-}
-
-void	FragTrap::beRepaired(unsigned int amount)
-{
-	if (getEnergyPoints() < 1)
-		std::cout << "FragTrap: " << getName() << " is not able to repair itself"
-			<< ", because he has " << getEnergyPoints()
-			<< " energy points" << std::endl;
-	else if (getHitPoints() <= 0)
-		std::cout << "FragTrap: " << getName() << " is not able to repair itself"
-			<< ", because he has " << getHitPoints()
-			<< " hit points" << std::endl;
-	else if (getHitPoints() >= 100)
-		std::cout << "FrageTrap: " << getName() << " is not able to repair itself"
-			<< ", because he has maximum amount of hit points: " << getHitPoints() << std::endl;
-	if (getHitPoints() > 0 && getHitPoints() < 100 && getEnergyPoints() > 0 )
-	{
-		if (getHitPoints() + amount > 100)
-			setHitPoints(100);
-		else
-			setHitPoints(getHitPoints() + amount);
-		std::cout << "FrageTrap " << getName() << " recovers "
-			<< amount << " hit points!" << std::endl;
-		setEnergyPoints(getEnergyPoints() - 1);
-	}
-}
-
 // =========================================================
 // std::ostream << operator's overloading
 // =========================================================
