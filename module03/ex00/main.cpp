@@ -14,20 +14,55 @@
 
 int	main(void)
 {
-	ClapTrap	bob("Bob");
-	ClapTrap	sven("Sven");
+	// Constructors
+	ClapTrap	b;
+	// ClapTrap	b("bob");
+	// ClapTrap	c(b);
+	std::cout << b << std::endl;
 
-	std::cout << bob << std::endl;
-	std::cout << sven << std::endl;
-	bob.setAttackDamage(2);
-	bob.attack(sven.getName());
-	sven.takeDamage(bob.getAttackDamage());
-	sven.beRepaired(1);
-	sven.beRepaired(1);
-	sven.beRepaired(1);
-	std::cout << bob << std::endl;
-	std::cout << sven << std::endl;
-	//ct1 = ct2;
-	//std::cout << ct1 << std::endl;
+	// Attack
+	std::cout << std::endl << "=== Test 1 ===" << std::endl;
+	b.attack("robot 1");
+	std::cout << b << std::endl;
+
+	// Attack
+	b.setAttackDamage(1);
+	std::cout << std::endl << "=== Test 2 ===" << std::endl;
+	b.attack("robot 1");
+	std::cout << b << std::endl;
+
+	// Take Damage
+	std::cout << std::endl << "=== Test 3 ===" << std::endl;
+	b.takeDamage(5);
+	std::cout << b << std::endl;
+
+	// Repair
+	std::cout << std::endl << "=== Test 4 ===" << std::endl;
+	b.beRepaired(1);
+	std::cout << b << std::endl;
+
+	// loose all energy
+	std::cout << std::endl << "=== Test 5 ===" << std::endl;
+	b.attack("someone");
+	b.attack("someone");
+	b.attack("someone");
+	b.attack("someone");
+	b.attack("someone");
+	b.attack("someone");
+	b.attack("someone");
+	b.attack("someone");
+	b.attack("someone");
+	std::cout << b << std::endl;
+
+	// Die
+	std::cout << std::endl << "=== Test 6 ===" << std::endl;
+	b.takeDamage(1000);
+	std::cout << b << std::endl;
+
+	// Do something after death
+	std::cout << std::endl << "=== Test 7 ===" << std::endl;
+	b.beRepaired(5);
+	b.attack("Robot");
+
 	return (0);
 }
