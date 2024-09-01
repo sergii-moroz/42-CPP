@@ -16,9 +16,9 @@
 // constructors
 // =========================================================
 
-ClapTrap::ClapTrap( void ) : _name("noname"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+ClapTrap::ClapTrap( void ) : _name("noname_ClapTrap"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "ClapTrap: Default constructor called" << std::endl;
+	std::cout << "ClapTrap[ " << getName() << " ] : Default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string const & name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
@@ -29,8 +29,8 @@ ClapTrap::ClapTrap(std::string const & name) : _name(name), _hitPoints(10), _ene
 
 ClapTrap::ClapTrap( ClapTrap const & copy)
 {
-	std::cout << "ClapTrap: Copy constructor called" << std::endl;
 	*this = copy;
+	std::cout << "ClapTrap[ " << getName() << " ] : Copy constructor called" << std::endl;
 }
 
 // =========================================================
@@ -39,7 +39,7 @@ ClapTrap::ClapTrap( ClapTrap const & copy)
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap: Destructor called" << std::endl;
+	std::cout << "ClapTrap[ " << getName() << " ] : Destructor called" << std::endl;
 }
 
 // =========================================================
@@ -130,11 +130,14 @@ void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (getHitPoints() <= 0)
 	{
-		std::cout << "It has no senseto to attack ClapTrap" << getName()
+		std::cout << "It has no sense to attack " << getName()
 			<< " he has " << getHitPoints() << " hit points" << std::endl;
 		return ;
 	}
-	setHitPoints(getHitPoints() - amount);
+	if (getHitPoints() <= amount)
+		setHitPoints(0);
+	else
+		setHitPoints(getHitPoints() - amount);
 	std::cout << "ClapTrap " << getName() << " takes "
 		<< amount << " points of damage!" << std::endl;
 }
@@ -149,15 +152,9 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap: " << getName() << " is not able to repair itself"
 			<< ", because he has " << getHitPoints()
 			<< " hit points" << std::endl;
-	else if (getHitPoints() >= 10)
-		std::cout << "ClapTrap: " << getName() << " is not able to repair itself"
-			<< ", because he has maximum amount of hit points: " << getHitPoints() << std::endl;
-	if (getHitPoints() > 0 && getHitPoints() < 10 && getEnergyPoints() > 0 )
+	if (getHitPoints() > 0 && getEnergyPoints() > 0 )
 	{
-		if (getHitPoints() + amount > 10)
-			setHitPoints(10);
-		else
-			setHitPoints(getHitPoints() + amount);
+		setHitPoints(getHitPoints() + amount);
 		std::cout << "ClapTrap " << getName() << " recovers "
 			<< amount << " hit points!" << std::endl;
 		setEnergyPoints(getEnergyPoints() - 1);
