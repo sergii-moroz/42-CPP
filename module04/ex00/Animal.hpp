@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:07:43 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/03 10:34:22 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/03 20:47:41 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ class Animal
 		std::string	_type;
 	public:
 		Animal();
-		Animal( std::string );
 		Animal( Animal const & ref);
 		~Animal();
 

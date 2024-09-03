@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:11:32 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/03 10:37:46 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/03 21:19:39 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,15 @@
 // constructors
 // =========================================================
 
-Animal::Animal()
+Animal::Animal() : _type("")
 {
-	std::cout << "Animal: Default constructor called";
-}
-
-Animal::Animal(std::string type) : _type(type)
-{
-	std::cout << "Animal: Typed constructor called";
+	std::cout << "Animal: Default constructor called" << std::endl;
 }
 
 Animal::Animal( Animal const & copy)
 {
 	*this = copy;
-	std::cout << "Animal: Copy constructor called";
+	std::cout << "Animal: Copy constructor called" << std::endl;
 }
 
 // =========================================================
@@ -38,7 +33,7 @@ Animal::Animal( Animal const & copy)
 
 Animal::~Animal()
 {
-	std::cout << "Animal: Destructor called";
+	std::cout << "Animal: Destructor called" << std::endl;
 }
 
 // =========================================================
@@ -61,6 +56,7 @@ void	Animal::setType( std::string type )
 
 Animal &	Animal::operator=( Animal const & copy)
 {
+	std::cout << "Animal: Assignation operator called" << std::endl;
 	setType( copy.getType() );
 	return ( *this );
 }
