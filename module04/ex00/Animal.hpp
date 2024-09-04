@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:07:43 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/03 20:47:41 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/04 08:21:54 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class Animal
 		std::string	getType() const;
 
 		Animal &	operator=( Animal const & copy );
+		void		makeSound() const;
 };
 
 std::ostream &	operator<<(std::ostream out, Animal const & ref);

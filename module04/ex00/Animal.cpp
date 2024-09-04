@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:11:32 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/03 21:19:39 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/04 08:21:20 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // constructors
 // =========================================================
 
-Animal::Animal() : _type("")
+Animal::Animal() : _type("Animal")
 {
 	std::cout << "Animal: Default constructor called" << std::endl;
 }
@@ -59,6 +59,15 @@ Animal &	Animal::operator=( Animal const & copy)
 	std::cout << "Animal: Assignation operator called" << std::endl;
 	setType( copy.getType() );
 	return ( *this );
+}
+
+// =========================================================
+// member's function
+// =========================================================
+
+void	Animal::makeSound() const
+{
+	std::cout << getType() << ": makes No sound" << std::endl;
 }
 
 // =========================================================
