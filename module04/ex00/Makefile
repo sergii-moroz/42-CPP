@@ -4,7 +4,8 @@ CPP			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM			=	rm -rf
 
-SRCS		=	Animal.cpp Cat.cpp Dog.cpp main.cpp
+SRCS		=	Animal.cpp Cat.cpp Dog.cpp main.cpp \
+				WrongAnimal.cpp WrongCat.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
 all:			$(NAME)

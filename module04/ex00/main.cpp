@@ -6,12 +6,13 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:07:10 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/04 08:37:50 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/04 09:28:21 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "WrongCat.hpp"
 
 int	main( void )
 {
@@ -41,6 +42,24 @@ int	main( void )
 	delete dog;
 	delete dog_copy;
 	std::cout << "=== Test 3 === end" << std::endl << std::endl;
+
+	std::cout << "=== Test 4 === start" << std::endl;
+	const WrongAnimal	*wmeta = new WrongAnimal();
+	const WrongAnimal	*wmeta_copy = new WrongAnimal(*wmeta);
+	std::cout << "Type: " << wmeta->getType() << std::endl;
+	wmeta->makeSound();
+	delete wmeta;
+	delete wmeta_copy;
+	std::cout << "=== Test 4 === end" << std::endl << std::endl;
+
+	std::cout << "=== Test 5 === start" << std::endl;
+	const WrongCat	*wcat = new WrongCat();
+	const WrongCat	*wcat_copy = new WrongCat(*wcat);
+	std::cout << "Type: " << wcat->getType() << std::endl;
+	wcat->makeSound();
+	delete wcat;
+	delete wcat_copy;
+	std::cout << "=== Test 5 === end" << std::endl << std::endl;
 
 	return (0);
 }
