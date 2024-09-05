@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:07:43 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/04 20:12:17 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/05 07:55:15 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ class Animal
 		void		makeSound() const;
 };
 
-std::ostream &	operator<<(std::ostream out, Animal const & ref);
+std::ostream &	operator<<(std::ostream & out, Animal const & ref);
 
 #endif
