@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:07:43 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/05 07:55:15 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/06 18:36:16 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,19 @@
 
 class Animal
 {
-	protected:
-		std::string	_type;
 	public:
 		Animal();
-		Animal( Animal const & ref);
+		Animal(Animal const & ref);
 		virtual ~Animal();
 
-		void		setType( std::string type );
-		std::string	getType() const;
+		void			setType(std::string type);
+		std::string		getType() const;
 
-		Animal &	operator=( Animal const & copy );
-		void		makeSound() const;
+		Animal &		operator=(Animal const & copy);
+		virtual void	makeSound() const;
+
+	protected:
+		std::string		_type;
 };
 
 std::ostream &	operator<<(std::ostream & out, Animal const & ref);
