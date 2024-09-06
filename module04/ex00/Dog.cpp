@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 18:08:53 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/04 08:44:19 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/06 18:12:46 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 // constructor
 // =========================================================
 
-Dog::Dog()
+Dog::Dog() : Animal()
 {
 	setType("Dog");
 	std::cout << "Dog: default constructor called" << std::endl;
 }
 
-Dog::Dog( Dog const & copy )
+Dog::Dog( Dog const & copy ) : Animal(copy)
 {
-	*this = copy;
 	std::cout << "Dog: Copy constructor called" << std::endl;
+	*this = copy;
 }
 
 // =========================================================
@@ -53,6 +53,6 @@ void	Dog::makeSound() const
 Dog &	Dog::operator=( Dog const & ref )
 {
 	std::cout << "Dog: Assignation operator called" << std::endl;
-	setType( ref.getType() );
+	setType(ref.getType());
 	return (*this);
 }
