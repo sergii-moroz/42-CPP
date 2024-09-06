@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 18:08:53 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/04 20:11:59 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/06 19:29:10 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,15 @@
 // constructor
 // =========================================================
 
-Dog::Dog() : _brain(new Brain())
+Dog::Dog() : Animal(), _brain(new Brain())
 {
 	setType("Dog");
 	std::cout << "Dog: default constructor called" << std::endl;
+}
+
+Dog::Dog( Dog const & copy ) : Animal(copy), _brain(new Brain(*copy._brain))
+{
+	std::cout << "Dog: Copy constructor called" << std::endl;
 }
 
 // =========================================================
@@ -33,10 +38,21 @@ Dog::~Dog()
 }
 
 // =========================================================
+// Assignment = operator's overloading
+// =========================================================
+
+Dog &	Dog::operator=(Dog const & ref)
+{
+	std::cout << "Dog: Assignation operator called" << std::endl;
+	setType(ref.getType());
+	return (*this);
+}
+
+// =========================================================
 // member's function
 // =========================================================
 
 void	Dog::makeSound() const
 {
-	std::cout << getType() << ": woof-woof" << std::endl;
+	std::cout << getType() << ": Miu-miu" << std::endl;
 }
