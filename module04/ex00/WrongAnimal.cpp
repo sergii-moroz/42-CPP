@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:11:32 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/04 09:13:13 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/06 18:21:08 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ WrongAnimal::WrongAnimal() : _type("WrongAnimal")
 
 WrongAnimal::WrongAnimal( WrongAnimal const & copy)
 {
-	*this = copy;
 	std::cout << "WrongAnimal: Copy constructor called" << std::endl;
+	*this = copy;
 }
 
 // =========================================================
@@ -57,8 +57,8 @@ void	WrongAnimal::setType( std::string type )
 WrongAnimal &	WrongAnimal::operator=( WrongAnimal const & copy)
 {
 	std::cout << "WrongAnimal: Assignation operator called" << std::endl;
-	setType( copy.getType() );
-	return ( *this );
+	setType(copy.getType());
+	return (*this);
 }
 
 // =========================================================
