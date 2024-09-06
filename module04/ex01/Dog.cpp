@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 18:08:53 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/06 19:29:10 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/06 20:03:49 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ Dog &	Dog::operator=(Dog const & ref)
 
 void	Dog::makeSound() const
 {
-	std::cout << getType() << ": Miu-miu" << std::endl;
+	std::cout << getType() << ": Woof-Woof" << std::endl;
 }
