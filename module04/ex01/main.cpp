@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 10:08:57 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/04 20:13:20 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/06 19:32:45 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,14 @@ void	ft_leaks(void)
 
 int	main( void )
 {
+	Cat	cbasic;
+	Dog	dbasic;
+	{
+		Cat	ctmp = cbasic;
+		Dog	dtmp = dbasic;
+	}
 	// atexit(ft_leaks);
-	const int	i_max = 10;
+	const int	i_max = 2;
 
 	Animal	*animal[i_max];
 	for (int i = 0; i < i_max; i++)
