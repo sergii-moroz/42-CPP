@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 18:09:25 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/04 11:36:07 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/06 18:57:51 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@
 
 class Cat : public Animal
 {
-	private:
-		Brain	*_brain;
 	public:
 		Cat();
+		Cat( Cat const & copy );
 		~Cat();
 
+		Cat &	operator=( Cat const & ref );
 		void	makeSound() const;
+	private:
+		Brain	*_brain;
 };
 
 #endif
