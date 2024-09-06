@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 18:09:25 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/04 09:20:08 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/06 18:22:53 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ class WrongCat : public WrongAnimal
 		WrongCat( WrongCat const & copy );
 		~WrongCat();
 
-		WrongCat &	operator=( WrongCat const & ref );
-		void	makeSound() const;
+		WrongCat &	operator=(WrongCat const & ref);
+		void		makeSound() const;
 };
 
 #endif
