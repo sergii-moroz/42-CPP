@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 08:35:52 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/10 08:39:33 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/10 14:59:57 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@
 
 class Ice : AMateria
 {
-
+	public:
+		Ice();
+		Ice(Ice const &);
+		~Ice();
+		AMateria	*clone();
+		void		use(ICharacter & target);
 };
 
 #endif
