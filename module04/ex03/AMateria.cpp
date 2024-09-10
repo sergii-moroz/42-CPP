@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 09:43:34 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/10 10:13:38 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/10 15:03:48 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void	AMateria::setType(std::string const & type)
 AMateria &	AMateria::operator=(AMateria const & ref)
 {
 	std::cout << "AMateria: Assignment operator called" << std::endl;
-	setType(getType());
+	setType(ref.getType());
 	return (*this);
 }
