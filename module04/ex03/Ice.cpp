@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:48:00 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/10 15:01:25 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/10 19:36:34 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,20 @@ Ice::~Ice()
 	std::cout << "Ice: Destructor called" << std::endl;
 }
 
+// =========================================================
+// Assignment = operator's overloading
+// =========================================================
+
+Ice &	Ice::operator=(Ice const & ref)
+{
+	std::cout << "Ice: Asignemt operator called" << std::endl;
+	setType(ref.getType());
+	return (*this);
+}
 
 void	Ice::use(ICharacter & target)
 {
-	std::cout << "* shoots an ice bolt at " << target << " *" << std::endl;
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }
 
 AMateria	*Ice::clone()
