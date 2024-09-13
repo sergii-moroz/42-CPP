@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 09:43:34 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/12 19:31:32 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/12 20:15:14 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,12 @@ AMateria &	AMateria::operator=(AMateria const & rhs)
 // member function
 // =========================================================
 
-// AMateria	*AMateria::clone()
-// {
-// 	return (new AMateria());
-// }
+AMateria	*AMateria::clone()
+{
+	return (this);
+}
+
+void	AMateria::use(ICharacter & target)
+{
+	std::cout << "AMateria: use function called for target: " << target.getName() << std::endl;
+}
