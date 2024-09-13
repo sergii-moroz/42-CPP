@@ -18,12 +18,14 @@
 
 Cure::Cure() : AMateria("cure")
 {
-	std::cout << "Cure: Default constructor called" << std::endl;
+	std::cout << "Cure: " << BLACK
+		<< "Default constructor called" << RESET << std::endl;
 }
 
 Cure::Cure(Cure const & copy): AMateria(copy)
 {
-	std::cout << "Cure: Copy constructor called" << std::endl;
+	std::cout << "Cure: " << BLACK
+		<< "Copy constructor called" << RESET << std::endl;
 	*this = copy;
 }
 
@@ -33,7 +35,8 @@ Cure::Cure(Cure const & copy): AMateria(copy)
 
 Cure::~Cure()
 {
-	std::cout << "Cure: Destructor called" << std::endl;
+	std::cout << "Cure: " << BLACK
+		<< "Destructor called" << RESET << std::endl;
 }
 
 // =========================================================
@@ -43,10 +46,13 @@ Cure::~Cure()
 Cure &	Cure::operator=(Cure const & rhs)
 {
 	if (this == &rhs)
-		std::cout << "Cure: There is no need to use assignment operator [lhs==rhs]" << std::endl;
+		std::cout << "Cure: " << RED
+			<< "There is no need to use assignment operator [lhs==rhs]"
+			<< RESET << std::endl;
 	else
 	{
-		std::cout << "Cure: Assignment operator called" << std::endl;
+		std::cout << "Cure: " << BLACK
+			<< "Assignment operator called" << RESET << std::endl;
 		setType(rhs.getType());
 	}
 	return (*this);
@@ -58,7 +64,7 @@ Cure &	Cure::operator=(Cure const & rhs)
 
 void	Cure::use(ICharacter & target)
 {
-	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+	std::cout << CYAN << "* heals " << target.getName() << "'s wounds *" << RESET << std::endl;
 }
 
 AMateria	*Cure::clone()

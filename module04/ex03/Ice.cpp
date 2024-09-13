@@ -18,12 +18,14 @@
 
 Ice::Ice() : AMateria("ice")
 {
-	std::cout << "Ice: Default constructor called" << std::endl;
+	std::cout << "Ice: " << BLACK
+		<< "Default constructor called" << RESET << std::endl;
 }
 
 Ice::Ice(Ice const & copy) : AMateria(copy)
 {
-	std::cout << "Ice: Copy constructor called" << std::endl;
+	std::cout << "Ice: " << BLACK
+		<< "Copy constructor called" << RESET << std::endl;
 	*this = copy;
 }
 
@@ -33,7 +35,8 @@ Ice::Ice(Ice const & copy) : AMateria(copy)
 
 Ice::~Ice()
 {
-	std::cout << "Ice: Destructor called" << std::endl;
+	std::cout << "Ice: " << BLACK
+		<< "Destructor called" << RESET << std::endl;
 }
 
 // =========================================================
@@ -43,10 +46,13 @@ Ice::~Ice()
 Ice &	Ice::operator=(Ice const & rhs)
 {
 	if (this == &rhs)
-		std::cout << "Ice: There is no need to use assignment operator [lhs==rhs]" << std::endl;
+		std::cout << "Ice: " << RED
+			<< "There is no need to use assignment operator [lhs==rhs]"
+			<< RESET << std::endl;
 	else
 	{
-		std::cout << "Ice: Assignemt operator called" << std::endl;
+		std::cout << "Ice: " << BLACK
+			<< "Assignemt operator called" << RESET << std::endl;
 		setType(rhs.getType());
 	}
 	return (*this);
@@ -58,7 +64,7 @@ Ice &	Ice::operator=(Ice const & rhs)
 
 void	Ice::use(ICharacter & target)
 {
-	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+	std::cout << CYAN << "* shoots an ice bolt at " << target.getName() << " *" << RESET << std::endl;
 }
 
 AMateria	*Ice::clone()
