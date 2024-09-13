@@ -20,6 +20,10 @@ class AMateria;
 
 class ICharacter
 {
+	protected:
+		ICharacter();
+		ICharacter(ICharacter const &);
+		ICharacter & operator=(ICharacter const &);
 	public:
 		virtual ~ICharacter();
 		virtual std::string const & getName() const = 0;
