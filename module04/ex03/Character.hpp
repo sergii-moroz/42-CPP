@@ -20,6 +20,7 @@ class Character : ICharacter
 	public:
 		Character();
 		Character(Character const &);
+		Character(std::string const &);
 		~Character();
 		Character &	operator=(Character const &);
 		std::string const &	getName() const;
@@ -30,7 +31,6 @@ class Character : ICharacter
 	private:
 		std::string	_name;
 		AMateria	*_inventory[4];
-		int			_idx;
 };
 
 #endif
