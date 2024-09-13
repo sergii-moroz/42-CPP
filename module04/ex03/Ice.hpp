@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 08:35:52 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/10 19:31:07 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/11 21:54:38 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "AMateria.hpp"
 
-class Ice : AMateria
+class Ice : public AMateria
 {
 	public:
 		Ice();

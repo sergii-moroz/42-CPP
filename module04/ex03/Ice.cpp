@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:48:00 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/10 19:36:34 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/13 12:07:29 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 // constructors
 // =========================================================
 
-Ice::Ice() : AMateria()
+Ice::Ice() : AMateria("ice")
 {
 	std::cout << "Ice: Default constructor called" << std::endl;
-	setType("ice");
 }
 
 Ice::Ice(Ice const & copy)
@@ -41,12 +40,21 @@ Ice::~Ice()
 // Assignment = operator's overloading
 // =========================================================
 
-Ice &	Ice::operator=(Ice const & ref)
+Ice &	Ice::operator=(Ice const & rhs)
 {
-	std::cout << "Ice: Asignemt operator called" << std::endl;
-	setType(ref.getType());
+	if (this == &rhs)
+	{
+		std::cout << "Ice: There is no need to use assignment operator [lhs==rhs]" << std::endl;
+		return (*this);
+	}
+	std::cout << "Ice: Assignemt operator called" << std::endl;
+	setType(rhs.getType());
 	return (*this);
 }
+
+// =========================================================
+// member functions
+// =========================================================
 
 void	Ice::use(ICharacter & target)
 {
