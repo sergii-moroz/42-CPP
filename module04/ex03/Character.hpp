@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 09:30:51 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/10 09:32:25 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/10 21:24:01 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,19 @@
 class Character : ICharacter
 {
 	public:
+		Character();
+		Character(Character const &);
+		~Character();
+		Character &	operator=(Character const &);
+		std::string const &	getName() const;
+		void	equip(AMateria *m);
+		void	unequip(int idx);
+		void	use(int idx, ICharacter & target);
+
+	private:
+		std::string	_name;
+		AMateria	*_inventory[4];
+		int			_idx;
 };
 
 #endif
