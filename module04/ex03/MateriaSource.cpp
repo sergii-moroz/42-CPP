@@ -12,7 +12,11 @@
 
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource() : _idx(0)
+// =========================================================
+// constructors
+// =========================================================
+
+MateriaSource::MateriaSource()
 {
 	std::cout << "MateriaSource: Default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
@@ -25,44 +29,60 @@ MateriaSource::MateriaSource(MateriaSource const & copy)
 	*this = copy;
 }
 
+// =========================================================
+// destructor
+// =========================================================
+
 MateriaSource::~MateriaSource()
 {
 	std::cout << "MateriaSource: Destructor called" << std::endl;
+	for (int i = 0; i < 4; i++)
+		if (_materials[i])
+			delete _materials[i];
 }
 
 MateriaSource &	MateriaSource::operator=(MateriaSource const & rhs)
 {
 	if (this == &rhs)
-	{
 		std::cout << "MateriaSource: There is no need to use assignment operator [lhs==rhs]" << std::endl;
-		return (*this);
+	else
+	{
+		std::cout << "MateriaSource: Assignment operator called" << std::endl;
+		for (int i = 0; i < 4; i++)
+		{
+			if (_materials[i])
+				delete _materials[i];
+			if (rhs._materials[i] != NULL)
+				_materials[i] = rhs._materials[i]->clone();
+			else
+				_materials[i] = NULL;
+		}
 	}
-	std::cout << "MateriaSource: Assignment operator called" << std::endl;
-	_idx = rhs._idx;
-	for (int i = 0; i < 4; i++)
-		_materials[i] = rhs._materials[i]->clone();
 	return (*this);
 }
 
 void MateriaSource::learnMateria(AMateria *m)
 {
-	if (_idx < 4)
+	for (int i = 0; i < 4; i++)
 	{
-		_materials[_idx] = m;
-		_idx++;
-		std::cout << "MateriaSource: New materia of type "
-			<< m->getType() << " was learnd" << std::endl;
+		if (_materials[i] == NULL)
+		{
+			_materials[_idx] = m;
+			std::cout << "MateriaSource: New materia of type "
+				<< m->getType() << " was learned" << std::endl;
+			return ;
+		}
 	}
-	else
-		std::cout << "MateriaSource: Couldn't learn new materia. All slots are occupied" << std::endl;
+	std::cout << "MateriaSource: Couldn't learn new materia. All slots are occupied" << std::endl;
 }
 
 AMateria	*MateriaSource::createMateria(std::string const & type)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (_materials[i]->getType() == type )
+		if (_materials[i] !=NULL && _materials[i]->getType() == type )
 			return (_materials[i]->clone());
 	}
+	std::cout << "MateriaSource: Materia \"" << type << "\" should be learned first" << std::endl;
 	return (NULL);
 }

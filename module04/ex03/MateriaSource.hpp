@@ -28,7 +28,6 @@ class MateriaSource : public IMateriaSource
 
 	private:
 		AMateria	*_materials[4];
-		int			_idx;
 };
 
 #endif
