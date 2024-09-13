@@ -18,17 +18,17 @@
 
 AMateria::AMateria() : _type("AMateria")
 {
-	std::cout << "AMateria: Default constructor called" << std::endl;
+	std::cout << BLACK << "AMateria: Default constructor called" << RESET << std::endl;
 }
 
 AMateria::AMateria(std::string const & type) : _type(type)
 {
-	std::cout << "AMateria: Typed constructor called" << std::endl;
+	std::cout << BLACK << "AMateria: Typed constructor called" << RESET << std::endl;
 }
 
 AMateria::AMateria(AMateria const & copy)
 {
-	std::cout << "AMateria: Copy constructor called" << std::endl;
+	std::cout << BLACK << "AMateria: Copy constructor called" << RESET << std::endl;
 	*this = copy;
 }
 
@@ -38,7 +38,7 @@ AMateria::AMateria(AMateria const & copy)
 
 AMateria::~AMateria()
 {
-	std::cout << "AMateria: Destructor called" << std::endl;
+	std::cout << BLACK << "AMateria: Destructor called" << RESET << std::endl;
 }
 
 // =========================================================
@@ -63,10 +63,10 @@ AMateria &	AMateria::operator=(AMateria const & rhs)
 {
 	if (this == &rhs)
 	{
-		std::cout << "AMateria: There is no need to use assignment operator [lhs==rhs]" << std::endl;
+		std::cout << BLACK << "AMateria: There is no need to use assignment operator [lhs==rhs]" << RESET << std::endl;
 		return (*this);
 	}
-	std::cout << "AMateria: Assignment operator called" << std::endl;
+	std::cout << BLACK << "AMateria: Assignment operator called" << RESET << std::endl;
 	setType(rhs.getType());
 	return (*this);
 }
@@ -82,5 +82,6 @@ AMateria	*AMateria::clone()
 
 void	AMateria::use(ICharacter & target)
 {
-	std::cout << "AMateria: use function called for target: " << target.getName() << std::endl;
+	std::cout << BLACK << "AMateria: use function called for target: "
+		<< target.getName() << RESET << std::endl;
 }
