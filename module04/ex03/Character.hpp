@@ -15,7 +15,7 @@
 
 # include "ICharacter.hpp"
 
-class Character : ICharacter
+class Character : public ICharacter
 {
 	public:
 		Character();

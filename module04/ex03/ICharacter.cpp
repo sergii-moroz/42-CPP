@@ -18,12 +18,12 @@
 
 ICharacter::ICharacter()
 {
-	std::cout << "ICharacter: Default constructor called" << std::endl;
+	std::cout << BLACK << "ICharacter: Default constructor called" << RESET << std::endl;
 }
 
 ICharacter::ICharacter(ICharacter const & copy)
 {
-	std::cout << "ICharacter: Copy constructor called" << std::endl;
+	std::cout << BLACK << "ICharacter: Copy constructor called" << RESET << std::endl;
 	*this = copy;
 }
 
@@ -33,7 +33,7 @@ ICharacter::ICharacter(ICharacter const & copy)
 
 ICharacter::~ICharacter()
 {
-	std::cout << "ICharacter: Default destructor called" << std::endl;
+	std::cout << BLACK << "ICharacter: Default destructor called" << RESET << std::endl;
 }
 
 // =========================================================
