@@ -4,7 +4,10 @@ CPP			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM 			= rm -rf
 
-SRCS		=	AMateria.cpp Ice.cpp main_test.cpp
+SRCS		=	AMateria.cpp Ice.cpp Cure.cpp \
+				Character.cpp MateriaSource.cpp \
+				ICharacter.cpp IMateriaSource.cpp \
+				main.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
 all:		$(NAME)
@@ -13,7 +16,7 @@ $(NAME):	$(OBJS)
 			$(CPP) $(CPPFLAGS) $(OBJS) -o $@
 
 %.o:		%.cpp
-			$(CPP) $(CPPFLAGS) -c $< -o$@
+			$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
 			$(RM) $(OBJS)
