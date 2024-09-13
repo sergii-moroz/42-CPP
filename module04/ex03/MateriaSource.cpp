@@ -18,14 +18,16 @@
 
 MateriaSource::MateriaSource()
 {
-	std::cout << "MateriaSource: Default constructor called" << std::endl;
+	std::cout << "MateriaSource: " << BLACK
+		<< "Default constructor called" << RESET << std::endl;
 	for (int i = 0; i < 4; i++)
 		_materials[i] = NULL;
 }
 
-MateriaSource::MateriaSource(MateriaSource const & copy)
+MateriaSource::MateriaSource(MateriaSource const & copy) : IMateriaSource()
 {
-	std::cout << "MateriaSource: Copy constructor called" << std::endl;
+	std::cout << "MateriaSource: " << BLACK
+		<< "Copy constructor called" << RESET << std::endl;
 	*this = copy;
 }
 
@@ -35,19 +37,26 @@ MateriaSource::MateriaSource(MateriaSource const & copy)
 
 MateriaSource::~MateriaSource()
 {
-	std::cout << "MateriaSource: Destructor called" << std::endl;
+	std::cout << "MateriaSource: " << BLACK
+		<< "Destructor called" << RESET << std::endl;
 	for (int i = 0; i < 4; i++)
 		if (_materials[i])
 			delete _materials[i];
 }
 
+// =========================================================
+// Assignment = operator's overloading
+// =========================================================
+
 MateriaSource &	MateriaSource::operator=(MateriaSource const & rhs)
 {
 	if (this == &rhs)
-		std::cout << "MateriaSource: There is no need to use assignment operator [lhs==rhs]" << std::endl;
+		std::cout << "MateriaSource: " << RED
+			<< "There is no need to use assignment operator [lhs==rhs]" << std::endl;
 	else
 	{
-		std::cout << "MateriaSource: Assignment operator called" << std::endl;
+		std::cout << "MateriaSource: " << BLACK
+			<< "Assignment operator called" << RESET << std::endl;
 		for (int i = 0; i < 4; i++)
 		{
 			if (_materials[i])
@@ -61,19 +70,25 @@ MateriaSource &	MateriaSource::operator=(MateriaSource const & rhs)
 	return (*this);
 }
 
+// =========================================================
+// member function
+// =========================================================
+
 void MateriaSource::learnMateria(AMateria *m)
 {
 	for (int i = 0; i < 4; i++)
 	{
 		if (_materials[i] == NULL)
 		{
-			_materials[_idx] = m;
-			std::cout << "MateriaSource: New materia of type "
-				<< m->getType() << " was learned" << std::endl;
+			_materials[i] = m;
+			std::cout << "MateriaSource: " << GREEN << "New materia of type "
+				<< m->getType() << " was learned" << RESET << std::endl;
 			return ;
 		}
 	}
-	std::cout << "MateriaSource: Couldn't learn new materia. All slots are occupied" << std::endl;
+	std::cout << "MateriaSource: " << RED
+		<< "Couldn't learn new materia. All slots are occupied" << RESET << std::endl;
+	delete m;
 }
 
 AMateria	*MateriaSource::createMateria(std::string const & type)
@@ -83,6 +98,7 @@ AMateria	*MateriaSource::createMateria(std::string const & type)
 		if (_materials[i] !=NULL && _materials[i]->getType() == type )
 			return (_materials[i]->clone());
 	}
-	std::cout << "MateriaSource: Materia \"" << type << "\" should be learned first" << std::endl;
+	std::cout << "MateriaSource: " << RED << "Materia \""
+		<< type << "\" should be learned first" << RESET << std::endl;
 	return (NULL);
 }
