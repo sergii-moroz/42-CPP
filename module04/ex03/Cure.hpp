@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 08:37:44 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/10 20:10:53 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/11 21:53:48 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "AMateria.hpp"
 
-class Cure : AMateria
+class Cure : public AMateria
 {
 	public:
 		Cure();
