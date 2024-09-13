@@ -4,7 +4,9 @@ CPP			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM 			= rm -rf
 
-SRCS		=	AMateria.cpp ICharacter.cpp Ice.cpp AMateria_test.cpp
+SRCS		=	AMateria.cpp Ice.cpp Cure.cpp AMateria_test.cpp \
+				ICharacter.cpp \
+				Test.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
 all:		$(NAME)

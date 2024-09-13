@@ -28,8 +28,8 @@ AMateria::AMateria(std::string const & type) : _type(type)
 
 AMateria::AMateria(AMateria const & copy)
 {
-	*this = copy;
 	std::cout << "AMateria: Copy constructor called" << std::endl;
+	*this = copy;
 }
 
 // =========================================================

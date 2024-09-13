@@ -16,13 +16,12 @@
 // constructors
 // =========================================================
 
-Cure::Cure() : AMateria()
+Cure::Cure() : AMateria("cure")
 {
 	std::cout << "Cure: Default constructor called" << std::endl;
-	setType("cure");
 }
 
-Cure::Cure(Cure const & copy)
+Cure::Cure(Cure const & copy): AMateria(copy)
 {
 	std::cout << "Cure: Copy constructor called" << std::endl;
 	*this = copy;
@@ -41,10 +40,15 @@ Cure::~Cure()
 // Assignment = operator's overloading
 // =========================================================
 
-Cure &	Cure::operator=(Cure const & ref)
+Cure &	Cure::operator=(Cure const & rhs)
 {
-	std::cout << "Cure: Assignment operator called" << std::endl;
-	setType(ref.getType());
+	if (this == &rhs)
+		std::cout << "Cure: There is no need to use assignment operator [lhs==rhs]" << std::endl;
+	else
+	{
+		std::cout << "Cure: Assignment operator called" << std::endl;
+		setType(rhs.getType());
+	}
 	return (*this);
 }
 

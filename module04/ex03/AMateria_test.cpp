@@ -11,16 +11,42 @@
 /* ************************************************************************** */
 
 #include "Ice.hpp"
+#include "Cure.hpp"
+#include "Test.hpp"
 
 int	main(void)
 {
-	//  Default constructor
-	Ice	ice = Ice();
-	Ice	ice2 = ice;
-	ice = ice2;
-	// Destrutor
-	// delete ice;
-	// delete ice2;
+	AMateria	*materias[4];
+
+	Test::caption("Create two ice materia & two cure materia");
+	materias[0] = new Ice();
+	materias[1] = new Cure();
+	materias[2] = new Ice();
+	materias[3] = new Cure();
+	for (int i = 0; i < 4; i++)
+	{
+		std::cout << "[ "<< i << " ] address: " << materias[i]
+			<< ", type: " << materias[i]->getType() << std::endl;
+	}
+
+	Test::caption("Assignment: x = x");
+	*materias[0] = *materias[0];
+	*materias[3] = *materias[2];
+	for (int i = 0; i < 4; i++)
+	{
+		std::cout << "[ "<< i << " ] address: " << materias[i]
+			<< ", type: " << materias[i]->getType() << std::endl;
+	}
+
+	{
+		Test::caption("Copy constructor");
+		Ice tmp0 = Ice();
+		Ice tmp1 = Ice(tmp0);
+	}
+
+	Test::caption("Destructor");
+	for (int i = 0; i < 4; i++)
+		delete materias[i];
 
 	return (0);
 }

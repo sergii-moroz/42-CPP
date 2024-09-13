@@ -21,7 +21,7 @@ Ice::Ice() : AMateria("ice")
 	std::cout << "Ice: Default constructor called" << std::endl;
 }
 
-Ice::Ice(Ice const & copy)
+Ice::Ice(Ice const & copy) : AMateria(copy)
 {
 	std::cout << "Ice: Copy constructor called" << std::endl;
 	*this = copy;
@@ -43,12 +43,12 @@ Ice::~Ice()
 Ice &	Ice::operator=(Ice const & rhs)
 {
 	if (this == &rhs)
-	{
 		std::cout << "Ice: There is no need to use assignment operator [lhs==rhs]" << std::endl;
-		return (*this);
+	else
+	{
+		std::cout << "Ice: Assignemt operator called" << std::endl;
+		setType(rhs.getType());
 	}
-	std::cout << "Ice: Assignemt operator called" << std::endl;
-	setType(rhs.getType());
 	return (*this);
 }
 
