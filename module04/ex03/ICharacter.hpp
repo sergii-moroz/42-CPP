@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 08:39:58 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/10 08:49:59 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/12 19:17:30 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <string>
 # include "AMateria.hpp"
+
+class AMateria;
 
 class ICharacter
 {
