@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:45 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/18 13:08:16 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/18 14:19:06 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 
 # include <string>
 # include <iostream>
+# include <exception>
+
+# define BLACK		"\033[1;30m"
+# define RED		"\033[1;31m"
+# define GREEN		"\033[1;32m"
+# define YELLOW		"\033[1;33m"
+# define BLUE		"\033[1;34m"
+# define MAGENTA	"\033[1;35m"
+# define CYAN		"\033[1;36m"
+# define WHITE		"\033[1;37m"
+# define RESET		"\033[0m"
 
 class Bureaucrat {
 	private:
@@ -31,6 +42,16 @@ class Bureaucrat {
 		void			incGrade(void);
 		void			decGrade(void);
 		void			display(void) const;
+
+		class GradeTooHighException : public std::exception
+		{
+			virtual const char* what() const throw();
+		};
+
+		class GradeTooLowException : public std::exception
+		{
+			virtual const char* what() const throw();
+		};
 };
 
 std::ostream & operator<<(std::ostream &, Bureaucrat const &);
