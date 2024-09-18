@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:41 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/17 13:53:18 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/18 13:13:25 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,19 @@ void	Bureaucrat::incGrade(void)
 void	Bureaucrat::decGrade(void)
 {
 	_grade++;
+}
+
+void	Bureaucrat::display(void) const
+{
+	std::cout << *this << std::endl;
+}
+
+// =========================================================
+// std::ostream << operator's overloading
+// =========================================================
+
+std::ostream & operator<<(std::ostream & out, Bureaucrat const & b)
+{
+	out << b.getName() << ", bereaucrat grade " << b.getGrade();
+	return (out);
 }
