@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:41 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/18 14:20:49 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/18 14:26:58 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,3 +123,13 @@ std::ostream & operator<<(std::ostream & out, Bureaucrat const & b)
 // =========================================================
 // Exceptions
 // =========================================================
+
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return ("Bureaucrat: Grade Too High!");
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return ("Bureaucrat: Grade Too Low!");
+}
