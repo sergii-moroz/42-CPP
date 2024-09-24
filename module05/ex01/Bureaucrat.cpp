@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:41 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/24 20:28:08 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/24 20:30:16 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	Bureaucrat::display(void) const
 void	Bureaucrat::signForm(bool status, std::string name) const
 {
 	if (status)
-		std::cout << getName() << " signed " << name << std::endl;
+		std::cout << GREEN << getName() << " signed " << name << RESET << std::endl;
 	else
 		std::cout << RED << getName() << " couldn't sign " << name
 			<< " because Grade Too Low" << RESET << std::endl;
