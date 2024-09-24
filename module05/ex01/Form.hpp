@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:58:44 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/24 18:54:56 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/24 19:53:34 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string>
 # include <exception>
 # include <iostream>
+# include "Bureaucrat.hpp"
 
 # define BLACK		"\033[1;30m"
 # define RED		"\033[1;31m"
@@ -27,7 +28,7 @@
 # define WHITE		"\033[1;37m"
 # define RESET		"\033[0m"
 
-class Bureaucrat;
+// class Bureaucrat;
 
 class Form {
 	public:
@@ -42,11 +43,11 @@ class Form {
 		int			getGrade4Exec() const;
 
 		// void		setName(std::string name);
-		void		setIsSigned(bool b);
+		void		setIsSigned(bool);
 		// void		setGrade4Sign(int	grade);
 		// void		setGrade4Exec(int	grade);
 
-		void		beSigned(Bureaucrat bureaucrat);
+		void		beSigned(Bureaucrat const &);
 
 		class GradeTooHighException : public std::exception
 		{
@@ -68,6 +69,6 @@ class Form {
 		const	int			_grade4Exec;
 };
 
-std::ostream &	operator<<(std::ostream out, Form const & ref);
+std::ostream &	operator<<(std::ostream  & out, Form const & ref);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:56:33 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/24 18:54:09 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/24 20:35:21 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,37 @@ int	Form::getGrade4Exec() const
 void	Form::setIsSigned(bool status)
 {
 	_isSigned = status;
+}
+
+
+// =========================================================
+// member function
+// =========================================================
+
+void	Form::beSigned(Bureaucrat const & ref)
+{
+	if (ref.getGrade() <= getGrade4Sign())
+	{
+		setIsSigned(true);
+		ref.signForm(getIsSigned(), getName());
+	}
+	else
+	{
+		ref.signForm(getIsSigned(), getName());
+		// Form::GradeTooLowException();
+	}
+}
+
+// =========================================================
+// std::ostream << operator's overloading
+// =========================================================
+
+std::ostream &	operator<<(std::ostream & out, Form const & ref)
+{
+	out << MAGENTA << "Form { " << BLACK << "name: \"" << RESET << ref.getName()
+		<< BLACK << "\", isSigned: " << RESET << ref.getIsSigned()
+		<< BLACK << ", grade4Sign: " << RESET << ref.getGrade4Sign()
+		<< BLACK << ", grade4Exec: " << RESET << ref.getGrade4Exec()
+		<< MAGENTA << " }" RESET;
+	return (out);
 }
