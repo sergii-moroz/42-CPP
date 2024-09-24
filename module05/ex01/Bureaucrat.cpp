@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:41 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/18 14:26:58 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:52:47 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,16 @@ void	Bureaucrat::decGrade(void)
 void	Bureaucrat::display(void) const
 {
 	std::cout << *this << std::endl;
+}
+
+void	Bureaucrat::signForm(Form const & form) const
+{
+	if (getGrade() <= form.getGrade())
+		std::cout << getName() << " signed " << form.getName();
+	else
+		std::cout << getName() << " couldn't sign " << form.getName()
+			<< " because Grade Too Low" << std::endl;
+
 }
 
 // =========================================================

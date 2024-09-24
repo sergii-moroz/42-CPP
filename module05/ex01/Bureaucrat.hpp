@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:45 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/18 15:02:15 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:52:53 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define WHITE		"\033[1;37m"
 # define RESET		"\033[0m"
 
+class Form;
+
 class Bureaucrat {
 	private:
 		const std::string	_name;
@@ -42,6 +44,7 @@ class Bureaucrat {
 		void			incGrade(void);
 		void			decGrade(void);
 		void			display(void) const;
+		void			signForm(Form const &) const;
 
 		class GradeTooHighException : public std::exception
 		{
