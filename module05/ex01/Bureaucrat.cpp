@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:41 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 11:35:03 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 12:58:29 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,15 +115,16 @@ void	Bureaucrat::signForm(uint status, std::string name) const
 	switch (status)
 	{
 		case 1:
-			std::cout << GREEN << getName() << " signed " << name << RESET << std::endl;
+			std::cout << GREEN << getName() << " signed \"" << name
+				<< "\"" << RESET << std::endl;
 			break;
 		case 2:
-			std::cout << RED << getName() << " couldn't sign " << name
-				<< " because the Form is already signed" << RESET << std::endl;
+			std::cout << RED << getName() << " couldn't sign Form \"" << name
+				<< "\" because the Form is already signed" << RESET << std::endl;
 			break;
 		case 3:
 			std::cout << RED << getName() << " couldn't sign " << name
-				<< " because Grade Too Low" << RESET << std::endl;
+				<< " because Bureaucrat's grade is too low" << RESET << std::endl;
 			break;
 		default:
 			std::cout << YELLOW << "Bureaucrat::SignForm : unknown signing status"
