@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:50:45 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 16:11:36 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 18:38:20 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,13 @@ std::string	ShrubberyCreationForm::getTarget() const
 void	ShrubberyCreationForm::setTarget(std::string target)
 {
 	_target = target;
+}
+
+// =========================================================
+// member function
+// =========================================================
+
+void	ShrubberyCreationForm::action() const
+{
+	std::cout << "Shrubbery action here" << std::endl;
 }

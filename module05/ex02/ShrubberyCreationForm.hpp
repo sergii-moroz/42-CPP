@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:42:06 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 16:08:33 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 17:19:40 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class ShrubberyCreationForm : public AForm
 
 		std::string	getTarget() const;
 		void		setTarget(std::string);
+		void		action() const;
 
 	private:
 		ShrubberyCreationForm();
