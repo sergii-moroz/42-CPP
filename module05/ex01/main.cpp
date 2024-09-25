@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:21:25 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 13:00:57 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 15:08:20 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,10 @@ void	testSignForm(int formGrade, int bureaucratGrade, int testId)
 		max.display();
 		std::cout << f << std::endl;
 
-		f.beSigned(max);
-		// Try to sign second time
-		//f.beSigned(max);
+		std::cout << BLACK << "try to sign" << RESET << std::endl;
+		max.signForm(f);
+		std::cout << BLACK << "try to sign second time" << RESET << std::endl;
+		max.signForm(f);
 	}
 	catch(std::exception const & e)
 	{
