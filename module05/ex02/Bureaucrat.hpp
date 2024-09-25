@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:45 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 15:26:53 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 17:07:23 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ class Bureaucrat {
 		void			decGrade(void);
 		void			display(void) const;
 		void			signForm(AForm & form) const;
+		void			executeForm(AForm const & form);
 
 		class GradeTooHighException : public std::exception
 		{
