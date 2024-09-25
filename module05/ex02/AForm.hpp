@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:58:44 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 15:21:25 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 15:41:03 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class Bureaucrat;
 
 class AForm {
 	public:
-		~AForm();
+		virtual ~AForm();
 		AForm(std::string name, int gradeSign, int gradeExec);
 		AForm(AForm const & copy);
 		AForm &		operator=(AForm const & rhs);
