@@ -6,28 +6,68 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:21:25 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/24 20:32:53 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 10:50:35 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-int	main(void)
+void	testCreateForm(int grade, int testId)
 {
-	std::cout << YELLOW << "=== Test 1: Create Bureaucrat ===" << std::endl;
+	std::cout
+		<< MAGENTA << std::endl
+		<< "==========================================" << std::endl
+		<< "Test " << testId << " : "
+		<< CYAN << "Create Form with grade4Sign " << grade << std::endl
+		<< MAGENTA << "=========================================="
+		<< RESET << std::endl;
+	try
 	{
-		Bureaucrat	b("bob", 2);
-		std::cout << b << std::endl;
-	}
-	std::cout << YELLOW << "=== Test 1: END ===" << std::endl << std::endl;
-
-	std::cout << YELLOW << "=== Test 2: Create Form ===" << std::endl;
-	{
-		Form	f("c25", 2, 1);
+		Form	f("c25", grade, 1);
 		std::cout << f << std::endl;
 	}
-	std::cout << YELLOW << "=== Test 2: END ===" << std::endl << std::endl;
+	catch(std::exception const & e)
+	{
+		std::cerr << RED << "ERROR: " << e.what() << RESET <<std::endl;
+	}
+}
+
+void	testCreateForm2(int grade, int testId)
+{
+	std::cout
+		<< MAGENTA << std::endl
+		<< "==========================================" << std::endl
+		<< "Test " << testId << " : "
+		<< CYAN << "Create Form with grade4Exec " << grade << std::endl
+		<< MAGENTA << "=========================================="
+		<< RESET << std::endl;
+	try
+	{
+		Form	f("c25", 150, grade);
+		std::cout << f << std::endl;
+	}
+	catch(std::exception const & e)
+	{
+		std::cerr << RED << "ERROR: " << e.what() << RESET <<std::endl;
+	}
+}
+
+int	main(void)
+{
+	int	testId = 1;
+
+	testCreateForm(-1, testId++);
+	testCreateForm(1, testId++);
+	testCreateForm(12, testId++);
+	testCreateForm(150, testId++);
+	testCreateForm(151, testId++);
+
+	testCreateForm2(-1, testId++);
+	testCreateForm2(1, testId++);
+	testCreateForm2(12, testId++);
+	testCreateForm2(150, testId++);
+	testCreateForm2(151, testId++);
 
 	std::cout << YELLOW << "=== Test 3: if Bureaucrat [grade 2] could sign form that required grade 1 ===" << std::endl;
 	{
