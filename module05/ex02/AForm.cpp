@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:56:33 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 17:03:02 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 17:17:35 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,18 @@ void	AForm::beSigned(Bureaucrat const & ref)
 	setIsSigned(true);
 }
 
-void	AForm::execute(Bureaucrat const & executor)
+void	AForm::execute(Bureaucrat const & executor) const
 {
 	if (!getIsSigned())
 		throw AForm::IsNotSignedException();
 	if (getGrade4Exec() < executor.getGrade())
 		throw AForm::GradeTooHighException();
-	//executor.executeForm(*this);
+	action();
+}
+
+void	AForm::action() const
+{
+	std::cout << YELLOW << "AForm has not action" << RESET << std::endl;
 }
 
 // =========================================================
@@ -145,4 +150,9 @@ const char*	AForm::GradeTooLowException::what() const throw()
 const char*	AForm::AlreadySignedException::what() const throw()
 {
 	return ("AForm is already signed!");
+}
+
+const char* AForm::IsNotSignedException::what() const throw()
+{
+	return ("AForm is not signed!");
 }
