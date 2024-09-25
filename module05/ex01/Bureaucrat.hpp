@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:45 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 11:31:01 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 15:09:25 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string>
 # include <iostream>
 # include <exception>
+# include "Form.hpp"
 
 # define BLACK		"\033[1;30m"
 # define RED		"\033[1;31m"
@@ -26,6 +27,8 @@
 # define CYAN		"\033[1;36m"
 # define WHITE		"\033[1;37m"
 # define RESET		"\033[0m"
+
+class Form;
 
 class Bureaucrat {
 	private:
@@ -42,7 +45,7 @@ class Bureaucrat {
 		void			incGrade(void);
 		void			decGrade(void);
 		void			display(void) const;
-		void			signForm(uint status, std::string name) const;
+		void			signForm(Form & form) const;
 
 		class GradeTooHighException : public std::exception
 		{

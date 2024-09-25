@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:41 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 12:58:29 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 15:08:58 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,25 +110,18 @@ void	Bureaucrat::display(void) const
 	std::cout << *this << std::endl;
 }
 
-void	Bureaucrat::signForm(uint status, std::string name) const
+void	Bureaucrat::signForm(Form & form) const
 {
-	switch (status)
+	try
 	{
-		case 1:
-			std::cout << GREEN << getName() << " signed \"" << name
+		form.beSigned(*this);
+		std::cout << GREEN << getName() << " signed \"" << form.getName()
 				<< "\"" << RESET << std::endl;
-			break;
-		case 2:
-			std::cout << RED << getName() << " couldn't sign Form \"" << name
-				<< "\" because the Form is already signed" << RESET << std::endl;
-			break;
-		case 3:
-			std::cout << RED << getName() << " couldn't sign " << name
-				<< " because Bureaucrat's grade is too low" << RESET << std::endl;
-			break;
-		default:
-			std::cout << YELLOW << "Bureaucrat::SignForm : unknown signing status"
-				<< RESET << std::endl;
+	}
+	catch(std::exception const & e)
+	{
+		std::cerr << RED << getName() << " couldn't sign " << form.getName()
+				<< " because " << e.what() << RESET << std::endl;
 	}
 }
 
@@ -148,10 +141,10 @@ std::ostream & operator<<(std::ostream & out, Bureaucrat const & b)
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Bureaucrat: Grade Too High!");
+	return ("Bureaucrat's Grade Too High!");
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Bureaucrat: Grade Too Low!");
+	return ("Bureaucrat's Grade Too Low!");
 }
