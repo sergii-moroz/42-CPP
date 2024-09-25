@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:56:33 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 15:25:01 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 17:03:02 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,15 @@ void	AForm::beSigned(Bureaucrat const & ref)
 	if (getGrade4Sign() < ref.getGrade())
 		throw AForm::GradeTooHighException();
 	setIsSigned(true);
+}
+
+void	AForm::execute(Bureaucrat const & executor)
+{
+	if (!getIsSigned())
+		throw AForm::IsNotSignedException();
+	if (getGrade4Exec() < executor.getGrade())
+		throw AForm::GradeTooHighException();
+	//executor.executeForm(*this);
 }
 
 // =========================================================
