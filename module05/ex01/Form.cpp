@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:56:33 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/24 20:35:21 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 11:30:36 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,28 @@
 // constructors
 // =========================================================
 
-Form::Form() : _name("unknown"), _isSigned(false), _grade4Sign(1), _grade4Exec(1)
+Form::Form() : _name("unknown"), _isSigned(false), _grade4Sign(150), _grade4Exec(150)
 {
 	std::cout << BLACK << "Form[ " << getName()
 		<< " ]: Default constructor called" << RESET << std::endl;
 }
 
-Form::Form(Form const & copy) : _isSigned(copy.getIsSigned()), _grade4Sign(copy.getGrade4Sign()), _grade4Exec(copy.getGrade4Exec())
+Form::Form(Form const & copy) : _name(getName()), _isSigned(copy.getIsSigned()), _grade4Sign(copy.getGrade4Sign()), _grade4Exec(copy.getGrade4Exec())
 {
 	std::cout << BLACK << "Form[ " << getName()
 		<< " ]: Copy constructor called" << RESET << std::endl;
 	*this = copy;
 }
 
-Form::Form(std::string name, int gradeSign, int gradeExec) : _name(name), _grade4Sign(gradeSign), _grade4Exec(gradeExec)
+Form::Form(std::string name, int gradeSign, int gradeExec) : _name(name), _isSigned(false), _grade4Sign(gradeSign), _grade4Exec(gradeExec)
 {
 	std::cout << BLACK << "Form[ " << getName()
 		<< " ]: Named constructor called" << RESET << std::endl;
+
+	if (gradeSign > 150 || gradeExec > 150)
+		throw Form::GradeTooLowException();
+	else if (gradeSign < 1 || gradeExec < 1)
+		throw Form::GradeTooHighException();
 }
 
 // =========================================================
@@ -95,13 +100,18 @@ void	Form::beSigned(Bureaucrat const & ref)
 {
 	if (ref.getGrade() <= getGrade4Sign())
 	{
-		setIsSigned(true);
-		ref.signForm(getIsSigned(), getName());
+		if (!getIsSigned())
+		{
+			setIsSigned(true);
+			ref.signForm(1, getName());
+		}
+		else
+			ref.signForm(2, getName());
 	}
 	else
 	{
-		ref.signForm(getIsSigned(), getName());
-		// Form::GradeTooLowException();
+		ref.signForm(3, getName());
+		throw Form::GradeTooLowException();
 	}
 }
 
@@ -117,4 +127,18 @@ std::ostream &	operator<<(std::ostream & out, Form const & ref)
 		<< BLACK << ", grade4Exec: " << RESET << ref.getGrade4Exec()
 		<< MAGENTA << " }" RESET;
 	return (out);
+}
+
+// =========================================================
+// Exceptions
+// =========================================================
+
+const char*	Form::GradeTooHighException::what() const throw()
+{
+	return ("Form: Grade Too High!");
+}
+
+const char*	Form::GradeTooLowException::what() const throw()
+{
+	return ("Form: Grade Too Low!");
 }
