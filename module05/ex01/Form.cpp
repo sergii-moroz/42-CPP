@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:56:33 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 12:59:58 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 15:11:34 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,21 +98,11 @@ void	Form::setIsSigned(bool status)
 
 void	Form::beSigned(Bureaucrat const & ref)
 {
-	if (ref.getGrade() <= getGrade4Sign())
-	{
-		if (!getIsSigned())
-		{
-			setIsSigned(true);
-			ref.signForm(1, getName());
-		}
-		else
-			ref.signForm(2, getName());
-	}
-	else
-	{
-		ref.signForm(3, getName());
+	if (getIsSigned())
+		throw Form::AlreadySignedException();
+	if (getGrade4Sign() < ref.getGrade())
 		throw Form::GradeTooHighException();
-	}
+	setIsSigned(true);
 }
 
 // =========================================================
@@ -135,10 +125,15 @@ std::ostream &	operator<<(std::ostream & out, Form const & ref)
 
 const char*	Form::GradeTooHighException::what() const throw()
 {
-	return ("Form: Grade Too High!");
+	return ("Form's Grade Too High!");
 }
 
 const char*	Form::GradeTooLowException::what() const throw()
 {
-	return ("Form: Grade Too Low!");
+	return ("Form's Grade Too Low!");
+}
+
+const char*	Form::AlreadySignedException::what() const throw()
+{
+	return ("Form is already signed!");
 }

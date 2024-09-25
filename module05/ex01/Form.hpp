@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:58:44 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 13:01:21 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 14:50:32 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define WHITE		"\033[1;37m"
 # define RESET		"\033[0m"
 
-// class Bureaucrat;
+class Bureaucrat;
 
 class Form {
 	public:
@@ -53,6 +53,12 @@ class Form {
 		};
 
 		class GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class AlreadySignedException: public std::exception
 		{
 			public:
 				virtual const char* what() const throw();
