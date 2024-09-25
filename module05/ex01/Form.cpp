@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:56:33 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 11:30:36 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 12:59:58 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	Form::beSigned(Bureaucrat const & ref)
 	else
 	{
 		ref.signForm(3, getName());
-		throw Form::GradeTooLowException();
+		throw Form::GradeTooHighException();
 	}
 }
 

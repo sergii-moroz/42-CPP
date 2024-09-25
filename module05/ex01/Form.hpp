@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:58:44 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/24 19:53:34 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/25 13:01:21 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ class Form {
 		int			getGrade4Sign() const;
 		int			getGrade4Exec() const;
 
-		// void		setName(std::string name);
 		void		setIsSigned(bool);
-		// void		setGrade4Sign(int	grade);
-		// void		setGrade4Exec(int	grade);
 
 		void		beSigned(Bureaucrat const &);
 
