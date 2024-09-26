@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 void	testShrubberyCreationForm(std::string target, int testId)
 {
@@ -47,25 +48,40 @@ void	testShrubberyCreationForm(std::string target, int testId)
 	}
 }
 
-/*void	testCreateForm2(int grade, int testId)
+void	testRobotomyRequestForm(std::string target, int testId)
 {
 	std::cout
 		<< MAGENTA << std::endl
 		<< "==========================================" << std::endl
 		<< "Test " << testId << " : "
-		<< CYAN << "Create Form with grade4Exec " << grade << std::endl
+		<< CYAN << "Create RobotomyRequestForm with target " << target << std::endl
 		<< MAGENTA << "=========================================="
 		<< RESET << std::endl;
 	try
 	{
-		AForm	f("c25", 150, grade);
-		std::cout << f << std::endl;
+		std::cout << MAGENTA << "create RobotomyRequestForm as object" << RESET << std::endl;
+		RobotomyRequestForm	rob(target);
+		RobotomyRequestForm	*pRobotomy = NULL;
+		std::cout << std::endl;
+
+		std::cout << MAGENTA << "create RobotomyRequestForm as AForm *" << RESET << std::endl;
+		AForm	*f = NULL;
+		f = new RobotomyRequestForm(target);
+		std::cout << *f << std::endl;
+		delete f;
+		std::cout << std::endl;
+
+		std::cout << MAGENTA << "create RobotomyRequestForm with copy constructor as RobotomyRequestForm *" << RESET << std::endl;
+		pRobotomy = new RobotomyRequestForm(rob);
+		std::cout << *pRobotomy << std::endl;
+		delete pRobotomy;
+		std::cout << std::endl;
 	}
 	catch(std::exception const & e)
 	{
 		std::cerr << RED << "ERROR: " << e.what() << RESET <<std::endl;
 	}
-}//*/
+}
 
 void	testShrubberySignForm(int bureaucratGrade, int testId)
 {
@@ -110,19 +126,12 @@ int	main(void)
 	testShrubberySignForm(137, testId++);
 	testShrubberySignForm(145, testId++);
 	testShrubberySignForm(150, testId++);
-	/*testCreateForm(-1, testId++);
-	testCreateForm(12, testId++);
-	testCreateForm(150, testId++);
-	testCreateForm(151, testId++);
 
-	testCreateForm2(-1, testId++);
-	testCreateForm2(1, testId++);
-	testCreateForm2(12, testId++);
-	testCreateForm2(150, testId++);
-	testCreateForm2(151, testId++);
-
-	testSignForm(5, 12, testId++);
-	testSignForm(12, 3, testId++);*/
+	testRobotomyRequestForm("home", testId++);
+	//testShrubberySignForm(45, testId++);
+	//testShrubberySignForm(137, testId++);
+	//testShrubberySignForm(145, testId++);
+	//testShrubberySignForm(150, testId++);
 
 	return (0);
 }
