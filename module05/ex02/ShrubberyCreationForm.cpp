@@ -51,10 +51,16 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 ShrubberyCreationForm &	ShrubberyCreationForm::operator=(ShrubberyCreationForm const & rhs)
 {
-	std::cout << BLACK << "ShrubberyCreationForm[ " << getName()
-		<< " ]: Assignation operator called" << RESET << std::endl;
-	setIsSigned(rhs.getIsSigned());
-	setTarget(rhs.getTarget());
+	if (this == &rhs)
+		std::cout << BLACK << "ShrubberyCreationForm [ " << getName()
+			<< " ]: no need to use assignment operator(=)" << RESET << std::endl;
+	else
+	{
+		std::cout << BLACK << "ShrubberyCreationForm[ " << getName()
+			<< " ]: Assignation operator called" << RESET << std::endl;
+		setIsSigned(rhs.getIsSigned());
+		setTarget(rhs.getTarget());
+	}
 	return (*this);
 }
 

@@ -56,9 +56,15 @@ AForm::~AForm()
 
 AForm &	AForm::operator=(AForm const & rhs)
 {
-	std::cout << BLACK << "AForm[ " << getName()
-		<< " ]: Assignation operator called" << RESET << std::endl;
-	setIsSigned(rhs.getIsSigned());
+	if (this == &rhs)
+		std::cout << BLACK << "AForm [ " << getName()
+			<< " ]: no need to use assignment operator(=)" << RESET << std::endl;
+	else
+	{
+		std::cout << BLACK << "AForm[ " << getName()
+			<< " ]: Assignation operator called" << RESET << std::endl;
+		setIsSigned(rhs.getIsSigned());
+	}
 	return (*this);
 }
 
