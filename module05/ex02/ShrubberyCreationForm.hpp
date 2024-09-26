@@ -13,7 +13,8 @@
 #ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
 
-#include "AForm.hpp"
+# include <fstream>
+# include "AForm.hpp"
 
 # define BLACK		"\033[1;30m"
 # define RED		"\033[1;31m"

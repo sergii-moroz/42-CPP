@@ -84,5 +84,27 @@ void	ShrubberyCreationForm::setTarget(std::string target)
 
 void	ShrubberyCreationForm::action() const
 {
-	std::cout << "Shrubbery action here" << std::endl;
+	std::string		outFileName;
+	std::ofstream	outfile;
+
+	outFileName = getTarget() + "_shrubbery";
+	outfile.open(outFileName.c_str(), std::ios::out);
+	if (outfile.is_open())
+	{
+		for (int i=0; i<3; i++)
+			outfile << std::endl <<
+				"       _-_" << std::endl <<
+				"    /~~   ~~\\" << std::endl <<
+				" /~~         ~~\\" << std::endl <<
+				"{               }" << std::endl <<
+				" \\  _-     -_  /" << std::endl <<
+				"   ~  \\ //  ~" << std::endl <<
+				"_- -   | | _- _" << std::endl <<
+				"  _ -  | |   -_" << std::endl <<
+				"      // \\\\" << std::endl;
+		outfile.close();
+	}
+	else
+		std::cerr << RED << "ERROR: Couldn't create file \""
+			<< outFileName << "\"" << RESET << std::endl;
 }
