@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:56:33 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/27 12:52:51 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/27 14:05:41 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ void	AForm::execute(Bureaucrat const & executor) const
 		throw AForm::IsNotSignedException();
 	if (getGrade4Exec() < executor.getGrade())
 		throw AForm::GradeTooHighException();
+	std::cout << GREEN << executor.getName() << " executed \"" << getName()
+			<< "\"" << RESET << std::endl;
 	action();
 }
 

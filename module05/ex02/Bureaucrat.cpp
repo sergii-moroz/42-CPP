@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:41 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 17:11:30 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/27 14:07:16 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,6 @@ void	Bureaucrat::executeForm(AForm const & form)
 	try
 	{
 		form.execute(*this);
-		std::cout << GREEN << getName() << " executed \"" << form.getName()
-				<< "\"" << RESET << std::endl;
 	}
 	catch(std::exception const & e)
 	{
