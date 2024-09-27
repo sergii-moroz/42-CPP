@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:56:33 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 17:17:35 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/27 12:52:51 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ AForm::AForm() : _name("unknown"), _isSigned(false), _grade4Sign(150), _grade4Ex
 		<< " ]: Default constructor called" << RESET << std::endl;
 }
 
-AForm::AForm(AForm const & copy) : _name(getName()), _isSigned(copy.getIsSigned()), _grade4Sign(copy.getGrade4Sign()), _grade4Exec(copy.getGrade4Exec())
+AForm::AForm(AForm const & copy) : _name(copy.getName()), _isSigned(copy.getIsSigned()), _grade4Sign(copy.getGrade4Sign()), _grade4Exec(copy.getGrade4Exec())
 {
 	std::cout << BLACK << "AForm[ " << getName()
 		<< " ]: Copy constructor called" << RESET << std::endl;
