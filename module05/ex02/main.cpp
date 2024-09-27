@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:21:25 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 19:38:47 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/27 13:42:28 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,47 @@ void	testShrubberySignForm(int bureaucratGrade, int testId)
 	}
 }
 
+void	testRobotomySignForm(int bureaucratGrade, int testId)
+{
+	std::cout
+		<< MAGENTA << std::endl
+		<< "==========================================" << std::endl
+		<< "Test " << testId << " : "
+		<< CYAN << "Create RobotomyRequestForm" << std::endl
+		<< CYAN << "Create Bureaucrat with grade " << bureaucratGrade << std::endl
+		<< CYAN << "Bureaucrat try to sign RobotomyRequestForm " << std::endl
+		<< CYAN << "Bureaucrat try to execute RobotomyRequestForm " << std::endl
+		<< MAGENTA << "=========================================="
+		<< RESET << std::endl;
+	try
+	{
+		Bureaucrat	max("Max", bureaucratGrade);
+		max.display();
+		AForm	*f = NULL;
+		f = new RobotomyRequestForm("home");
+		std::cout << *f << std::endl;
+
+		std::cout << BLACK << "try to sign" << RESET << std::endl;
+		max.signForm(*f);
+		std::cout << BLACK << "try to sign second time" << RESET << std::endl;
+		max.signForm(*f);
+
+		std::cout << BLACK << "try to execute" << RESET << std::endl;
+		int maxTimes = 1;
+		if (f->getIsSigned() && (max.getGrade() <= f->getGrade4Exec()))
+			maxTimes = 10;
+		for (int i = 0; i < maxTimes; i++)
+		{
+			std::cout << BLACK << std::endl << "[ " << i << " ] ======" << RESET << std::endl;
+			max.executeForm(*f);
+		}
+	}
+	catch(std::exception const & e)
+	{
+		std::cerr << RED << "ERROR: " << e.what() << RESET <<std::endl;
+	}
+}
+
 int	main(void)
 {
 	int	testId = 1;
@@ -127,11 +168,11 @@ int	main(void)
 	testShrubberySignForm(145, testId++);
 	testShrubberySignForm(150, testId++);
 
-	testRobotomyRequestForm("home", testId++);
-	//testShrubberySignForm(45, testId++);
-	//testShrubberySignForm(137, testId++);
-	//testShrubberySignForm(145, testId++);
-	//testShrubberySignForm(150, testId++);
+	testRobotomyRequestForm("robotomyHome", testId++);
+	testRobotomySignForm(42, testId++);
+	testRobotomySignForm(45, testId++);
+	testRobotomySignForm(72, testId++);
+	testRobotomySignForm(100, testId++);
 
 	return (0);
 }
