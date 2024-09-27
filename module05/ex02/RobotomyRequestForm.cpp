@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:50:45 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/25 18:50:42 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/27 13:31:38 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,10 @@ void	RobotomyRequestForm::setTarget(std::string target)
 void	RobotomyRequestForm::action() const
 {
 	std::cout << YELLOW << "...Drilling noise..." << RESET << std::endl;
-	std::srand(time(NULL));
-	if (std::rand() % 2)
+	std::srand(clock());
+	int	r = std::rand() / 2;
+	if (r % 2)
 		std::cout << GREEN << getTarget() << " was robotomized successfully" << RESET << std::endl;
 	else
-		std::cout << RED << "robotomy of " << getTarget() << "failed" << RESET << std::endl;
+		std::cout << RED << "Sorry ... robotomy of " << getTarget() << " failed" << RESET << std::endl;
 }
