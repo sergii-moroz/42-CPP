@@ -6,14 +6,17 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:26:18 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/27 14:35:24 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/27 15:57:50 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INTERN_HPP
 # define INTERN_HPP
 
-# include "AForm.hpp"
+// # include "AForm.hpp"
+# include "ShrubberyCreationForm.hpp"
+# include "RobotomyRequestForm.hpp"
+# include "PresidentialPardonForm.hpp"
 
 class Intern
 {

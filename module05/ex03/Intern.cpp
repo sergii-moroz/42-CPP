@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:36:18 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/27 14:42:54 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/27 16:12:48 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,35 @@ Intern &	Intern::operator=(Intern const & rhs)
 			<< RESET << std::endl;
 	}
 	return (*this);
+}
+
+AForm*	Intern::makeForm(std::string name, std::string target)
+{
+	AForm	*f;
+	int		type;
+	std::string names[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+
+	for (type = 0; type < 3; type++)
+	{
+		if (name.compare(names[type]) == 0)
+			break;
+	}
+
+	switch (type){
+		case 0:
+			f = new ShrubberyCreationForm(target);
+			std::cout << GREEN << "Intern creates Shrubbery Creation Form" << std::endl;
+			break;
+		case 1:
+			f = new RobotomyRequestForm(target);
+			std::cout << GREEN << "Intern creates Robotomy Request Form" << std::endl;
+			break;
+		case 2:
+			f = new PresidentialPardonForm(target);
+			std::cout << GREEN << "Intern creates Presidential Pardon Form" << std::endl;
+			break;
+		default:
+			throw FormNotExistException();
+	}
+	return (f);
 }
