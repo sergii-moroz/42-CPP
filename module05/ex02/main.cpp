@@ -6,12 +6,13 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:21:25 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/27 13:42:28 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/27 13:59:58 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 void	testShrubberyCreationForm(std::string target, int testId)
 {
@@ -75,6 +76,41 @@ void	testRobotomyRequestForm(std::string target, int testId)
 		pRobotomy = new RobotomyRequestForm(rob);
 		std::cout << *pRobotomy << std::endl;
 		delete pRobotomy;
+		std::cout << std::endl;
+	}
+	catch(std::exception const & e)
+	{
+		std::cerr << RED << "ERROR: " << e.what() << RESET <<std::endl;
+	}
+}
+
+void	testPresidentialPardonForm(std::string target, int testId)
+{
+	std::cout
+		<< MAGENTA << std::endl
+		<< "==========================================" << std::endl
+		<< "Test " << testId << " : "
+		<< CYAN << "Create PresidentialPardonForm with target " << target << std::endl
+		<< MAGENTA << "=========================================="
+		<< RESET << std::endl;
+	try
+	{
+		std::cout << MAGENTA << "create PresidentialPardonForm as object" << RESET << std::endl;
+		PresidentialPardonForm	rob(target);
+		PresidentialPardonForm	*pPresidential = NULL;
+		std::cout << std::endl;
+
+		std::cout << MAGENTA << "create PresidentialPardonForm as AForm *" << RESET << std::endl;
+		AForm	*f = NULL;
+		f = new PresidentialPardonForm(target);
+		std::cout << *f << std::endl;
+		delete f;
+		std::cout << std::endl;
+
+		std::cout << MAGENTA << "create PresidentialPardonForm with copy constructor as PresidentialPardonForm *" << RESET << std::endl;
+		pPresidential = new PresidentialPardonForm(rob);
+		std::cout << *pPresidential << std::endl;
+		delete pPresidential;
 		std::cout << std::endl;
 	}
 	catch(std::exception const & e)
@@ -158,6 +194,40 @@ void	testRobotomySignForm(int bureaucratGrade, int testId)
 	}
 }
 
+void	testPresidentialSignForm(int bureaucratGrade, int testId)
+{
+	std::cout
+		<< MAGENTA << std::endl
+		<< "==========================================" << std::endl
+		<< "Test " << testId << " : "
+		<< CYAN << "Create PresidentialPardonForm" << std::endl
+		<< CYAN << "Create Bureaucrat with grade " << bureaucratGrade << std::endl
+		<< CYAN << "Bureaucrat try to sign PresidentialPardonForm " << std::endl
+		<< CYAN << "Bureaucrat try to execute PresidentialPardonForm " << std::endl
+		<< MAGENTA << "=========================================="
+		<< RESET << std::endl;
+	try
+	{
+		Bureaucrat	max("Max", bureaucratGrade);
+		max.display();
+		AForm	*f = NULL;
+		f = new PresidentialPardonForm("Bob");
+		std::cout << *f << std::endl;
+
+		std::cout << BLACK << "try to sign" << RESET << std::endl;
+		max.signForm(*f);
+		std::cout << BLACK << "try to sign second time" << RESET << std::endl;
+		max.signForm(*f);
+
+		std::cout << BLACK << "try to execute" << RESET << std::endl;
+		max.executeForm(*f);
+	}
+	catch(std::exception const & e)
+	{
+		std::cerr << RED << "ERROR: " << e.what() << RESET <<std::endl;
+	}
+}
+
 int	main(void)
 {
 	int	testId = 1;
@@ -173,6 +243,12 @@ int	main(void)
 	testRobotomySignForm(45, testId++);
 	testRobotomySignForm(72, testId++);
 	testRobotomySignForm(100, testId++);
+
+	testPresidentialPardonForm("Bob", testId++);
+	testPresidentialSignForm(1, testId++);
+	testPresidentialSignForm(5, testId++);
+	testPresidentialSignForm(25, testId++);
+	testPresidentialSignForm(30, testId++);
 
 	return (0);
 }
