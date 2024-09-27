@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:36:18 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/27 16:12:48 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/27 17:07:23 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ Intern &	Intern::operator=(Intern const & rhs)
 	return (*this);
 }
 
+// =========================================================
+// member function
+// =========================================================
+
 AForm*	Intern::makeForm(std::string name, std::string target)
 {
 	AForm	*f;
@@ -82,4 +86,13 @@ AForm*	Intern::makeForm(std::string name, std::string target)
 			throw FormNotExistException();
 	}
 	return (f);
+}
+
+// =========================================================
+// Exceptions
+// =========================================================
+
+const char* Intern::FormNotExistException::what() const throw()
+{
+	return ("Intern: Such form doesn't exit");
 }
