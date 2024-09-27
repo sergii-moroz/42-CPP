@@ -6,13 +6,14 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:21:25 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/27 13:59:58 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/27 17:15:12 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
+// #include "ShrubberyCreationForm.hpp"
+// #include "RobotomyRequestForm.hpp"
+// #include "PresidentialPardonForm.hpp"
 
 void	testShrubberyCreationForm(std::string target, int testId)
 {
@@ -250,5 +251,12 @@ int	main(void)
 	testPresidentialSignForm(25, testId++);
 	testPresidentialSignForm(30, testId++);
 
+	{
+		Intern	SomeRandomIntern;
+		AForm	*rrf;
+		rrf = SomeRandomIntern.makeForm("robotomy request", "Bender");
+		std::cout << *rrf << std::endl;
+		delete rrf;
+	}
 	return (0);
 }
