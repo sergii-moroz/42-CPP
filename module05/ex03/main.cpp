@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:21:25 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/27 17:15:12 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/30 13:54:21 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,31 @@ void	testPresidentialSignForm(int bureaucratGrade, int testId)
 	}
 }
 
+void	testIntern(std::string form, std::string target, int testId)
+{
+	std::cout
+		<< MAGENTA << std::endl
+		<< "==========================================" << std::endl
+		<< "Test " << testId << " : "
+		<< CYAN << "Create Intern" << std::endl
+		<< CYAN << "Create Form " << form << " for target " << target << std::endl
+		<< MAGENTA << "=========================================="
+		<< RESET << std::endl;
+	try
+	{
+		Intern	SomeRandomIntern;
+		AForm	*rrf;
+		rrf = SomeRandomIntern.makeForm(form, target);
+		std::cout << *rrf << std::endl;
+		delete rrf;
+	}
+	catch(std::exception const & e)
+	{
+		std::cerr << RED << "ERROR: " << e.what() << RESET <<std::endl;
+	}
+
+}
+
 int	main(void)
 {
 	int	testId = 1;
@@ -251,12 +276,6 @@ int	main(void)
 	testPresidentialSignForm(25, testId++);
 	testPresidentialSignForm(30, testId++);
 
-	{
-		Intern	SomeRandomIntern;
-		AForm	*rrf;
-		rrf = SomeRandomIntern.makeForm("robotomy request", "Bender");
-		std::cout << *rrf << std::endl;
-		delete rrf;
-	}
+	testIntern("robotomy request", "Bob", testId++);
 	return (0);
 }
