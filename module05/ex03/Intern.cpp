@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:36:18 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/30 13:53:11 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/30 14:39:49 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,35 +57,32 @@ Intern &	Intern::operator=(Intern const & rhs)
 // member function
 // =========================================================
 
+AForm*	Intern::makeShrubbery(std::string target)
+{
+	return (new ShrubberyCreationForm(target));
+}
+
+AForm*	Intern::makeRobotomy(std::string target)
+{
+	return (new RobotomyRequestForm(target));
+}
+
+AForm*	Intern::makePresidential(std::string target)
+{
+	return (new PresidentialPardonForm(target));
+}
+
 AForm*	Intern::makeForm(std::string name, std::string target)
 {
-	AForm	*f;
-	int		type;
 	std::string names[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+	AForm* (Intern::*func[3])(std::string) = {&Intern::makeShrubbery, &Intern::makeRobotomy, &Intern::makePresidential};
 
-	for (type = 0; type < 3; type++)
+	for (int i = 0; i < 3; i++)
 	{
-		if (name.compare(names[type]) == 0)
-			break;
+		if (name.compare(names[i]) == 0)
+			return ((this->*func[i])(target));
 	}
-
-	switch (type){
-		case 0:
-			f = new ShrubberyCreationForm(target);
-			std::cout << GREEN << "Intern creates Shrubbery Creation Form" << std::endl;
-			break;
-		case 1:
-			f = new RobotomyRequestForm(target);
-			std::cout << GREEN << "Intern creates Robotomy Request Form" << std::endl;
-			break;
-		case 2:
-			f = new PresidentialPardonForm(target);
-			std::cout << GREEN << "Intern creates Presidential Pardon Form" << std::endl;
-			break;
-		default:
-			throw FormNotExistException();
-	}
-	return (f);
+	throw FormNotExistException();
 }
 
 // =========================================================
