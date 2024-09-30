@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:36:18 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/27 17:07:23 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/09/30 13:53:11 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,5 @@ AForm*	Intern::makeForm(std::string name, std::string target)
 
 const char* Intern::FormNotExistException::what() const throw()
 {
-	return ("Intern: Such form doesn't exit");
+	return ("Intern: Such form doesn't exist");
 }
