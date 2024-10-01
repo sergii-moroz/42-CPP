@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 18:08:53 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/06 20:03:49 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/01 11:10:43 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ Dog::Dog() : Animal(), _brain(new Brain())
 	std::cout << "Dog: default constructor called" << std::endl;
 }
 
-Dog::Dog( Dog const & copy ) : Animal(copy), _brain(new Brain(*copy._brain))
+Dog::Dog( Dog const & copy ) : Animal(copy)
 {
 	std::cout << "Dog: Copy constructor called" << std::endl;
+	*this = copy;
 }
 
 // =========================================================
@@ -41,10 +42,17 @@ Dog::~Dog()
 // Assignment = operator's overloading
 // =========================================================
 
-Dog &	Dog::operator=(Dog const & ref)
+Dog &	Dog::operator=(Dog const & rhs)
 {
-	std::cout << "Dog: Assignation operator called" << std::endl;
-	setType(ref.getType());
+	if (this == &rhs)
+		std::cout << "Dog: There is no need to use assignment operator [lhs==rhs]"
+			<< std::endl;
+	else
+	{
+		std::cout << "Dog: Assignation operator called" << std::endl;
+		_brain = new Brain(*rhs._brain);
+		setType(rhs.getType());
+	}
 	return (*this);
 }
 

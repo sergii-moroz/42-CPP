@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 18:08:53 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/06 19:23:02 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/01 10:40:16 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ Cat::Cat() : Animal(), _brain(new Brain())
 	std::cout << "Cat: default constructor called" << std::endl;
 }
 
-Cat::Cat( Cat const & copy ) : Animal(copy), _brain(new Brain(*copy._brain))
+Cat::Cat( Cat const & copy ) : Animal(copy)
 {
-	// _brain = new Brain(*copy._brain);
 	std::cout << "Cat: Copy constructor called" << std::endl;
-	// *this = copy;
+	*this = copy;
 }
 
 // =========================================================
@@ -43,10 +42,17 @@ Cat::~Cat()
 // Assignment = operator's overloading
 // =========================================================
 
-Cat &	Cat::operator=(Cat const & ref)
+Cat &	Cat::operator=(Cat const & rhs)
 {
-	std::cout << "Cat: Assignation operator called" << std::endl;
-	setType(ref.getType());
+	if (this == &rhs)
+		std::cout << "Cat: There is no need to use assignment operator [lhs==rhs]"
+			<< std::endl;
+	else
+	{
+		std::cout << "Cat: Assignation operator called" << std::endl;
+		_brain = new Brain(*rhs._brain);
+		setType(rhs.getType());
+	}
 	return (*this);
 }
 
