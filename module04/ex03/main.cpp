@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 09:19:01 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/10 09:40:13 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/01 21:51:12 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,20 @@ int	main(void)
 	}//*/
 
 	{
-		std::cout << "TEST : Character's Copy constructor && deep copy" << std::endl;
-		Character *ch1 = new Character("bob");
-		ICharacter *ch2 = new Character(*ch1);
+		std::cout << MAGENTA << "TEST : Character's Copy constructor && deep copy" << RESET << std::endl;
+		AMateria	*tmp;
+		Character	*ch1 = new Character("bob");
+		tmp = new Ice();
+		ch1->equip(tmp);
+		ICharacter	*ch2 = new Character(*ch1);
+		std::cout << YELLOW << "--- delete ---" << RESET << std::endl;
 		delete ch1;
 		delete ch2;
 		std::cout << std::endl;
 	}
 
 	{
-		std::cout << "TEST : Check Character max slots" << std::endl;
+		std::cout << MAGENTA << "TEST : Check Character max slots" << RESET << std::endl;
 		AMateria	*tmp;
 		ICharacter	*bob = new Character("bob");
 		tmp = new Ice();
@@ -77,7 +81,7 @@ int	main(void)
 	}
 
 	{
-		std::cout << "TEST : Check Character equip/unequip" << std::endl;
+		std::cout << MAGENTA << "TEST : Check Character equip/unequip" << RESET << std::endl;
 		AMateria	*tmp;
 		ICharacter	*bob = new Character("bob");
 		tmp = new Ice();
@@ -94,7 +98,7 @@ int	main(void)
 	}
 
 	{
-		std::cout << "TEST : Use materias on character" << std::endl;
+		std::cout << MAGENTA << "TEST : Use materias on character" << RESET << std::endl;
 		ICharacter	*bob = new Character("bob");
 		ICharacter	*zombie = new Character("zombie");
 

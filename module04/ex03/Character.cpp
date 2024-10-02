@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 20:22:51 by smoroz            #+#    #+#             */
-/*   Updated: 2024/09/10 21:38:00 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/02 11:13:01 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ Character::Character(std::string const & name) : _name(name)
 		_inventory[i] = NULL;
 }
 
-Character::Character(Character const & copy): ICharacter()
+Character::Character(Character const & copy)
 {
 	std::cout << "Character: " << BLACK
 		<< "Copy constructor called" << RESET << std::endl;
+	for (int i = 0; i < 4; i++)
+		_inventory[i] = NULL;
 	*this = copy;
 }
 
