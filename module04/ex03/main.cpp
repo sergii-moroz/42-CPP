@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 09:19:01 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/01 21:51:12 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/02 13:51:29 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int	main(void)
 		bob->equip(new Cure());
 
 		bob->unequip(-1);
+		bob->unequip(3);
+		bob->unequip(3);
 		bob->unequip(4);
 		bob->unequip(0);
 

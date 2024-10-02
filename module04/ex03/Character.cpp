@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 20:22:51 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/02 11:13:01 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/02 13:49:55 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	Character::equip(AMateria *m)
 
 void	Character::unequip(int idx)
 {
+	if (_inventory[idx] == NULL) return ;
 	if (idx >= 0 && idx < 4)
 	{
 		std::cout << "Character [ " << getName()
