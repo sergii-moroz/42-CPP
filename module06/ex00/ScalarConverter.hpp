@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:40:50 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/02 15:51:00 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/02 20:19:54 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string>
 # include <iostream>
+# include <iomanip>
 
 class ScalarConverter
 {
