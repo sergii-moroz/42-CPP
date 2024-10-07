@@ -6,12 +6,12 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:02:04 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/07 18:08:41 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/07 18:22:41 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERIALIZER_HPP
-# define SERIALIER_HPP
+# define SERIALIZER_HPP
 
 # include <stdlib.h>
 # include "Data.hpp"
