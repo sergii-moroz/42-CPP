@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:02:48 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/07 18:13:48 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/07 18:23:21 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	main(void)
 
 	m = Serializer::deserialize(Serializer::serialize(p));
 	std::cout << MAGENTA << "After serialize" << RESET << std::endl;
-	std::cout << BLACK << "address: " << CYAN << p
-		<< BLACK << "Data: " << CYAN << *p << RESET << std::endl;
+	std::cout << BLACK << "address: " << CYAN << m
+		<< BLACK << "Data: " << CYAN << *m << RESET << std::endl;
 	delete p;
 	return (0);
 }
