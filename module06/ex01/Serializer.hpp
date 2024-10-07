@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:02:04 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/07 17:02:09 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/07 18:08:41 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Serializer
 		Serializer & 		operator=(Serializer const &);
 
 		static uintptr_t	serialize(Data *ptr);
-		static Data*		deserialize(uintptr_t *raw);
+		static Data*		deserialize(uintptr_t raw);
 };
 
 #endif

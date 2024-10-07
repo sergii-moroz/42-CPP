@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:03:18 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/07 18:01:36 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/07 18:08:53 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ uintptr_t	Serializer::serialize(Data *ptr)
 	return (reinterpret_cast<uintptr_t>(ptr));
 }
 
-Data	*Serializer::deserialize(uintptr_t *raw)
+Data	*Serializer::deserialize(uintptr_t raw)
 {
 	return(reinterpret_cast<Data *>(raw));
 }
