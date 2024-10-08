@@ -28,7 +28,9 @@ class ScalarConverter
 		static void			convert(std::string);
 	private:
 		static bool			isDouble(std::string);
+		static bool			isFloat(std::string);
 		static bool			isInteger(std::string);
+		static bool			isSpecial(std::string);
 		static std::string	trim(std::string const &);
 		static std::string	trimf(std::string const &);
 		static void			displayFromDouble(std::string const &);

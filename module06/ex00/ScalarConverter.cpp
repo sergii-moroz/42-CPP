@@ -12,15 +12,27 @@
 
 #include "ScalarConverter.hpp"
 
+// =========================================================
+// constructors
+// =========================================================
+
 ScalarConverter::ScalarConverter()
 {
 	std::cout << "ScalarConverter: Default constructor called" << std::endl;
 }
 
+// =========================================================
+// destructor
+// =========================================================
+
 ScalarConverter::~ScalarConverter()
 {
 	std::cout << "ScalarConverter: Destructor called" << std::endl;
 }
+
+// =========================================================
+// member functions: Checking data
+// =========================================================
 
 bool	ScalarConverter::isDouble(std::string s)
 {
@@ -49,6 +61,13 @@ bool	ScalarConverter::isInteger(std::string s)
 	return (!iss.fail() && iss.eof());
 }
 
+bool	ScalarConverter::isSpecial(std::string s)
+{
+	return (!s.compare("nan") || !s.compare("nanf") ||
+		!s.compare("+inf") || !s.compare("-inf") ||
+		!s.compare("+inff") || !s.compare("-inff"));
+}
+
 std::string	ScalarConverter::trim(std::string const & s)
 {
 	size_t	start = s.find_first_not_of("\f\n\r\t\v ");
@@ -68,8 +87,8 @@ std::string	ScalarConverter::trim(std::string const & s)
 		return (str);
 	if (str.at(n - 1) == 'f')
 		str.resize(n - 1);
-	return (str);*/
-}
+	return (str);
+}*/
 
 void	ScalarConverter::displayFromDouble(std::string const & s)
 {
@@ -109,12 +128,24 @@ std::string	ScalarConverter::displayInt(std::string s)
 	return (resStr);
 }
 
+// =========================================================
+// member function: converter()
+// =========================================================
+
 void	ScalarConverter::convert(std::string s)
 {
 	std::cout << "ScalarConverter: convert method called" << std::endl;
-	if (isDouble(s))
+	if (isInteger(s))
+		std::cout << "Integer" << std::endl;
+	else if (isFloat(s))
+		std::cout << "Float" << std::endl;
+	else if (isDouble(s))
+		std::cout << "Double" << std::endl;
+	else if (isSpecial(s))
+		std::cout << "Special" << std::endl;
+	/*if (isDouble(s))
 		displayFromDouble(s);
-	/*else if (isInteger(s))
+	else if (isInteger(s))
 		displayFromInteger(s);
 	else
 		displayDefault(s);*/
