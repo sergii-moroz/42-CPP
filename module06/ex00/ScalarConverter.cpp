@@ -31,7 +31,7 @@ ScalarConverter::~ScalarConverter()
 }
 
 // =========================================================
-// member functions: Checking data
+// Checking data
 // =========================================================
 
 bool	ScalarConverter::isDouble(std::string s)
@@ -68,6 +68,18 @@ bool	ScalarConverter::isSpecial(std::string s)
 		!s.compare("+inff") || !s.compare("-inff"));
 }
 
+// =========================================================
+// Converting string
+// =========================================================
+
+double	ScalarConverter::strToDouble(std::string const & s)
+{
+	std::istringstream	iss(ScalarConverter::trim(s));
+	double	d;
+	iss >> d;
+	return (d);
+}
+
 std::string	ScalarConverter::trim(std::string const & s)
 {
 	size_t	start = s.find_first_not_of("\f\n\r\t\v ");
@@ -89,16 +101,6 @@ std::string	ScalarConverter::trim(std::string const & s)
 		str.resize(n - 1);
 	return (str);
 }*/
-
-void	ScalarConverter::displayFromDouble(std::string const & s)
-{
-	std::cout << "char: " << displayChar(atoi(s.c_str())) << std::endl
-		<< "int: " << static_cast<int>(atoi(s.c_str())) << std::endl
-		<< std::fixed << std::setprecision(1)
-		<< "float: " << static_cast<float>(atof(s.c_str())) << "f" << std::endl
-		<< std::fixed << std::setprecision(1) << "double: "
-		<< static_cast<double>(atof(s.c_str())) << std::endl;
-}
 
 std::string	ScalarConverter::displayChar(int c)
 {
@@ -131,6 +133,15 @@ std::string	ScalarConverter::displayInt(std::string s)
 // =========================================================
 // member function: Display data
 // =========================================================
+
+void	ScalarConverter::displayDouble(double val)
+{
+	std::cout << "char: " << static_cast<char>(val) << std::endl
+		<< "int: " << static_cast<int>(val) << std::endl
+		<< std::fixed << std::setprecision(1)
+		<< "float: " << static_cast<float>(val) << "f" << std::endl
+		<< std::fixed << std::setprecision(1) << "double: " << val << std::endl;
+}
 
 void	ScalarConverter::displaySpecial(std::string const & s)
 {
@@ -178,7 +189,10 @@ void	ScalarConverter::convert(std::string s)
 	else if (isFloat(s))
 		std::cout << "Float" << std::endl;
 	else if (isDouble(s))
-		std::cout << "Double" << std::endl;
+	{
+		double d = ScalarConverter::strToDouble(s);
+		displayDouble(d);
+	}
 	else if (isSpecial(s))
 		displaySpecial(s);
 	else
