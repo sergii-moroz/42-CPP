@@ -34,6 +34,14 @@ ScalarConverter::~ScalarConverter()
 // Checking data
 // =========================================================
 
+bool	ScalarConverter::isChar(std::string s)
+{
+	std::string	str = ScalarConverter::trim(s);
+	if (str.length() == 1 && isprint(str.at(0)) && !isdigit(str.at(0)))
+		return (true);
+	return (false);
+}
+
 bool	ScalarConverter::isDouble(std::string s)
 {
 	std::istringstream	iss(trim(s));
@@ -73,6 +81,12 @@ bool	ScalarConverter::isSpecial(std::string s)
 // =========================================================
 // Converting string
 // =========================================================
+
+char	ScalarConverter::strToChar(std::string const & s)
+{
+	std::string	str = ScalarConverter::trim(s);
+	return (str.at(0));
+}
 
 double	ScalarConverter::strToDouble(std::string const & s)
 {
@@ -155,6 +169,16 @@ std::string	ScalarConverter::displayInt(std::string s)
 // member function: Display data
 // =========================================================
 
+void	ScalarConverter::displayChar(char val)
+{
+	std::cout << "char: " << val << std::endl //Check for non displayable
+		<< "int: " << static_cast<int>(val) << std::endl //Check for overflow
+		<< std::fixed << std::setprecision(1)
+		<< "float: " << static_cast<float>(val) << "f" << std::endl
+		<< std::fixed << std::setprecision(1)
+		<< "double: " << static_cast<double>(val) << std::endl;
+}
+
 void	ScalarConverter::displayDouble(double val)
 {
 	std::cout << "char: " << static_cast<char>(val) << std::endl //Check for non displayable
@@ -226,7 +250,10 @@ void	ScalarConverter::convert(std::string s)
 {
 	std::cout << BLACK << "ScalarConverter: convert method called" << RESET << std::endl;
 	if (isChar(s))
-		std::cout << "Char" << std::endl;
+	{
+		char c = ScalarConverter::strToChar(s);
+		displayChar(c);
+	}
 	else if (isInteger(s))
 	{
 		int	i = ScalarConverter::strToInteger(s);

@@ -37,22 +37,27 @@ class ScalarConverter
 		virtual				~ScalarConverter() = 0;
 		static void			convert(std::string);
 	private:
+		static bool			isChar(std::string);
 		static bool			isDouble(std::string);
 		static bool			isFloat(std::string);
 		static bool			isInteger(std::string);
 		static bool			isSpecial(std::string);
 
+		static char			strToChar(std::string const &);
 		static double		strToDouble(std::string const &);
 		static float		strToFloat(std::string const &);
+		static int			strToInteger(std::string const &);
 
 		static std::string	trim(std::string const &);
 		static std::string	trimf(std::string const &);
 
+		static void			displayChar(char c);
 		static void			displayDouble(double);
 		static void			displayFloat(float);
-		static void			displayFromInteger(std::string const &);
+		static void			displayInteger(int);
 		static void			displaySpecial(std::string const &);
 		static void			displayImpossible(void);
+
 		static void			displayDefault(std::string const &);
 		static std::string	displayChar(int c);
 		static std::string	displayInt(std::string);
