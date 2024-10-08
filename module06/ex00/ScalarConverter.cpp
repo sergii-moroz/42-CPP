@@ -128,13 +128,39 @@ std::string	ScalarConverter::displayInt(std::string s)
 	return (resStr);
 }
 
+void	ScalarConverter::displaySpecial(std::string const & s)
+{
+	std::string	str = trim(s);
+	if (!str.compare("nan") || !str.compare("nanf"))
+	{
+		std::cout << "char: impossible" << std::endl
+			<< "int: impossible" << std::endl
+			<< "float: nanf" << std::endl
+			<< "double: nan" << std::endl;
+	}
+	else if (!str.compare("+inf") || !str.compare("+inff"))
+	{
+		std::cout << "char: impossible" << std::endl
+			<< "int: impossible" << std::endl
+			<< "float: +inff" << std::endl
+			<< "double: +inf" << std::endl;
+	}
+	else if (!str.compare("-inf") || !str.compare("-inff"))
+	{
+		std::cout << "char: impossible" << std::endl
+			<< "int: impossible" << std::endl
+			<< "float: -inff" << std::endl
+			<< "double: -inf" << std::endl;
+	}
+}
+
 // =========================================================
 // member function: converter()
 // =========================================================
 
 void	ScalarConverter::convert(std::string s)
 {
-	std::cout << "ScalarConverter: convert method called" << std::endl;
+	std::cout << BLACK << "ScalarConverter: convert method called" << RESET << std::endl;
 	if (isInteger(s))
 		std::cout << "Integer" << std::endl;
 	else if (isFloat(s))
@@ -142,7 +168,7 @@ void	ScalarConverter::convert(std::string s)
 	else if (isDouble(s))
 		std::cout << "Double" << std::endl;
 	else if (isSpecial(s))
-		std::cout << "Special" << std::endl;
+		displaySpecial(s);
 	/*if (isDouble(s))
 		displayFromDouble(s);
 	else if (isInteger(s))
