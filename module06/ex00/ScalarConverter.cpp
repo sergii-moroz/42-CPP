@@ -57,8 +57,8 @@ bool	ScalarConverter::isFloat(std::string s)
 
 bool	ScalarConverter::isInteger(std::string s)
 {
-	int	i;
 	std::istringstream iss(trim(s));
+	int	i;
 	iss >> i;
 	return (!iss.fail() && iss.eof());
 }
@@ -91,6 +91,14 @@ float	ScalarConverter::strToFloat(std::string const & s)
 	float	f;
 	iss >> f;
 	return (f);
+}
+
+int	ScalarConverter::strToInteger(std::string const & s)
+{
+	std::istringstream	iss(ScalarConverter::trim(s));
+	int	i;
+	iss >> i;
+	return (i);
 }
 
 std::string	ScalarConverter::trim(std::string const & s)
@@ -166,6 +174,16 @@ void	ScalarConverter::displayFloat(float val)
 		<< static_cast<double>(val) << std::endl;
 }
 
+void	ScalarConverter::displayInteger(int val)
+{
+	std::cout << "char: " << static_cast<char>(val) << std::endl //Check for non displayable
+		<< "int: " << val << std::endl
+		<< std::fixed << std::setprecision(1)
+		<< "float: " << static_cast<float>(val) << "f" << std::endl
+		<< std::fixed << std::setprecision(1)
+		<< "double: " << static_cast<double>(val) << std::endl;
+}
+
 void	ScalarConverter::displaySpecial(std::string const & s)
 {
 	std::string	str = trim(s);
@@ -207,8 +225,13 @@ void	ScalarConverter::displayImpossible(void)
 void	ScalarConverter::convert(std::string s)
 {
 	std::cout << BLACK << "ScalarConverter: convert method called" << RESET << std::endl;
-	if (isInteger(s))
-		std::cout << "Integer" << std::endl;
+	if (isChar(s))
+		std::cout << "Char" << std::endl;
+	else if (isInteger(s))
+	{
+		int	i = ScalarConverter::strToInteger(s);
+		displayInteger(i);
+	}
 	else if (isFloat(s))
 	{
 		float	f = ScalarConverter::strToFloat(s);
