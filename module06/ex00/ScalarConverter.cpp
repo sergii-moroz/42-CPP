@@ -128,6 +128,10 @@ std::string	ScalarConverter::displayInt(std::string s)
 	return (resStr);
 }
 
+// =========================================================
+// member function: Display data
+// =========================================================
+
 void	ScalarConverter::displaySpecial(std::string const & s)
 {
 	std::string	str = trim(s);
@@ -154,6 +158,14 @@ void	ScalarConverter::displaySpecial(std::string const & s)
 	}
 }
 
+void	ScalarConverter::displayImpossible(void)
+{
+	std::cout << "char: impossible" << std::endl
+			<< "int: impossible" << std::endl
+			<< "float: impossible" << std::endl
+			<< "double: impossible" << std::endl;
+}
+
 // =========================================================
 // member function: converter()
 // =========================================================
@@ -169,6 +181,8 @@ void	ScalarConverter::convert(std::string s)
 		std::cout << "Double" << std::endl;
 	else if (isSpecial(s))
 		displaySpecial(s);
+	else
+		displayImpossible();
 	/*if (isDouble(s))
 		displayFromDouble(s);
 	else if (isInteger(s))

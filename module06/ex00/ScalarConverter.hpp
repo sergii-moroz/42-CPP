@@ -46,6 +46,7 @@ class ScalarConverter
 		static void			displayFromDouble(std::string const &);
 		static void			displayFromInteger(std::string const &);
 		static void			displaySpecial(std::string const &);
+		static void			displayImpossible(void);
 		static void			displayDefault(std::string const &);
 		static std::string	displayChar(int c);
 		static std::string	displayInt(std::string);
