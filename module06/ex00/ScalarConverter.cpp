@@ -24,10 +24,21 @@ ScalarConverter::~ScalarConverter()
 
 bool	ScalarConverter::isDouble(std::string s)
 {
+	std::istringstream	iss(trim(s));
 	double	d;
-	std::istringstream iss(trimf(s));
 	iss >> d;
 	return (!iss.fail() && iss.eof());
+}
+
+bool	ScalarConverter::isFloat(std::string s)
+{
+	std::string	str = trim(s);
+	int			n = str.length();
+	if (str.at(n - 1) != 'f')
+		return (false);
+	else
+		str.resize(n - 1);
+	return (isDouble(str));
 }
 
 bool	ScalarConverter::isInteger(std::string s)
@@ -48,7 +59,7 @@ std::string	ScalarConverter::trim(std::string const & s)
 	return (s.substr(start, range));
 }
 
-std::string	ScalarConverter::trimf(std::string const & s)
+/*std::string	ScalarConverter::trimf(std::string const & s)
 {
 	std::string	str = trim(s);
 	int			n = str.length();
@@ -57,7 +68,7 @@ std::string	ScalarConverter::trimf(std::string const & s)
 		return (str);
 	if (str.at(n - 1) == 'f')
 		str.resize(n - 1);
-	return (str);
+	return (str);*/
 }
 
 void	ScalarConverter::displayFromDouble(std::string const & s)
