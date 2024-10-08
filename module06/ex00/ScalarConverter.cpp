@@ -46,6 +46,8 @@ bool	ScalarConverter::isFloat(std::string s)
 {
 	std::string	str = trim(s);
 	int			n = str.length();
+	if (n == 0)
+		return (false);
 	if (str.at(n - 1) != 'f')
 		return (false);
 	else
@@ -78,6 +80,17 @@ double	ScalarConverter::strToDouble(std::string const & s)
 	double	d;
 	iss >> d;
 	return (d);
+}
+
+float	ScalarConverter::strToFloat(std::string const & s)
+{
+	std::string			str = ScalarConverter::trim(s);
+	int					n = str.length();
+	str.resize(n - 1);
+	std::istringstream	iss(str);
+	float	f;
+	iss >> f;
+	return (f);
 }
 
 std::string	ScalarConverter::trim(std::string const & s)
@@ -136,11 +149,21 @@ std::string	ScalarConverter::displayInt(std::string s)
 
 void	ScalarConverter::displayDouble(double val)
 {
-	std::cout << "char: " << static_cast<char>(val) << std::endl
-		<< "int: " << static_cast<int>(val) << std::endl
+	std::cout << "char: " << static_cast<char>(val) << std::endl //Check for non displayable
+		<< "int: " << static_cast<int>(val) << std::endl //Check for overflow
 		<< std::fixed << std::setprecision(1)
 		<< "float: " << static_cast<float>(val) << "f" << std::endl
 		<< std::fixed << std::setprecision(1) << "double: " << val << std::endl;
+}
+
+void	ScalarConverter::displayFloat(float val)
+{
+	std::cout << "char: " << static_cast<char>(val) << std::endl //Check for non displayable
+		<< "int: " << static_cast<int>(val) << std::endl //Check for overflow
+		<< std::fixed << std::setprecision(1)
+		<< "float: " << val << "f" << std::endl
+		<< std::fixed << std::setprecision(1) << "double: "
+		<< static_cast<double>(val) << std::endl;
 }
 
 void	ScalarConverter::displaySpecial(std::string const & s)
@@ -187,7 +210,10 @@ void	ScalarConverter::convert(std::string s)
 	if (isInteger(s))
 		std::cout << "Integer" << std::endl;
 	else if (isFloat(s))
-		std::cout << "Float" << std::endl;
+	{
+		float	f = ScalarConverter::strToFloat(s);
+		displayFloat(f);
+	}
 	else if (isDouble(s))
 	{
 		double d = ScalarConverter::strToDouble(s);
