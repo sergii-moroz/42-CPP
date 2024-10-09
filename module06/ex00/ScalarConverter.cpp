@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:50:06 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/02 20:21:57 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/09 09:46:20 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ bool	ScalarConverter::isChar(std::string s)
 
 bool	ScalarConverter::isDouble(std::string s)
 {
+	std::string	trimed = ScalarConverter::trim(s);
+	if (ScalarConverter::isSpecial(trimed))
+		return (false);
 	std::istringstream	iss(trim(s));
 	double	d;
 	iss >> d;
@@ -137,13 +140,12 @@ std::string	ScalarConverter::trim(std::string const & s)
 	return (str);
 }*/
 
-std::string	ScalarConverter::displayChar(int c)
+void	ScalarConverter::printCharMsg(char c)
 {
-	std::string	s = "Non displayable";
-
 	if (std::isprint(c))
-		s = static_cast<char>(c);
-	return (s);
+		std::cout << "char: " << c << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
 }
 
 std::string	ScalarConverter::displayInt(std::string s)
@@ -169,10 +171,10 @@ std::string	ScalarConverter::displayInt(std::string s)
 // member function: Display data
 // =========================================================
 
-void	ScalarConverter::displayChar(char val)
+void	ScalarConverter::displayFromChar(char val)
 {
-	std::cout << "char: " << val << std::endl //Check for non displayable
-		<< "int: " << static_cast<int>(val) << std::endl //Check for overflow
+	printCharMsg(val);
+	std::cout << "int: " << static_cast<int>(val) << std::endl //Check for overflow
 		<< std::fixed << std::setprecision(1)
 		<< "float: " << static_cast<float>(val) << "f" << std::endl
 		<< std::fixed << std::setprecision(1)
@@ -181,8 +183,8 @@ void	ScalarConverter::displayChar(char val)
 
 void	ScalarConverter::displayDouble(double val)
 {
-	std::cout << "char: " << static_cast<char>(val) << std::endl //Check for non displayable
-		<< "int: " << static_cast<int>(val) << std::endl //Check for overflow
+	printCharMsg(static_cast<char>(val));
+	std::cout << "int: " << static_cast<int>(val) << std::endl //Check for overflow
 		<< std::fixed << std::setprecision(1)
 		<< "float: " << static_cast<float>(val) << "f" << std::endl
 		<< std::fixed << std::setprecision(1) << "double: " << val << std::endl;
@@ -190,8 +192,8 @@ void	ScalarConverter::displayDouble(double val)
 
 void	ScalarConverter::displayFloat(float val)
 {
-	std::cout << "char: " << static_cast<char>(val) << std::endl //Check for non displayable
-		<< "int: " << static_cast<int>(val) << std::endl //Check for overflow
+	printCharMsg(static_cast<char>(val));
+	std::cout << "int: " << static_cast<int>(val) << std::endl //Check for overflow
 		<< std::fixed << std::setprecision(1)
 		<< "float: " << val << "f" << std::endl
 		<< std::fixed << std::setprecision(1) << "double: "
@@ -200,8 +202,8 @@ void	ScalarConverter::displayFloat(float val)
 
 void	ScalarConverter::displayInteger(int val)
 {
-	std::cout << "char: " << static_cast<char>(val) << std::endl //Check for non displayable
-		<< "int: " << val << std::endl
+	printCharMsg(static_cast<char>(val));
+	std::cout << "int: " << val << std::endl
 		<< std::fixed << std::setprecision(1)
 		<< "float: " << static_cast<float>(val) << "f" << std::endl
 		<< std::fixed << std::setprecision(1)
@@ -251,26 +253,33 @@ void	ScalarConverter::convert(std::string s)
 	std::cout << BLACK << "ScalarConverter: convert method called" << RESET << std::endl;
 	if (isChar(s))
 	{
+		std::cout << MAGENTA << "isChar(s): true" << RESET << std::endl;
 		char c = ScalarConverter::strToChar(s);
-		displayChar(c);
+		displayFromChar(c);
 	}
 	else if (isInteger(s))
 	{
+		std::cout << MAGENTA << "isInteger(s): true" << RESET << std::endl;
 		int	i = ScalarConverter::strToInteger(s);
 		displayInteger(i);
 	}
 	else if (isFloat(s))
 	{
+		std::cout << MAGENTA << "isFloat(s): true" << RESET << std::endl;
 		float	f = ScalarConverter::strToFloat(s);
 		displayFloat(f);
 	}
 	else if (isDouble(s))
 	{
+		std::cout << MAGENTA << "isDouble(s): true" << RESET << std::endl;
 		double d = ScalarConverter::strToDouble(s);
 		displayDouble(d);
 	}
 	else if (isSpecial(s))
+	{
+		std::cout << MAGENTA << "isSpecial(s): true" << RESET << std::endl;
 		displaySpecial(s);
+	}
 	else
 		displayImpossible();
 	/*if (isDouble(s))
