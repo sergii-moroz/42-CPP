@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:50:06 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/09 11:52:55 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/09 11:58:59 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 ScalarConverter::ScalarConverter()
 {
-	std::cout << "ScalarConverter: Default constructor called" << std::endl;
+	// std::cout << "ScalarConverter: Default constructor called" << std::endl;
 }
 
 // =========================================================
@@ -27,7 +27,7 @@ ScalarConverter::ScalarConverter()
 
 ScalarConverter::~ScalarConverter()
 {
-	std::cout << "ScalarConverter: Destructor called" << std::endl;
+	// std::cout << "ScalarConverter: Destructor called" << std::endl;
 }
 
 // =========================================================
@@ -261,36 +261,28 @@ void	ScalarConverter::displayImpossible(void)
 
 void	ScalarConverter::convert(std::string s)
 {
-	std::cout << BLACK << "ScalarConverter: convert method called" << RESET << std::endl;
 	if (isChar(s))
 	{
-		std::cout << MAGENTA << "isChar(s): true" << RESET << std::endl;
 		char c = ScalarConverter::strToChar(s);
 		displayChar(c);
 	}
 	else if (isInteger(s))
 	{
-		std::cout << MAGENTA << "isInteger(s): true" << RESET << std::endl;
 		int	i = ScalarConverter::strToInteger(s);
 		displayInteger(i);
 	}
 	else if (isFloat(s))
 	{
-		std::cout << MAGENTA << "isFloat(s): true" << RESET << std::endl;
 		float	f = ScalarConverter::strToFloat(s);
 		displayFloat(f);
 	}
 	else if (isDouble(s))
 	{
-		std::cout << MAGENTA << "isDouble(s): true" << RESET << std::endl;
 		double d = ScalarConverter::strToDouble(s);
 		displayDouble(d);
 	}
 	else if (isSpecial(s))
-	{
-		std::cout << MAGENTA << "isSpecial(s): true" << RESET << std::endl;
 		displaySpecial(s);
-	}
 	else
 		displayImpossible();
 }
