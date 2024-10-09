@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:50:06 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/09 11:26:13 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/09 11:52:55 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void	ScalarConverter::displayDouble(double val)
 {
 	// handle Char
 	if (val >= 32 && val <= 126)
-		std::cout << "char: " << static_cast<char>(val) << std::endl;
+		std::cout << "char: \'" << static_cast<char>(val) << "\'" << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;
 
@@ -165,7 +165,7 @@ void	ScalarConverter::displayFloat(float val)
 {
 	// handle Char
 	if (val >= 32 && val <= 126)
-		std::cout << "char: " << static_cast<char>(val) << std::endl;
+		std::cout << "char: \'" << static_cast<char>(val) << "\'" << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;
 
@@ -186,7 +186,7 @@ void	ScalarConverter::displayInteger(int val)
 {
 	// handle Char
 	if (val >= 32 && val <= 126)
-		std::cout << "char: " << static_cast<char>(val) << std::endl;
+		std::cout << "char: \'" << static_cast<char>(val) << "\'" << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;
 
@@ -202,7 +202,7 @@ void	ScalarConverter::displayChar(char val)
 {
 	// handle Char
 	if (val >= 32 && val <= 126)
-		std::cout << "char: " << val << std::endl;
+		std::cout << "char: \'" << val << "\'" << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;
 
