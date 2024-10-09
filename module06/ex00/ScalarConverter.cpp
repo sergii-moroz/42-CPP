@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:50:06 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/09 09:46:20 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/09 10:06:27 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ bool	ScalarConverter::isInteger(std::string s)
 bool	ScalarConverter::isSpecial(std::string s)
 {
 	return (!s.compare("nan") || !s.compare("nanf") ||
-		!s.compare("+inf") || !s.compare("-inf") ||
-		!s.compare("+inff") || !s.compare("-inff"));
+		!s.compare("+inf") || !s.compare("-inf") || !s.compare("inf") ||
+		!s.compare("+inff") || !s.compare("-inff") || !s.compare("inff"));
 }
 
 // =========================================================
@@ -233,6 +233,13 @@ void	ScalarConverter::displaySpecial(std::string const & s)
 			<< "int: impossible" << std::endl
 			<< "float: -inff" << std::endl
 			<< "double: -inf" << std::endl;
+	}
+	else if (!str.compare("inf") || !str.compare("inff"))
+	{
+		std::cout << "char: impossible" << std::endl
+			<< "int: impossible" << std::endl
+			<< "float: inff" << std::endl
+			<< "double: inf" << std::endl;
 	}
 }
 
