@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:40:50 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/09 09:20:22 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/09 11:08:07 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ class ScalarConverter
 		static std::string	trim(std::string const &);
 		static std::string	trimf(std::string const &);
 
-		static void			displayFromChar(char c);
 		static void			displayDouble(double);
 		static void			displayFloat(float);
 		static void			displayInteger(int);
+		static void			displayChar(char c);
 		static void			displaySpecial(std::string const &);
 		static void			displayImpossible(void);
 

@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:50:06 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/09 10:43:52 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/09 11:08:51 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,51 +171,78 @@ std::string	ScalarConverter::displayInt(std::string s)
 // member function: Display data
 // =========================================================
 
-void	ScalarConverter::displayFromChar(char val)
+void	ScalarConverter::displayDouble(double val)
 {
+	// handle Char
 	if (val >= 32 && val <= 126)
 		std::cout << "char: " << static_cast<char>(val) << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;
-	std::cout << "int: " << static_cast<int>(val) << std::endl //Check for overflow
+
+	// handle Integer
+	if (val >= std::numeric_limits<int>::min() && val <= std::numeric_limits<int>::max())
+		std::cout << "int: " << static_cast<int>(val) << std::endl;
+	else
+		std::cout << "int: impossible (due overflow)" << std::endl;
+
+	// handle Float
+	if (val <= std::numeric_limits<float>::min() && val <= std::numeric_limits<float>::max())
+		std::cout << std::fixed << std::setprecision(1)
+			<< "float: " << static_cast<float>(val) << "f" << std::endl;
+	else
+		std::cout << "float: impossible (due overflow)" << std::endl;
+
+	// handle Double
+	std::cout << std::fixed << std::setprecision(1) << "double: " << val << std::endl;
+}
+
+void	ScalarConverter::displayFloat(float val)
+{
+	// handle Char
+	if (val >= 32 && val <= 126)
+		std::cout << "char: " << static_cast<char>(val) << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
+
+	// handle Integer
+	if (val >= std::numeric_limits<int>::min() && val <= std::numeric_limits<int>::max())
+		std::cout << "int: " << static_cast<int>(val) << std::endl;
+	else
+		std::cout << "int: impossible (due overflow)" << std::endl;
+
+	// handle Float and Double
+	std::cout << std::fixed << std::setprecision(1)
+		<< "float: " << val << "f" << std::endl
+		<< std::fixed << std::setprecision(1)
+		<< "double: " << static_cast<double>(val) << std::endl;
+}
+
+void	ScalarConverter::displayInteger(int val)
+{
+	// handle Char
+	if (val >= 32 && val <= 126)
+		std::cout << "char: " << static_cast<char>(val) << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
+
+	// handle Integer, Float and Double
+	std::cout << "int: " << val << std::endl
 		<< std::fixed << std::setprecision(1)
 		<< "float: " << static_cast<float>(val) << "f" << std::endl
 		<< std::fixed << std::setprecision(1)
 		<< "double: " << static_cast<double>(val) << std::endl;
 }
 
-void	ScalarConverter::displayDouble(double val)
+void	ScalarConverter::displayChar(char val)
 {
+	// handle Char
 	if (val >= 32 && val <= 126)
-		std::cout << "char: " << static_cast<char>(val) << std::endl;
+		std::cout << "char: " << val << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;
-	std::cout << "int: " << static_cast<int>(val) << std::endl //Check for overflow
-		<< std::fixed << std::setprecision(1)
-		<< "float: " << static_cast<float>(val) << "f" << std::endl
-		<< std::fixed << std::setprecision(1) << "double: " << val << std::endl;
-}
 
-void	ScalarConverter::displayFloat(float val)
-{
-	if (val >= 32 && val <= 126)
-		std::cout << "char: " << static_cast<char>(val) << std::endl;
-	else
-		std::cout << "char: Non displayable" << std::endl;
-	std::cout << "int: " << static_cast<int>(val) << std::endl //Check for overflow
-		<< std::fixed << std::setprecision(1)
-		<< "float: " << val << "f" << std::endl
-		<< std::fixed << std::setprecision(1) << "double: "
-		<< static_cast<double>(val) << std::endl;
-}
-
-void	ScalarConverter::displayInteger(int val)
-{
-	if (val >= 32 && val <= 126)
-		std::cout << "char: " << static_cast<char>(val) << std::endl;
-	else
-		std::cout << "char: Non displayable" << std::endl;
-	std::cout << "int: " << val << std::endl
+	// handle Integer, Float and Double
+	std::cout << "int: " << static_cast<int>(val) << std::endl
 		<< std::fixed << std::setprecision(1)
 		<< "float: " << static_cast<float>(val) << "f" << std::endl
 		<< std::fixed << std::setprecision(1)
@@ -274,7 +301,7 @@ void	ScalarConverter::convert(std::string s)
 	{
 		std::cout << MAGENTA << "isChar(s): true" << RESET << std::endl;
 		char c = ScalarConverter::strToChar(s);
-		displayFromChar(c);
+		displayChar(c);
 	}
 	else if (isInteger(s))
 	{
