@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:34:30 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/09 16:03:20 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/09 16:11:30 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void swap(T & param1, T & param2)
 }
 
 template <typename T>
-T max(T & x, T & y)
+T & max(T & x, T & y)
 {
 	return (x > y ? x : y);
 }
 
 template <typename T>
-T min(T & x, T & y)
+T & min(T & x, T & y)
 {
 	return ( x < y ? x : y);
 }
