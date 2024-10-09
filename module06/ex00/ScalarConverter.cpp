@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:50:06 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/09 10:06:27 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/09 10:43:52 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,13 +140,13 @@ std::string	ScalarConverter::trim(std::string const & s)
 	return (str);
 }*/
 
-void	ScalarConverter::printCharMsg(char c)
+/*void	ScalarConverter::printCharMsg(char c)
 {
 	if (std::isprint(c))
 		std::cout << "char: " << c << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;
-}
+}*/
 
 std::string	ScalarConverter::displayInt(std::string s)
 {
@@ -173,7 +173,10 @@ std::string	ScalarConverter::displayInt(std::string s)
 
 void	ScalarConverter::displayFromChar(char val)
 {
-	printCharMsg(val);
+	if (val >= 32 && val <= 126)
+		std::cout << "char: " << static_cast<char>(val) << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
 	std::cout << "int: " << static_cast<int>(val) << std::endl //Check for overflow
 		<< std::fixed << std::setprecision(1)
 		<< "float: " << static_cast<float>(val) << "f" << std::endl
@@ -183,7 +186,10 @@ void	ScalarConverter::displayFromChar(char val)
 
 void	ScalarConverter::displayDouble(double val)
 {
-	printCharMsg(static_cast<char>(val));
+	if (val >= 32 && val <= 126)
+		std::cout << "char: " << static_cast<char>(val) << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
 	std::cout << "int: " << static_cast<int>(val) << std::endl //Check for overflow
 		<< std::fixed << std::setprecision(1)
 		<< "float: " << static_cast<float>(val) << "f" << std::endl
@@ -192,7 +198,10 @@ void	ScalarConverter::displayDouble(double val)
 
 void	ScalarConverter::displayFloat(float val)
 {
-	printCharMsg(static_cast<char>(val));
+	if (val >= 32 && val <= 126)
+		std::cout << "char: " << static_cast<char>(val) << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
 	std::cout << "int: " << static_cast<int>(val) << std::endl //Check for overflow
 		<< std::fixed << std::setprecision(1)
 		<< "float: " << val << "f" << std::endl
@@ -202,7 +211,10 @@ void	ScalarConverter::displayFloat(float val)
 
 void	ScalarConverter::displayInteger(int val)
 {
-	printCharMsg(static_cast<char>(val));
+	if (val >= 32 && val <= 126)
+		std::cout << "char: " << static_cast<char>(val) << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
 	std::cout << "int: " << val << std::endl
 		<< std::fixed << std::setprecision(1)
 		<< "float: " << static_cast<float>(val) << "f" << std::endl
