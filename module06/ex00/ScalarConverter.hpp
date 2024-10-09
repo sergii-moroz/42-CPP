@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:40:50 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/09 11:08:07 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/09 11:26:43 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ class ScalarConverter
 		static float		strToFloat(std::string const &);
 		static int			strToInteger(std::string const &);
 
-		static std::string	trim(std::string const &);
-		static std::string	trimf(std::string const &);
-
 		static void			displayDouble(double);
 		static void			displayFloat(float);
 		static void			displayInteger(int);
@@ -58,9 +55,7 @@ class ScalarConverter
 		static void			displaySpecial(std::string const &);
 		static void			displayImpossible(void);
 
-		static void			displayDefault(std::string const &);
-		static void			printCharMsg(char c);
-		static std::string	displayInt(std::string);
+		static std::string	trim(std::string const &);
 };
 
 #endif

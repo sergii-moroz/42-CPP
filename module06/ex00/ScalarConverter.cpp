@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:50:06 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/09 11:08:51 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/09 11:26:13 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,10 @@ int	ScalarConverter::strToInteger(std::string const & s)
 	return (i);
 }
 
+// =========================================================
+// helper function
+// =========================================================
+
 std::string	ScalarConverter::trim(std::string const & s)
 {
 	size_t	start = s.find_first_not_of("\f\n\r\t\v ");
@@ -128,47 +132,8 @@ std::string	ScalarConverter::trim(std::string const & s)
 	return (s.substr(start, range));
 }
 
-/*std::string	ScalarConverter::trimf(std::string const & s)
-{
-	std::string	str = trim(s);
-	int			n = str.length();
-
-	if (n == 0)
-		return (str);
-	if (str.at(n - 1) == 'f')
-		str.resize(n - 1);
-	return (str);
-}*/
-
-/*void	ScalarConverter::printCharMsg(char c)
-{
-	if (std::isprint(c))
-		std::cout << "char: " << c << std::endl;
-	else
-		std::cout << "char: Non displayable" << std::endl;
-}*/
-
-std::string	ScalarConverter::displayInt(std::string s)
-{
-	std::string	resStr = s;
-	int	intMax = std::numeric_limits<int>::max();
-	int	intMin = std::numeric_limits<int>::min();
-
-	if (isInteger(s))
-	{
-		double	d = atof(s.c_str());
-		if (d > intMax)
-			resStr = "nan";
-		if (d < intMin)
-			resStr = "-nan";
-	}
-	else
-		resStr = "impossible";
-	return (resStr);
-}
-
 // =========================================================
-// member function: Display data
+// Display data
 // =========================================================
 
 void	ScalarConverter::displayDouble(double val)
@@ -186,7 +151,7 @@ void	ScalarConverter::displayDouble(double val)
 		std::cout << "int: impossible (due overflow)" << std::endl;
 
 	// handle Float
-	if (val <= std::numeric_limits<float>::min() && val <= std::numeric_limits<float>::max())
+	if (val >= std::numeric_limits<float>::min() && val <= std::numeric_limits<float>::max())
 		std::cout << std::fixed << std::setprecision(1)
 			<< "float: " << static_cast<float>(val) << "f" << std::endl;
 	else
@@ -328,16 +293,4 @@ void	ScalarConverter::convert(std::string s)
 	}
 	else
 		displayImpossible();
-	/*if (isDouble(s))
-		displayFromDouble(s);
-	else if (isInteger(s))
-		displayFromInteger(s);
-	else
-		displayDefault(s);*/
-	/*std::cout << "char: " << static_cast<char>(atoi(s.c_str())) << std::endl
-		<< "int: " << static_cast<int>(atoi(s.c_str())) << std::endl;
-	std::cout << std::fixed << std::setprecision(1)	<< "float: " << static_cast<float>(atof(s.c_str())) << "f" << std::endl;
-	std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(atof(s.c_str())) << std::endl
-		<< "string: " << s << std::endl;*/
 }
-//	 	  42f
