@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:43:22 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/10 09:16:06 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/10 10:00:18 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,21 @@ class Array
 {
 	public:
 		// Constructors
-		Array() : _array(new T[0])
+		Array() : _array(new T[0]), _size(0)
 		{
 			std::cout << BLACK << "Array: Default constructor called" << RESET << std::endl;
 		}
 
-		Array(unsigned int n) : _array(new T[n])
+		Array(unsigned int n) : _array(new T[n]), _size(n)
 		{
 			std::cout << BLACK << "Array: Consturctor with specified size ( " << n << " ) is called" << std::endl;
 		}
 
-		Array(Array const &);
+		Array(Array const & copy)
+		{
+			std::cout << BLACK << "Array: Copy constructor called" << RESET << std::endl;
+			*this = copy;
+		}
 
 		// Destructor
 		~Array()
@@ -51,9 +55,29 @@ class Array
 			delete [] _array;
 		}
 
-		Array &			operator=(Array const &);
+		Array &			operator=(Array const & rhs)
+		{
+			std::cout << BLACK << "Array: Assignment operator called" << std::endl;
+			if (this != &rhs)
+			{
+				// if array isn't empty -> free content
+				if (_array != nullptr)
+					delete [] _array;
+
+				_size = rhs.size();
+				_array = new T[_size];
+
+				for (int i=0; i<_size; i++)
+					_array[i] = rhs._array[i];
+			}
+			return (*this);
+		}
 		unsigned int &	operator[](unsigned int const &);
-		unsigned int &	size(void);
+
+		unsigned int	size(void) const
+		{
+			return (_size);
+		}
 
 		class IndexOutOfRange : public std::exception
 		{
@@ -62,7 +86,8 @@ class Array
 		};
 
 	private:
-		T	*_array;
+		T				*_array;
+		unsigned int	_size;
 };
 
 #endif
