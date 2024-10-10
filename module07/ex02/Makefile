@@ -1,7 +1,7 @@
 NAME		=	array
 
 CC			=	c++
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
+CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -fsanitize=address
 RM			=	rm -rf
 
 SRCS		=	main.cpp
@@ -12,7 +12,7 @@ all:			$(NAME)
 $(NAME):		$(OBJS)
 				$(CC) $(CFLAGS) $(OBJS) -o $@
 
-%.o:			%.cpp
+%.o:			%.cpp Array.hpp
 				$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
