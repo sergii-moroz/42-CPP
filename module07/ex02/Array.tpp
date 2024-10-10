@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:43:22 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/10 15:02:16 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/10 15:10:35 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ template <typename T>
 Array<T>::Array(unsigned int n) : _array(new T[n]), _size(n)
 {
 	std::cout << BLACK << "Array: Consturctor with specified size ( " << n << " ) is called" << RESET << std::endl;
-	// for (unsigned int i=0; i<n; i++)
-	// 	memset(_array, 0, sizeof(T));
+	for (unsigned int i=0; i<n; i++)
+		memset(_array, 0, n * sizeof(T));
 }
 
 template <typename T>
