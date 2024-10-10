@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:43:22 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/10 10:00:18 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/10 11:31:58 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,28 @@ class Array
 
 		Array(unsigned int n) : _array(new T[n]), _size(n)
 		{
-			std::cout << BLACK << "Array: Consturctor with specified size ( " << n << " ) is called" << std::endl;
+			std::cout << BLACK << "Array: Consturctor with specified size ( " << n << " ) is called" << RESET << std::endl;
+			// for (unsigned int i=0; i<n; i++)
+			// 	memset(_array, 0, sizeof(T));
 		}
 
-		Array(Array const & copy)
+		Array(Array const & copy) : _size(copy.size())
 		{
 			std::cout << BLACK << "Array: Copy constructor called" << RESET << std::endl;
+			_array = nullptr;
 			*this = copy;
 		}
 
 		// Destructor
 		~Array()
 		{
-			std::cout << BLACK << "Array: Destructor called" << std::endl;
+			std::cout << BLACK << "Array: Destructor called" << RESET << std::endl;
 			delete [] _array;
 		}
 
 		Array &			operator=(Array const & rhs)
 		{
-			std::cout << BLACK << "Array: Assignment operator called" << std::endl;
+			std::cout << BLACK << "Array: Assignment operator called" << RESET << std::endl;
 			if (this != &rhs)
 			{
 				// if array isn't empty -> free content
@@ -67,13 +70,17 @@ class Array
 				_size = rhs.size();
 				_array = new T[_size];
 
-				for (int i=0; i<_size; i++)
+				for (unsigned int i=0; i<_size; i++)
 					_array[i] = rhs._array[i];
 			}
 			return (*this);
 		}
-		unsigned int &	operator[](unsigned int const &);
+		T &	operator[](unsigned int const & i)
+		{
+			return (_array[i]);
+		}
 
+		// getter
 		unsigned int	size(void) const
 		{
 			return (_size);
@@ -85,9 +92,21 @@ class Array
 				virtual const char	*what() const throw();
 		};
 
+		void	_debug(void)
+		{
+			std::cout << MAGENTA << "Array address: " << YELLOW << _array << RESET << std::endl;
+			std::cout << MAGENTA << "size: " << YELLOW << size() << RESET << std::endl;
+			std::cout << MAGENTA << "items: " << RESET << std::endl;
+			for (unsigned int i=0; i<size(); i++)
+				std::cout << BLACK << "[" << RESET << i << BLACK
+					<< "] val:" YELLOW << _array[i] << BLACK << ", address: " << CYAN
+					<< &_array[i] << RESET << std::endl;
+		}
+
 	private:
 		T				*_array;
 		unsigned int	_size;
+
 };
 
 #endif
