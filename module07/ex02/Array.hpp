@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:43:22 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/10 11:31:58 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/10 13:58:28 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ class Array
 		}
 		T &	operator[](unsigned int const & i)
 		{
-			return (_array[i]);
+			if (i >= size() || _array == nullptr)
+				throw Array<T>::IndexOutOfRange();
+			else
+				return (_array[i]);
 		}
 
 		// getter
@@ -94,7 +97,7 @@ class Array
 
 		void	_debug(void)
 		{
-			std::cout << MAGENTA << "Array address: " << YELLOW << _array << RESET << std::endl;
+			std::cout << MAGENTA << "array field: " << YELLOW << _array << RESET << std::endl;
 			std::cout << MAGENTA << "size: " << YELLOW << size() << RESET << std::endl;
 			std::cout << MAGENTA << "items: " << RESET << std::endl;
 			for (unsigned int i=0; i<size(); i++)
@@ -108,5 +111,11 @@ class Array
 		unsigned int	_size;
 
 };
+
+template <typename T>
+const char *Array<T>::IndexOutOfRange::what() const throw()
+{
+	return ("ERROR: Index out of range");
+}
 
 #endif
