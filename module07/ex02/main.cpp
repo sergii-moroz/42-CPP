@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:50:07 by smoroz            #+#    #+#             */
-/*   Updated: 2024/10/10 09:21:39 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/10/10 09:40:43 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ int	main(void)
 	{
 		::test(2, "Create empty array of size 4");
 		Array<int>	iarr(4);
+	}
+
+	{
+		::test(3, "Create empty array\n\tCreate another array with copy constructor");
+		Array<int>	iarr;
+		Array<int>	copy(iarr);
 	}
 
 	return (0);
