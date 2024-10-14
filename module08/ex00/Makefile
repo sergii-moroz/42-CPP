@@ -10,7 +10,7 @@ OBJS		=	$(SRCS:.cpp=.o)
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				$(CPP) $(CPPFLAGS) -o $@
+				$(CPP) $(CPPFLAGS) $(OBJS) -o $@
 
 %.o:			%.cpp easyfind.hpp
 				$(CPP) $(CPPFLAGS) -c $< -o $@
