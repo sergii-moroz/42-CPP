@@ -13,17 +13,8 @@
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
+# include <algorithm>
 # include <exception>
-
-template <typename T>
-T	easyfind(T const & container, int const & needle)
-{
-	T::iterator	it;
-	it = find(container.begin(), container.end(), needle);
-	if (it == container.end())
-		throw notFoundException();
-	return (*it);
-}
 
 class notFoundException : public std::exception
 {
@@ -33,6 +24,16 @@ class notFoundException : public std::exception
 			return ("ERROR: not found exception");
 		}
 };
+
+template <typename T>
+typename T::iterator	easyfind(T & container, int needle)
+{
+	typename T::iterator	it;
+	it = std::find(container.begin(), container.end(), needle);
+	if (it == container.end())
+		throw notFoundException();
+	return (it);
+}
 
 // # include "easyfind.tpp"
 
