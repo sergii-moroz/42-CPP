@@ -30,10 +30,27 @@ int	main(void)
 
 	// std::list<int>::iterator it;
 
+	std::cout << "==========================================" << std::endl
+		<< "Test 1: std::list<int>" << std::endl
+		<< "==========================================" << std::endl;
 	try
 	{
-		std::cout << ::easyfind(l, 13) << std::endl;
-		std::cout << ::easyfind(v, 13) << std::endl;
+		std::cout << *(::easyfind(l, 13)) << std::endl;
+		std::cout << *(::easyfind(l, 12)) << std::endl;
+	}
+	catch (std::exception const & e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << std::endl;
+	std::cout << "==========================================" << std::endl
+		<< "Test 2: std::vector<int>" << std::endl
+		<< "==========================================" << std::endl;
+	try
+	{
+		std::cout << *(::easyfind(v, 34)) << std::endl;
+		std::cout << *(::easyfind(v, 12)) << std::endl;
 	}
 	catch (std::exception const & e)
 	{
