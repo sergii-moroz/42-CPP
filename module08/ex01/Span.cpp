@@ -78,4 +78,18 @@ int		Span::shortestSpan(void)
 	return (_v[0]);
 }
 
+// =========================================================
+// exceptions
+// =========================================================
+
+const char *Span::ContainerHasNoFeeSpaceException::what(void) const throw()
+{
+	return("ERROR: Container has no free space to save one more value");
+}
+
+const char *Span::ContainerHasNotEnoughMembersException::what(void) const throw()
+{
+	return ("ERROR: Container has not enough members to perform this operation");
+}
+
 
