@@ -71,11 +71,31 @@ void	Span::addNumber(int val)
 
 int		Span::shortestSpan(void)
 {
-	std::cout << "Span:: shortestSpan() called" << std::endl;
+	// std::cout << "Span: shortestSpan() called" << std::endl;
 	if (_v.size() <= 1)
 		throw ContainerHasNotEnoughMembersException();
-	// TODO
-	return (_v[0]);
+	// Make a copy of _v
+	std::vector<int> tmp = _v;
+	// Sort it
+	std::sort(tmp.begin(), tmp.end());
+	// Define iterator
+	std::vector<int>::iterator	it = tmp.begin();
+	// Calculate span between first two elements
+	int	minSpan = std::abs(*it - *(it + 1));
+	for (std::vector<int>::iterator	it = tmp.begin() + 1; it < tmp.end() - 1; it++)
+	{
+		if (std::abs(*it - *(it + 1)) < minSpan)
+			minSpan = std::abs(*it - *(it + 1));
+	}
+	return (minSpan);
+}
+
+int		Span::longestSpan(void)
+{
+	// std::cout << "Span: longestSpan() called" << std::endl;
+	if (_v.size() <= 1)
+		throw ContainerHasNotEnoughMembersException();
+	return (*std::max_element(_v.begin(), _v.end()) - *std::min_element(_v.begin(), _v.end()));
 }
 
 // =========================================================
@@ -92,4 +112,16 @@ const char *Span::ContainerHasNotEnoughMembersException::what(void) const throw(
 	return ("ERROR: Container has not enough members to perform this operation");
 }
 
-
+std::ostream &	operator<<(std::ostream & out, Span const & ref)
+{
+	if (ref._v.size() == 0)
+		out << "{ empty }";
+	else
+	{
+		out << "{ ";
+		for (unsigned long i=0; i<ref._v.size(); i++)
+			out << ref._v[i] << ", ";
+		out << " }";
+	}
+	return (out);
+}
