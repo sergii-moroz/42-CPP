@@ -80,9 +80,43 @@ int	main(void)
 	{
 		std::cout << std::endl;
 		std::cout << "==========================================" << std::endl
-		<< "Test 5: Trying to add more elements then N" << std::endl
+		<< "Test 5: Checking longestSpan()" << std::endl
 		<< "==========================================" << std::endl;
-
+		std::cout << " - step 1: Create span" << std::endl;
+		Span	a(5);
+		std::cout << " - step 2: call logestSpan() with empty container" << std::endl;
+		try
+		{
+			std::cout << "longestSpan: " << a.longestSpan() << std::endl;
+		}
+		catch (std::exception const & e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+		std::cout << " - step 2: Add one value to the span and call longestSpan()" << std::endl;
+		a.addNumber(1);
+		try
+		{
+			std::cout << "longestSpan: " << a.longestSpan() << std::endl;
+		}
+		catch (std::exception const & e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+		std::cout << " - step 4: Add three more value to the span and call longestSpan()" << std::endl;
+		a.addNumber(8);
+		a.addNumber(42);
+		a.addNumber(13);
+		std::cout << "Span: " << a << std::endl;
+		try
+		{
+			std::cout << "longestSpan: " << a.longestSpan() << std::endl;
+			std::cout << "shortestSpan: " << a.shortestSpan() << std::endl;
+		}
+		catch (std::exception const & e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
 	}
 
 	return (0);
