@@ -56,4 +56,26 @@ Span &	Span::operator=(Span const & rhs)
 	return (*this);
 }
 
+// =========================================================
+// memberfunctions
+// =========================================================
+
+void	Span::addNumber(int val)
+{
+	std::cout << "Span: addNumber() called" << std::endl;
+	if (_v.size() >= _n)
+		throw ContainerHasNoFeeSpaceException();
+	_v.push_back(val);
+	std::cout << "Value: " << val << " is added to the container" << std::endl;
+}
+
+int		Span::shortestSpan(void)
+{
+	std::cout << "Span:: shortestSpan() called" << std::endl;
+	if (_v.size() <= 1)
+		throw ContainerHasNotEnoughMembersException();
+	// TODO
+	return (_v[0]);
+}
+
 
