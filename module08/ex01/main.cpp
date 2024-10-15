@@ -119,5 +119,21 @@ int	main(void)
 		}
 	}
 
+	{
+		std::cout << std::endl;
+		std::cout << "==========================================" << std::endl
+		<< "Test 6: addNumber with range iterator" << std::endl
+		<< "==========================================" << std::endl;
+		std::cout << " - step 1: Create span" << std::endl;
+		Span	a(10);
+		Span	b(10);
+		for (int i=0; i<10; i++)
+			a.addNumber(i);
+		std::cout << a << std::endl;
+		std::vector<int>::iterator	it = a._v.begin();
+		b.addNumber(it, it + 3);
+		std::cout << b << std::endl;
+	}
+
 	return (0);
 }
