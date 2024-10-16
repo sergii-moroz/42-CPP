@@ -15,6 +15,8 @@
 
 # include <iostream>
 # include <vector>
+# include <algorithm>
+# include <exception>
 
 class Span
 {
@@ -24,12 +26,28 @@ class Span
 		~Span();
 
 		Span &	operator=(Span const & rhs);
+		void	addNumber(int val);
+		void	addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+		int		shortestSpan(void);
+		int		longestSpan(void);
 
+		class ContainerHasNoFeeSpaceException : public std::exception
+		{
+			virtual const char *what(void) const throw();
+		};
+
+		class ContainerHasNotEnoughMembersException : public std::exception
+		{
+			virtual const char *what(void) const throw();
+		};
+
+		std::vector<int>	_v;
 	private:
 		unsigned int		_n;
-		std::vector<int>	_v;
 
 		Span();
 };
+
+std::ostream &	operator<<(std::ostream & out, Span const &);
 
 #endif

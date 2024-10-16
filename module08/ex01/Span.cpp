@@ -100,7 +100,7 @@ int		Span::longestSpan(void)
 
 void	Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
 {
-	if (_v.size() + std::distance(begin, end) >= _n)
+	if (_v.size() + std::distance(begin, end) > _n)
 		throw ContainerHasNoFeeSpaceException();
 	_v.insert(_v.end(), begin, end);
 }

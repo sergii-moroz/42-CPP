@@ -125,13 +125,14 @@ int	main(void)
 		<< "Test 6: addNumber with range iterator" << std::endl
 		<< "==========================================" << std::endl;
 		std::cout << " - step 1: Create span" << std::endl;
-		Span	a(10);
-		Span	b(10);
-		for (int i=0; i<10; i++)
-			a.addNumber(i);
-		std::cout << a << std::endl;
-		std::vector<int>::iterator	it = a._v.begin();
-		b.addNumber(it, it + 3);
+		int	n = 10;
+		std::vector<int>	v(n);
+
+		for (int i=0; i<n; i++)
+			v[i] = std::rand();
+
+		Span	b(n);
+		b.addNumber(v.begin(), v.end());
 		std::cout << b << std::endl;
 	}
 
