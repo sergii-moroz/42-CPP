@@ -106,6 +106,24 @@ void	Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterato
 }
 
 // =========================================================
+// getters
+// =========================================================
+
+int	Span::spanSize(void) const
+{
+	return (_v.size());
+}
+
+int	Span::elementAt(unsigned int i) const
+{
+	if (i < _n)
+		return (_v[i]);
+	else
+		return (-1);
+	// throw IndexOutOfRangeException();
+}
+
+// =========================================================
 // exceptions
 // =========================================================
 
@@ -121,13 +139,23 @@ const char *Span::ContainerHasNotEnoughMembersException::what(void) const throw(
 
 std::ostream &	operator<<(std::ostream & out, Span const & ref)
 {
-	if (ref._v.size() == 0)
+	/*if (ref._v.size() == 0)
 		out << "{ empty }";
 	else
 	{
 		out << "{ ";
 		for (unsigned long i=0; i<ref._v.size(); i++)
 			out << ref._v[i] << ", ";
+		out << " }";
+	}
+	return (out);*/
+	if (ref.spanSize() == 0)
+		out << "{ empty }";
+	else
+	{
+		out << "{ ";
+		for (int i=0; i<ref.spanSize(); i++)
+			out << ref.elementAt(i) << ", ";
 		out << " }";
 	}
 	return (out);

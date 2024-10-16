@@ -31,6 +31,9 @@ class Span
 		int		shortestSpan(void);
 		int		longestSpan(void);
 
+		int		spanSize(void) const;
+		int		elementAt(unsigned int i) const;
+
 		class ContainerHasNoFeeSpaceException : public std::exception
 		{
 			virtual const char *what(void) const throw();
@@ -41,8 +44,8 @@ class Span
 			virtual const char *what(void) const throw();
 		};
 
-		std::vector<int>	_v;
 	private:
+		std::vector<int>	_v;
 		unsigned int		_n;
 
 		Span();
