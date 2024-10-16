@@ -44,6 +44,11 @@ class Span
 			virtual const char *what(void) const throw();
 		};
 
+		class IndexOutOfRangeException: public std::exception
+		{
+			virtual const char	*what(void) const throw();
+		};
+
 	private:
 		std::vector<int>	_v;
 		unsigned int		_n;

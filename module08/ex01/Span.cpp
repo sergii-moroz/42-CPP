@@ -118,9 +118,7 @@ int	Span::elementAt(unsigned int i) const
 {
 	if (i < _n)
 		return (_v[i]);
-	else
-		return (-1);
-	// throw IndexOutOfRangeException();
+	throw IndexOutOfRangeException();
 }
 
 // =========================================================
@@ -135,6 +133,11 @@ const char *Span::ContainerHasNoFeeSpaceException::what(void) const throw()
 const char *Span::ContainerHasNotEnoughMembersException::what(void) const throw()
 {
 	return ("ERROR: Container has not enough members to perform this operation");
+}
+
+const char	*Span::IndexOutOfRangeException::what(void) const throw()
+{
+	return ("ERROR: Index out of range");
 }
 
 std::ostream &	operator<<(std::ostream & out, Span const & ref)
