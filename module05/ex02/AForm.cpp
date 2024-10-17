@@ -26,7 +26,6 @@ AForm::AForm(AForm const & copy) : _name(copy.getName()), _isSigned(copy.getIsSi
 {
 	std::cout << BLACK << "AForm[ " << getName()
 		<< " ]: Copy constructor called" << RESET << std::endl;
-	*this = copy;
 }
 
 AForm::AForm(std::string name, int gradeSign, int gradeExec) : _name(name), _isSigned(false), _grade4Sign(gradeSign), _grade4Exec(gradeExec)
