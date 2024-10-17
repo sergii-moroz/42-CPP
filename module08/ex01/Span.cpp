@@ -142,16 +142,6 @@ const char	*Span::IndexOutOfRangeException::what(void) const throw()
 
 std::ostream &	operator<<(std::ostream & out, Span const & ref)
 {
-	/*if (ref._v.size() == 0)
-		out << "{ empty }";
-	else
-	{
-		out << "{ ";
-		for (unsigned long i=0; i<ref._v.size(); i++)
-			out << ref._v[i] << ", ";
-		out << " }";
-	}
-	return (out);*/
 	if (ref.spanSize() == 0)
 		out << "{ empty }";
 	else
