@@ -100,5 +100,15 @@ int	main(void)
 	testSignForm(5, 12, testId++);
 	testSignForm(12, 3, testId++);
 
+	std::cout << GREEN << "================" << RESET << std::endl;
+	Form	f("c25", 125, 4);
+	std::cout << f << std::endl;
+	Form	g(f);
+	// Form	g("aaa", 2, 1);
+	// g = f;
+	std::cout << g << std::endl;
+	std::cout << GREEN << "================" << RESET << std::endl;
+
+
 	return (0);
 }
