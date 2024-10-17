@@ -22,11 +22,11 @@ Form::Form() : _name("unknown"), _isSigned(false), _grade4Sign(150), _grade4Exec
 		<< " ]: Default constructor called" << RESET << std::endl;
 }
 
-Form::Form(Form const & copy) : _name(getName()), _isSigned(copy.getIsSigned()), _grade4Sign(copy.getGrade4Sign()), _grade4Exec(copy.getGrade4Exec())
+Form::Form(Form const & copy) : _name(copy.getName()), _isSigned(copy.getIsSigned()), _grade4Sign(copy.getGrade4Sign()), _grade4Exec(copy.getGrade4Exec())
 {
 	std::cout << BLACK << "Form[ " << getName()
 		<< " ]: Copy constructor called" << RESET << std::endl;
-	*this = copy;
+	// *this = copy;
 }
 
 Form::Form(std::string name, int gradeSign, int gradeExec) : _name(name), _isSigned(false), _grade4Sign(gradeSign), _grade4Exec(gradeExec)
@@ -56,9 +56,15 @@ Form::~Form()
 
 Form &	Form::operator=(Form const & rhs)
 {
-	std::cout << BLACK << "Form[ " << getName()
-		<< " ]: Assignation operator called" << RESET << std::endl;
-	setIsSigned(rhs.getIsSigned());
+	if (this == &rhs)
+		std::cout << BLACK << "Form [ " << getName()
+			<< " ]: no need to use assignment operator(=)" << RESET << std::endl;
+	else
+	{
+		std::cout << BLACK << "Form[ " << getName()
+			<< " ]: Assignation operator called" << RESET << std::endl;
+		setIsSigned(rhs.getIsSigned());
+	}
 	return (*this);
 }
 
