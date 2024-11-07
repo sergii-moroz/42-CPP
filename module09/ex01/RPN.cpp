@@ -100,6 +100,8 @@ double	RPN::calc(std::string const & s)
 			std::cout << "invalid character" << std::endl;
 	}
 		// std::cout << s.at(i) << std::endl;
+	if (stack.size() != 1)
+		throw TooManyOperandsException();
 	return (stack.top());
 }
 
@@ -126,10 +128,26 @@ double	RPN::mlt(double const & x, double const & y)
 
 double	RPN::div(double const & x, double const & y)
 {
+	if (std::abs(y) < 1.e-6)
+		throw DivisionByZeroException();
 	return (x / y);
 }
+
+// ==========================================
+//	Exceptions
+// ==========================================
 
 const char	*RPN::TooLowOperandsExeption::what() const throw()
 {
 	return ("ERROR: Too low operand on the stack!");
+}
+
+const char	*RPN::DivisionByZeroException::what() const throw()
+{
+	return ("ERROR: Division by zero!");
+}
+
+const char	*RPN::TooManyOperandsException::what() const throw()
+{
+	return ("ERROR: Too many operands left on the stack!");
 }

@@ -17,6 +17,7 @@
 # include <stack>
 # include <string>
 # include <exception>
+# include <cmath>
 
 class RPN
 {
@@ -27,6 +28,18 @@ class RPN
 		{
 			public:
 				virtual const char *what() const throw();
+		};
+
+		class DivisionByZeroException : public std::exception
+		{
+			public:
+				virtual const char	*what() const throw();
+		};
+
+		class TooManyOperandsException: public std::exception
+		{
+			public:
+				virtual const char	*what() const throw();
 		};
 
 	private:
