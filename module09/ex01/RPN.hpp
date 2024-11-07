@@ -16,11 +16,18 @@
 # include <iostream>
 # include <stack>
 # include <string>
+# include <exception>
 
 class RPN
 {
 	public:
 		static double	calc(std::string const &);
+
+		class TooLowOperandsExeption : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
 
 	private:
 		RPN();
