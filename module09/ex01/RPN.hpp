@@ -36,7 +36,13 @@ class RPN
 				virtual const char	*what() const throw();
 		};
 
-		class TooManyOperandsException: public std::exception
+		class TooManyOperandsException : public std::exception
+		{
+			public:
+				virtual const char	*what() const throw();
+		};
+
+		class InvalidCharacterException : public std::exception
 		{
 			public:
 				virtual const char	*what() const throw();

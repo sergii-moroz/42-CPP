@@ -97,7 +97,7 @@ double	RPN::calc(std::string const & s)
 			}
 		}
 		else
-			std::cout << "invalid character" << std::endl;
+			throw InvalidCharacterException();
 	}
 		// std::cout << s.at(i) << std::endl;
 	if (stack.size() != 1)
@@ -150,4 +150,9 @@ const char	*RPN::DivisionByZeroException::what() const throw()
 const char	*RPN::TooManyOperandsException::what() const throw()
 {
 	return ("ERROR: Too many operands left on the stack!");
+}
+
+const char	*RPN::InvalidCharacterException::what() const throw()
+{
+	return ("ERROR: Invalid character in the input string!");
 }
