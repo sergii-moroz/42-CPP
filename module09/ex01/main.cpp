@@ -14,5 +14,23 @@
 
 int	main(int argc, char **argv)
 {
+	if (argc != 2)
+	{
+		std::cout
+			<< "ERROR: Invalid input" << std::endl
+			<< "   Only one argument is expected. Got (" << argc - 1 << ")" << std::endl
+			<< "   Example: ./RPN \"3 4 + 5 *\"" << std::endl;
+		return (1);
+	}
+
+	try
+	{
+		std::cout << RPN::calc(argv[1]) << std::endl;
+	}
+	catch(std::exception const & e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
 	return (0);
 }
