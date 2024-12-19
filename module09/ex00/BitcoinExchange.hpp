@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 19:13:24 by smoroz            #+#    #+#             */
-/*   Updated: 2024/12/19 15:10:50 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/12/19 15:15:16 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ class BitcoinExchange
 		~BitcoinExchange();
 		BitcoinExchange(BitcoinExchange const &);
 		BitcoinExchange &	operator=(BitcoinExchange const &);
+
+		static void	usage(void);
 
 	private:
 		std::map<std::string, double>	db;

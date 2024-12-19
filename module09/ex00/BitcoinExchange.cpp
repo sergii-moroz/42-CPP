@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 19:14:22 by smoroz            #+#    #+#             */
-/*   Updated: 2024/12/19 15:10:19 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/12/19 15:15:56 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,16 @@ BitcoinExchange &	BitcoinExchange::operator=(BitcoinExchange const & rhs)
 		// do something
 	}
 	return (*this);
+}
+
+// ==========================================
+// Member functions
+// ==========================================
+
+void	BitcoinExchange::usage(void)
+{
+	std::cout
+		<< RED << "[ERROR]"
+		<< RESET << ": Wrong arguments' number" << std::endl
+		<< "         usage: " << BLACK << "./btc <fileName>" << RESET << std::endl;
 }
