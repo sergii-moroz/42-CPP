@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 19:13:24 by smoroz            #+#    #+#             */
-/*   Updated: 2024/12/19 15:15:16 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/12/19 15:34:53 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@
 # define WHITE		"\033[1;37m"
 # define RESET		"\033[0m"
 
+# define BTC_DB		"small.csv"
+
 # include <iostream>
+# include <fstream>
 # include <map>
 
 class BitcoinExchange
@@ -35,6 +38,13 @@ class BitcoinExchange
 		BitcoinExchange &	operator=(BitcoinExchange const &);
 
 		static void	usage(void);
+		void	loadDB(void);
+
+		class CouldNotOpenDBFileException: public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
 
 	private:
 		std::map<std::string, double>	db;
