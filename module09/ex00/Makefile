@@ -1,10 +1,10 @@
 NAME			=	btc
 
-CPP				=	CPP
+CPP				=	c++
 CPPFLAGS		=	-Wall -Wextra -Werror -std=c++98
 RM				=	rm -rf
 
-SRCS			=	BitcoinExchange.cpp main.cpp
+SRCS			=	BitcoinExchange.cpp Exceptions.cpp main.cpp
 OBJS			=	$(SRCS:.cpp=.o)
 
 all:				$(NAME)
