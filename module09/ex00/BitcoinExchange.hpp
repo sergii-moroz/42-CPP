@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 19:13:24 by smoroz            #+#    #+#             */
-/*   Updated: 2024/12/19 15:34:53 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/12/19 16:07:04 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define BTC_DB		"small.csv"
 
 # include <iostream>
+# include <iomanip>
 # include <fstream>
 # include <map>
 

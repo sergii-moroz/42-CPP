@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 19:14:22 by smoroz            #+#    #+#             */
-/*   Updated: 2024/12/19 15:38:40 by smoroz           ###   ########.fr       */
+/*   Updated: 2024/12/19 16:36:06 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	BitcoinExchange::usage(void)
 
 void	BitcoinExchange::loadDB(void)
 {
-	std::cout << BLACK << "BitcoinExchange: loadDB function called" << std::endl;
+	std::cout << BLACK << "BitcoinExchange: loadDB function called" << RESET << std::endl;
 
 	std::fstream	infile;
 	std::string		line;
@@ -70,5 +70,36 @@ void	BitcoinExchange::loadDB(void)
 	infile.open(BTC_DB, std::ios::in);
 	if (!infile.is_open())
 		throw CouldNotOpenDBFileException();
+
+	int		year, month, day;
+	float	price;
+	int		lineCounter = 0;
+	while (std::getline(infile, line))
+	{
+		int	n = sscanf(line.c_str(), "%d-%d-%d,%f", &year, &month, &day, &price);
+		if (n != 4)
+		{
+			std::cerr << std::endl;
+			std::cerr << RED << "ERROR |" << WHITE << " Wrong format!" << RESET << std::endl;
+			std::cerr << RED << std::setw(7) << "|"
+				<< BLACK << " expect 4 values (year-month-day,price), but got only "
+				<< n << RESET << std::endl;
+			std::cerr << RED << std::setw(7) << "|"
+				<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+			lineCounter++;
+			continue;
+		}
+		if (price < 0)
+		{
+			std::cerr << std::endl;
+			std::cerr << RED << "ERROR |" << WHITE << " Price couldn't be negative!" << RESET << std::endl;
+			std::cerr << RED << std::setw(7) << "|"
+				<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+			lineCounter++;
+			continue;
+		}
+		std::cout << line << std::endl;
+		lineCounter++;
+	}
 	infile.close();
 }
