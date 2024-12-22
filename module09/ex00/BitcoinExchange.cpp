@@ -122,10 +122,40 @@ void	BitcoinExchange::loadDB(void)
 			lineCounter++;
 			continue;
 		}
+		if (!isValidDate(timeInfo, year, month, day))
+		{
+			std::cerr << std::endl;
+			std::cerr << RED << "ERROR |" << WHITE << " Wrong date value!" << RESET << std::endl;
+			std::cerr << RED << std::setw(7) << "|"
+				<< BLACK << " date: " << CYAN << year << "-" << month << "-" << day
+				<< BLACK << " was converted to -> " << YELLOW << timeInfo.tm_year + 1900 << "-" << timeInfo.tm_mon + 1 << "-"
+				<< timeInfo.tm_mday << std::endl;
+			std::cerr << RED << std::setw(7) << "|"
+				<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+			lineCounter++;
+			continue;
+		}
 
 		std::cout << line << std::endl;
 		std::cout << "timestamp: " << timestamp << std::endl;
+		db[timestamp] = price;
 		lineCounter++;
 	}
 	infile.close();
+	std::cout << "db size: " << db.size() << std::endl;
+}
+
+// ==========================================
+// Helpers functions
+// ==========================================
+
+int	BitcoinExchange::isValidDate(std::tm timeInfo, int year, int month, int day)
+{
+	if (
+			timeInfo.tm_year + 1900 != year ||
+			timeInfo.tm_mon + 1 != month ||
+			timeInfo.tm_mday != day
+		)
+		return (0);
+	return (1);
 }

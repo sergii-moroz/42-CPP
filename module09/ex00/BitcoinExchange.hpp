@@ -49,7 +49,8 @@ class BitcoinExchange
 		};
 
 	private:
-		std::map<std::string, double>	db;
+		std::map<std::time_t, double>	db;
+		int	isValidDate(std::tm timeInfo, int year, int month, int day);
 };
 
 #endif
