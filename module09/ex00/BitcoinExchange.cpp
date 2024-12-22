@@ -107,7 +107,24 @@ void	BitcoinExchange::loadDB(void)
 			lineCounter++;
 			continue;
 		}
+
+		std::tm	timeInfo = {};
+		timeInfo.tm_year = year - 1900;
+		timeInfo.tm_mon = month - 1;
+		timeInfo.tm_mday = day;
+		std::time_t	timestamp = std::mktime(&timeInfo);
+		if (timestamp == -1)
+		{
+			std::cerr << std::endl;
+			std::cerr << RED << "ERROR |" << WHITE << " time processing!" << RESET << std::endl;
+			std::cerr << RED << std::setw(7) << "|"
+				<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+			lineCounter++;
+			continue;
+		}
+
 		std::cout << line << std::endl;
+		std::cout << "timestamp: " << timestamp << std::endl;
 		lineCounter++;
 	}
 	infile.close();

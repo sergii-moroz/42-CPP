@@ -28,6 +28,7 @@
 # include <iostream>
 # include <iomanip>
 # include <fstream>
+# include <ctime>
 # include <map>
 
 class BitcoinExchange
