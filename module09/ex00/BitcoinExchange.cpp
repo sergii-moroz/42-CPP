@@ -98,6 +98,15 @@ void	BitcoinExchange::loadDB(void)
 			lineCounter++;
 			continue;
 		}
+		if (year < 0 || month < 0 || day < 0)
+		{
+			std::cerr << std::endl;
+			std::cerr << "ERROR |" << WHITE << " Year||month||day couldn't be negative!" << RESET << std::endl;
+			std::cerr << RED << std::setw(7) << "|"
+				<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+			lineCounter++;
+			continue;
+		}
 		std::cout << line << std::endl;
 		lineCounter++;
 	}
