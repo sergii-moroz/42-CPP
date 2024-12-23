@@ -207,18 +207,30 @@ bool	BitcoinExchange::validateParsedData(int year, int month, int day, float amo
 		return false;
 	}
 
+	std::tm	timeInfo = {};
+	timeInfo.tm_year = year - 1900;
+	timeInfo.tm_mon = month - 1;
+	timeInfo.tm_mday = day;
+
+	std::time_t	timestamp = std::mktime(&timeInfo);
+	if (timestamp == -1 || !isValidDate(timeInfo, year, month, day))
+	{
+		logInvalidDateError(timeInfo, year, month, day, line, lineCounter);
+		return false;
+	}
+
 	return true;
 }
 
-int	BitcoinExchange::isValidDate(std::tm timeInfo, int year, int month, int day)
+bool	BitcoinExchange::isValidDate(std::tm timeInfo, int year, int month, int day)
 {
 	if (
 			timeInfo.tm_year + 1900 != year ||
 			timeInfo.tm_mon + 1 != month ||
 			timeInfo.tm_mday != day
 		)
-		return (0);
-	return (1);
+		return false;
+	return true;
 }
 
 void	BitcoinExchange::logFormatError(int n, std::string const & line, int lineCounter)
@@ -245,6 +257,19 @@ void	BitcoinExchange::logDateError(std::string const & line, int lineCounter)
 {
 	std::cerr << std::endl;
 	std::cerr << RED << "ERROR |" << WHITE << " Year, month, or day couldn't be negative!" << RESET << std::endl;
+	std::cerr << RED << std::setw(7) << "|"
+		<< BLACK << " [" << lineCounter << "] : \""
+		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+}
+
+void	BitcoinExchange::logInvalidDateError(std::tm const & timeInfo, int year, int month, int day, std::string const & line, int lineCounter)
+{
+	std::cerr << std::endl;
+	std::cerr << RED << "ERROR |" << WHITE << " Wrong date value!" << RESET << std::endl;
+	std::cerr << RED << std::setw(7) << "|"
+		<< BLACK << " date: " << CYAN << year << "-" << month << "-" << day
+		<< BLACK << " was converted to -> "
+		<< YELLOW << timeInfo.tm_year + 1900 << "-" << timeInfo.tm_mon + 1 << "-" << timeInfo.tm_mday << std::endl;
 	std::cerr << RED << std::setw(7) << "|"
 		<< BLACK << " [" << lineCounter << "] : \""
 		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
