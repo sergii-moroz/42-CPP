@@ -145,6 +145,25 @@ void	BitcoinExchange::loadDB(void)
 	std::cout << "db size: " << db.size() << std::endl;
 }
 
+void	BitcoinExchange::evaluate(char *fileName)
+{
+	std::cout << BLACK << "BitcoinExchange: evaluate function called" << RESET << std::endl;
+
+	std::fstream	infile;
+	infile.open(fileName, std::ios::in);
+	if (!infile.is_open())
+		throw CouldNotOpenDBFileException();
+
+	std::string	line;
+	int			lineCounter = 0;
+	while (std::getline(infile, line))
+	{
+		std::cout << lineCounter << " - " << line << std::endl;
+		lineCounter++;
+	}
+	infile.close();
+}
+
 // ==========================================
 // Helpers functions
 // ==========================================
