@@ -201,9 +201,11 @@ bool	BitcoinExchange::validateParsedData(int year, int month, int day, float amo
 		return false;
 	}
 
-	(void)year;
-	(void)month;
-	(void)day;
+	if (year < 0 || month < 0 || day < 0)
+	{
+		logDateError(line, lineCounter);
+		return false;
+	}
 
 	return true;
 }
@@ -234,6 +236,15 @@ void	BitcoinExchange::logAmountError(std::string const & line, int lineCounter)
 {
 	std::cerr << std::endl;
 	std::cerr << RED << "ERROR |" << WHITE << "Amount couldn't be negative or exceed 1000!" << RESET << std::endl;
+	std::cerr << RED << std::setw(7) << "|"
+		<< BLACK << " [" << lineCounter << "] : \""
+		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+}
+
+void	BitcoinExchange::logDateError(std::string const & line, int lineCounter)
+{
+	std::cerr << std::endl;
+	std::cerr << RED << "ERROR |" << WHITE << " Year, month, or day couldn't be negative!" << RESET << std::endl;
 	std::cerr << RED << std::setw(7) << "|"
 		<< BLACK << " [" << lineCounter << "] : \""
 		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;

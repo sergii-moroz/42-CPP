@@ -61,6 +61,7 @@ class BitcoinExchange
 		// logs
 		void	logFormatError(int n, std::string const & line, int lineCounter);
 		void	logAmountError(std::string const & line, int lineCounter);
+		void	logDateError(std::string const & line, int lineCounter);
 };
 
 #endif
