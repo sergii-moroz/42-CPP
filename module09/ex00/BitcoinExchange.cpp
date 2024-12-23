@@ -177,6 +177,9 @@ void	BitcoinExchange::processLine(std::string const & line, int lineCounter)
 	// Validate and parse the line
 	if (!parseLine(line, year, month, day, amount, lineCounter))
 		return;
+
+	if (!validateParsedData(year, month, day, amount, line, lineCounter))
+		return;
 }
 
 bool	BitcoinExchange::parseLine(std::string const & line, int &year, int &month, int &day, float &amount, int lineCounter)
@@ -187,6 +190,21 @@ bool	BitcoinExchange::parseLine(std::string const & line, int &year, int &month,
 		logFormatError(n, line, lineCounter);
 		return false;
 	}
+	return true;
+}
+
+bool	BitcoinExchange::validateParsedData(int year, int month, int day, float amount, std::string const & line, int lineCounter)
+{
+	if (amount < 0 || amount > 1000)
+	{
+		logAmountError(line, lineCounter);
+		return false;
+	}
+
+	(void)year;
+	(void)month;
+	(void)day;
+
 	return true;
 }
 
@@ -207,6 +225,15 @@ void	BitcoinExchange::logFormatError(int n, std::string const & line, int lineCo
 	std::cerr << RED << "ERROR |" << WHITE << " Wrong format!" << RESET << std::endl;
 	std::cerr << RED << std::setw(7) << "|" << BLACK << " expect 4 values (year-month-day | amount), but got only "
 		<< n << RESET << std::endl;
+	std::cerr << RED << std::setw(7) << "|"
+		<< BLACK << " [" << lineCounter << "] : \""
+		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+}
+
+void	BitcoinExchange::logAmountError(std::string const & line, int lineCounter)
+{
+	std::cerr << std::endl;
+	std::cerr << RED << "ERROR |" << WHITE << "Amount couldn't be negative or exceed 1000!" << RESET << std::endl;
 	std::cerr << RED << std::setw(7) << "|"
 		<< BLACK << " [" << lineCounter << "] : \""
 		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;

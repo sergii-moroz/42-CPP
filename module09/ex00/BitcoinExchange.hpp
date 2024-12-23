@@ -56,9 +56,11 @@ class BitcoinExchange
 		int	isValidDate(std::tm timeInfo, int year, int month, int day);
 		void	processLine(std::string const & line, int lineCounter);
 		bool	parseLine(std::string const & line, int &year, int &month, int &day, float &amount, int lineCounter);
+		bool	validateParsedData(int year, int month, int day, float amount, std::string const & line, int lineCounter);
 
 		// logs
 		void	logFormatError(int n, std::string const & line, int lineCounter);
+		void	logAmountError(std::string const & line, int lineCounter);
 };
 
 #endif
