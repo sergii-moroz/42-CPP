@@ -23,8 +23,9 @@
 # define WHITE		"\033[1;37m"
 # define RESET		"\033[0m"
 
-# define BTC_DB		"small.csv"
+# define BTC_DB		"data.csv"
 
+# include <algorithm>
 # include <iostream>
 # include <iomanip>
 # include <fstream>
@@ -41,6 +42,7 @@ class BitcoinExchange
 
 		static void	usage(void);
 		void	loadDB(void);
+		void	evaluate(char *fileName);
 
 		class CouldNotOpenDBFileException: public std::exception
 		{
@@ -50,7 +52,13 @@ class BitcoinExchange
 
 	private:
 		std::map<std::time_t, double>	db;
+
 		int	isValidDate(std::tm timeInfo, int year, int month, int day);
+		void	processLine(std::string const & line, int lineCounter);
+		bool	parseLine(std::string const & line, int &year, int &month, int &day, float &amount, int lineCounter);
+
+		// logs
+		void	logFormatError(int n, std::string const & line, int lineCounter);
 };
 
 #endif

@@ -158,7 +158,8 @@ void	BitcoinExchange::evaluate(char *fileName)
 	int			lineCounter = 0;
 	while (std::getline(infile, line))
 	{
-		std::cout << lineCounter << " - " << line << std::endl;
+		line.erase(std::remove(line.begin(), line.end(), '\r'), line.end());
+		processLine(line, lineCounter);
 		lineCounter++;
 	}
 	infile.close();
@@ -167,6 +168,27 @@ void	BitcoinExchange::evaluate(char *fileName)
 // ==========================================
 // Helpers functions
 // ==========================================
+
+void	BitcoinExchange::processLine(std::string const & line, int lineCounter)
+{
+	int		year, month, day;
+	float	amount;
+
+	// Validate and parse the line
+	if (!parseLine(line, year, month, day, amount, lineCounter))
+		return;
+}
+
+bool	BitcoinExchange::parseLine(std::string const & line, int &year, int &month, int &day, float &amount, int lineCounter)
+{
+	int	n = sscanf(line.c_str(), "%d-%d-%d | %f", &year, &month, &day, &amount);
+	if (n != 4)
+	{
+		logFormatError(n, line, lineCounter);
+		return false;
+	}
+	return true;
+}
 
 int	BitcoinExchange::isValidDate(std::tm timeInfo, int year, int month, int day)
 {
@@ -177,4 +199,15 @@ int	BitcoinExchange::isValidDate(std::tm timeInfo, int year, int month, int day)
 		)
 		return (0);
 	return (1);
+}
+
+void	BitcoinExchange::logFormatError(int n, std::string const & line, int lineCounter)
+{
+	std::cerr << std::endl;
+	std::cerr << RED << "ERROR |" << WHITE << " Wrong format!" << RESET << std::endl;
+	std::cerr << RED << std::setw(7) << "|" << BLACK << " expect 4 values (year-month-day | amount), but got only "
+		<< n << RESET << std::endl;
+	std::cerr << RED << std::setw(7) << "|"
+		<< BLACK << " [" << lineCounter << "] : \""
+		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
 }
