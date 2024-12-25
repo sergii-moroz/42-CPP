@@ -24,13 +24,13 @@ int	main(int argc, char **argv)
 	try
 	{
 		btc.loadDB();
+		btc.evaluate(argv[1]);
 	}
 	catch(std::exception const & e)
 	{
 		std::cerr << e.what() << '\n';
 		return (1);
 	}
-	btc.evaluate(argv[1]);
 
 	return (0);
 }

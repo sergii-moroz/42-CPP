@@ -74,9 +74,9 @@ BitcoinExchange &	BitcoinExchange::operator=(BitcoinExchange const & rhs)
 void	BitcoinExchange::usage(void)
 {
 	std::cout
-		<< RED << "[ERROR]"
-		<< RESET << ": Wrong arguments' number" << std::endl
-		<< "         usage: " << BLACK << "./btc <fileName>" << RESET << std::endl;
+		<< RED << "ERROR |"
+		<< WHITE << " Wrong arguments' number" << RESET << std::endl
+		<< RED << std::setw(7) << "|" << RESET <<" usage: " << BLACK << "./btc <fileName>" << RESET << std::endl;
 }
 
 
@@ -391,10 +391,10 @@ void	BitcoinExchange::logNoDataError(std::string const & line, int lineCounter) 
 
 const char *BitcoinExchange::CouldNotOpenFileException::what() const throw()
 {
-	return ( RED "ERROR: " RESET "Couldn't open file!");
+	return ( RED "ERROR |" WHITE " Couldn't open file!" RESET);
 }
 
 const char *BitcoinExchange::TooLowRecords::what() const throw()
 {
-	return ( RED "\nERROR |" RESET " Too low records in DB!\n" RED "      |" RESET " => exit!");
+	return ( RED "\nERROR |" WHITE " Too low records in DB!\n" RED "      |" RESET " => exit!");
 }
