@@ -12,14 +12,20 @@
 
 #include "BitcoinExchange.hpp"
 
+
+
 // ==========================================
 // Constructors
 // ==========================================
+
+
 
 BitcoinExchange::BitcoinExchange()
 {
 	std::cout << BLACK << "BitcoinExchange: Default constructor called" << RESET << std::endl;
 }
+
+
 
 BitcoinExchange::BitcoinExchange(BitcoinExchange const & copy)
 {
@@ -27,18 +33,27 @@ BitcoinExchange::BitcoinExchange(BitcoinExchange const & copy)
 	*this = copy;
 }
 
+
+
 // ==========================================
 // Destructor
 // ==========================================
+
+
 
 BitcoinExchange::~BitcoinExchange()
 {
 	std::cout << BLACK << "BitcoinExchange: Destructor called" << RESET << std::endl;
 }
 
+
+
 // ==========================================
 // Assignment operator(=)
 // ==========================================
+
+
+
 BitcoinExchange &	BitcoinExchange::operator=(BitcoinExchange const & rhs)
 {
 	if (this != &rhs)
@@ -48,9 +63,13 @@ BitcoinExchange &	BitcoinExchange::operator=(BitcoinExchange const & rhs)
 	return (*this);
 }
 
+
+
 // ==========================================
 // Member functions
 // ==========================================
+
+
 
 void	BitcoinExchange::usage(void)
 {
@@ -59,6 +78,8 @@ void	BitcoinExchange::usage(void)
 		<< RESET << ": Wrong arguments' number" << std::endl
 		<< "         usage: " << BLACK << "./btc <fileName>" << RESET << std::endl;
 }
+
+
 
 void	BitcoinExchange::loadDB(void)
 {
@@ -147,6 +168,8 @@ void	BitcoinExchange::loadDB(void)
 	std::cout << "db size: " << db.size() << std::endl;
 }
 
+
+
 void	BitcoinExchange::evaluate(char *fileName) const
 {
 	std::cout << BLACK << "BitcoinExchange: evaluate function called" << RESET << std::endl;
@@ -168,9 +191,13 @@ void	BitcoinExchange::evaluate(char *fileName) const
 	infile.close();
 }
 
+
+
 // ==========================================
 // Helpers functions
 // ==========================================
+
+
 
 void	BitcoinExchange::processLine(std::string const & line, int lineCounter) const
 {
@@ -188,6 +215,8 @@ void	BitcoinExchange::processLine(std::string const & line, int lineCounter) con
 
 	processValidData(timeInfo, amount);
 }
+
+
 
 void	BitcoinExchange::processDBLine(std::string const & line, int lineCounter)
 {
@@ -292,6 +321,8 @@ bool	BitcoinExchange::validateAmount(float amount, std::string const & line, int
 	return true;
 }
 
+
+
 bool	BitcoinExchange::isValidDate(std::tm timeInfo, int year, int month, int day) const
 {
 	if (
@@ -334,6 +365,8 @@ void	BitcoinExchange::addRecordToDB(std::tm & timeInfo, float price)
 // Logs functions
 // ==========================================
 
+
+
 void	BitcoinExchange::logFormatError(int n, std::string const & line, int lineCounter) const
 {
 	std::cerr << std::endl;
@@ -345,6 +378,8 @@ void	BitcoinExchange::logFormatError(int n, std::string const & line, int lineCo
 		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
 }
 
+
+
 void	BitcoinExchange::logValueError(std::string const & msg, std::string const & line, int lineCounter) const
 {
 	std::cerr << std::endl;
@@ -354,6 +389,8 @@ void	BitcoinExchange::logValueError(std::string const & msg, std::string const &
 		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
 }
 
+
+
 void	BitcoinExchange::logDateError(std::string const & line, int lineCounter) const
 {
 	std::cerr << std::endl;
@@ -362,6 +399,8 @@ void	BitcoinExchange::logDateError(std::string const & line, int lineCounter) co
 		<< BLACK << " [" << lineCounter << "] : \""
 		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
 }
+
+
 
 void	BitcoinExchange::logInvalidDateError(std::tm const & timeInfo, int year, int month, int day, std::string const & line, int lineCounter) const
 {
