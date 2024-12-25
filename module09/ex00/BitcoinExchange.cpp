@@ -109,7 +109,7 @@ void	BitcoinExchange::loadDB(void)
 
 void	BitcoinExchange::evaluate(char *fileName) const
 {
-	std::cout << BLACK << "BitcoinExchange: evaluate function called" << RESET << std::endl;
+	// std::cout << BLACK << "BitcoinExchange: evaluate function called" << RESET << std::endl;
 
 	std::fstream	infile;
 	std::string		line;
@@ -289,9 +289,23 @@ bool	BitcoinExchange::isValidDate(std::tm timeInfo, int year, int month, int day
 float	BitcoinExchange::getPrice(std::time_t timestamp) const
 {
 	std::map<std::time_t, double>::const_iterator	it = db.lower_bound(timestamp);
-	if (it == db.end())
+	if (it == db.begin())
+	{
+		if (it->first > timestamp)
+			return -1;
+		else
+			return it->second;
+	}
+	else if (it == db.end())
+	{
 		it--;
-		// return -1;
+		return it->second;
+	}
+	else if (it->first > timestamp)
+	{
+		it--;
+		return it->second;
+	}
 	return it->second;
 }
 
