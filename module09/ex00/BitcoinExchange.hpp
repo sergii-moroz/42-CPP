@@ -23,7 +23,7 @@
 # define WHITE		"\033[1;37m"
 # define RESET		"\033[0m"
 
-# define BTC_DB		"data.csv"
+# define BTC_DB		"small.csv"
 
 # include <algorithm>
 # include <iostream>
@@ -50,29 +50,35 @@ class BitcoinExchange
 				virtual const char *what() const throw();
 		};
 
+		class TooLowRecords: public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+
 	private:
 		std::map<std::time_t, double>	db;
 
 		// processing functions
-		void	processLine(std::string const & line, int lineCounter) const;
 		void	processDBLine(std::string const & line, int lineCounter);
-		bool	parseLine(std::string const & line, std::string const & format, std::tm & timeInfo, float & amount, int lineCounter) const;
 		void	processValidData(std::tm & timeInfo, float amount) const;
+		void	processLine(std::string const & line, int lineCounter) const;
+		bool	parseLine(std::string const & line, std::string const & format, std::tm & timeInfo, float & amount, int lineCounter) const;
 
 		// validation functions
-		bool	validateAmount(float amount, std::string const & line, int lineCounter) const;
-		bool	validatePrice(float price, std::string const & line, int lineCounter) const;
-		bool	validateTimeInfo(std::tm & timeInfo, std::string const & line, int lineCounter) const;
 		bool	isValidDate(std::tm timeInfo, int year, int month, int day) const;
+		bool	validatePrice(float price, std::string const & line, int lineCounter) const;
+		bool	validateAmount(float amount, std::string const & line, int lineCounter) const;
+		bool	validateTimeInfo(std::tm & timeInfo, std::string const & line, int lineCounter) const;
 
 		// getter / setter
 		float	getPrice(std::time_t timestamp) const;
 		void	addRecordToDB(std::tm & timeInfo, float price);
 
 		// logs
+		void	logDateError(std::string const & line, int lineCounter) const;
 		void	logFormatError(int n, std::string const & line, int lineCounter) const;
 		void	logValueError(std::string const & msg, std::string const & line, int lineCounter) const;
-		void	logDateError(std::string const & line, int lineCounter) const;
 		void	logInvalidDateError(std::tm const & timeInfo, int year, int month, int day, std::string const & line, int lineCounter) const;
 };
 

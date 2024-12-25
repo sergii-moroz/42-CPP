@@ -22,14 +22,14 @@
 
 BitcoinExchange::BitcoinExchange()
 {
-	std::cout << BLACK << "BitcoinExchange: Default constructor called" << RESET << std::endl;
+	// std::cout << BLACK << "BitcoinExchange: Default constructor called" << RESET << std::endl;
 }
 
 
 
 BitcoinExchange::BitcoinExchange(BitcoinExchange const & copy)
 {
-	std::cout << BLACK << "BitcoinExchange: Copy constructor called" << RESET << std::endl;
+	// std::cout << BLACK << "BitcoinExchange: Copy constructor called" << RESET << std::endl;
 	*this = copy;
 }
 
@@ -43,7 +43,7 @@ BitcoinExchange::BitcoinExchange(BitcoinExchange const & copy)
 
 BitcoinExchange::~BitcoinExchange()
 {
-	std::cout << BLACK << "BitcoinExchange: Destructor called" << RESET << std::endl;
+	// std::cout << BLACK << "BitcoinExchange: Destructor called" << RESET << std::endl;
 }
 
 
@@ -58,7 +58,7 @@ BitcoinExchange &	BitcoinExchange::operator=(BitcoinExchange const & rhs)
 {
 	if (this != &rhs)
 	{
-		// do something
+		db = rhs.db;
 	}
 	return (*this);
 }
@@ -83,7 +83,7 @@ void	BitcoinExchange::usage(void)
 
 void	BitcoinExchange::loadDB(void)
 {
-	std::cout << BLACK << "BitcoinExchange: loadDB function called" << RESET << std::endl;
+	// std::cout << BLACK << "BitcoinExchange: loadDB function called" << RESET << std::endl;
 
 	std::fstream	infile;
 	std::string		line;
@@ -93,6 +93,7 @@ void	BitcoinExchange::loadDB(void)
 	if (!infile.is_open())
 		throw CouldNotOpenFileException();
 
+	std::getline(infile, line);
 	while (std::getline(infile, line))
 	{
 		line.erase(std::remove(line.begin(), line.end(), '\r'), line.end());
@@ -100,7 +101,8 @@ void	BitcoinExchange::loadDB(void)
 		lineCounter++;
 	}
 	infile.close();
-	std::cout << "db size: " << db.size() << std::endl;
+	if (db.size() == 0)
+		throw TooLowRecords();
 }
 
 
@@ -117,6 +119,7 @@ void	BitcoinExchange::evaluate(char *fileName) const
 	if (!infile.is_open())
 		throw CouldNotOpenFileException();
 
+	std::getline(infile, line);
 	while (std::getline(infile, line))
 	{
 		line.erase(std::remove(line.begin(), line.end(), '\r'), line.end());
@@ -159,10 +162,10 @@ void	BitcoinExchange::processDBLine(std::string const & line, int lineCounter)
 	std::tm	timeInfo = {};
 
 	if (!parseLine(line, "%d-%d-%d,%f", timeInfo, price, lineCounter))
-		return; //throw Exception
+		return;
 
 	if (!validatePrice(price, line, lineCounter))
-		return; //throw Exception
+		return;
 
 	if (!validateTimeInfo(timeInfo, line, lineCounter))
 		return;
@@ -354,4 +357,22 @@ void	BitcoinExchange::logInvalidDateError(std::tm const & timeInfo, int year, in
 	std::cerr << RED << std::setw(7) << "|"
 		<< BLACK << " [" << lineCounter << "] : \""
 		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+}
+
+
+
+// ==========================================
+// Exceptions
+// ==========================================
+
+
+
+const char *BitcoinExchange::CouldNotOpenFileException::what() const throw()
+{
+	return ( RED "ERROR: " RESET "Couldn't open file!");
+}
+
+const char *BitcoinExchange::TooLowRecords::what() const throw()
+{
+	return ( RED "\nERROR |" RESET " Too low records in DB!\n" RED "      |" RESET " => exit!");
 }
