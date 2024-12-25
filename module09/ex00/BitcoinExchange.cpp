@@ -180,7 +180,7 @@ void	BitcoinExchange::processLine(std::string const & line, int lineCounter) con
 	if (!parseLine(line, "%d-%d-%d | %f", timeInfo, amount, lineCounter))
 		return;
 
-	if (!validateParsedData(timeInfo, amount, line, lineCounter))
+	if (!validateAmount(amount, line, lineCounter))
 		return;
 
 	if (!validateTimeInfo(timeInfo, line, lineCounter))
@@ -202,7 +202,11 @@ void	BitcoinExchange::processDBLine(std::string const & line, int lineCounter)
 
 	if (!validateTimeInfo(timeInfo, line, lineCounter))
 		return;
+
+	addRecordToDB(timeInfo, price);
 }
+
+
 
 bool	BitcoinExchange::parseLine(std::string const & line, std::string const & format, std::tm & timeInfo, float & amount, int lineCounter) const
 {
@@ -234,6 +238,7 @@ void	BitcoinExchange::processValidData(std::tm & timeInfo, float amount) const
 	std::cout << buffer << " => " << amount << " = "
 		<< std::fixed << std::setprecision(1) << price * amount << std::endl;
 }
+
 
 
 bool	BitcoinExchange::validateTimeInfo(std::tm & timeInfo, std::string const & line, int lineCounter) const
@@ -277,7 +282,7 @@ bool	BitcoinExchange::validatePrice(float price, std::string const & line, int l
 
 
 
-bool	BitcoinExchange::validateParsedData(std::tm & timeInfo, float amount, std::string const & line, int lineCounter) const
+bool	BitcoinExchange::validateAmount(float amount, std::string const & line, int lineCounter) const
 {
 	if (amount < 0 || amount > 1000)
 	{
@@ -300,6 +305,12 @@ bool	BitcoinExchange::isValidDate(std::tm timeInfo, int year, int month, int day
 
 
 
+// ==========================================
+// Getter / Setter
+// ==========================================
+
+
+
 float	BitcoinExchange::getPrice(std::time_t timestamp) const
 {
 	std::map<std::time_t, double>::const_iterator	it = db.lower_bound(timestamp);
@@ -307,6 +318,14 @@ float	BitcoinExchange::getPrice(std::time_t timestamp) const
 		it--;
 		// return -1;
 	return it->second;
+}
+
+
+
+void	BitcoinExchange::addRecordToDB(std::tm & timeInfo, float price)
+{
+	std::time_t	timestamp = std::mktime(&timeInfo);
+	db[timestamp] = price;
 }
 
 
