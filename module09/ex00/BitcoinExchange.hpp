@@ -41,8 +41,8 @@ class BitcoinExchange
 		BitcoinExchange &	operator=(BitcoinExchange const &);
 
 		static void	usage(void);
-		void	loadDB(void);
-		void	evaluate(char *fileName) const;
+		void		loadDB(void);
+		void		evaluate(char *fileName) const;
 
 		class CouldNotOpenFileException: public std::exception
 		{
@@ -53,16 +53,21 @@ class BitcoinExchange
 	private:
 		std::map<std::time_t, double>	db;
 
-		bool	isValidDate(std::tm timeInfo, int year, int month, int day) const;
+		// processing functions
 		void	processLine(std::string const & line, int lineCounter) const;
 		void	processDBLine(std::string const & line, int lineCounter);
 		bool	parseLine(std::string const & line, std::string const & format, std::tm & timeInfo, float & amount, int lineCounter) const;
+		void	processValidData(std::tm & timeInfo, float amount) const;
+
+		// validation functions
 		bool	validateAmount(float amount, std::string const & line, int lineCounter) const;
 		bool	validatePrice(float price, std::string const & line, int lineCounter) const;
-		void	processValidData(std::tm & timeInfo, float amount) const;
+		bool	validateTimeInfo(std::tm & timeInfo, std::string const & line, int lineCounter) const;
+		bool	isValidDate(std::tm timeInfo, int year, int month, int day) const;
+
+		// getter / setter
 		float	getPrice(std::time_t timestamp) const;
 		void	addRecordToDB(std::tm & timeInfo, float price);
-		bool	validateTimeInfo(std::tm & timeInfo, std::string const & line, int lineCounter) const;
 
 		// logs
 		void	logFormatError(int n, std::string const & line, int lineCounter) const;

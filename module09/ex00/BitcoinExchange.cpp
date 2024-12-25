@@ -129,7 +129,7 @@ void	BitcoinExchange::evaluate(char *fileName) const
 
 
 // ==========================================
-// Helpers functions
+// Processing functions
 // ==========================================
 
 
@@ -202,6 +202,12 @@ void	BitcoinExchange::processValidData(std::tm & timeInfo, float amount) const
 	std::cout << buffer << " => " << amount << " = "
 		<< std::fixed << std::setprecision(1) << price * amount << std::endl;
 }
+
+
+
+// ==========================================
+// Validation functions
+// ==========================================
 
 
 
