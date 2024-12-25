@@ -66,6 +66,7 @@ void	BitcoinExchange::loadDB(void)
 
 	std::fstream	infile;
 	std::string		line;
+	int				lineCounter = 0;
 
 	infile.open(BTC_DB, std::ios::in);
 	if (!infile.is_open())
@@ -73,9 +74,10 @@ void	BitcoinExchange::loadDB(void)
 
 	int		year, month, day;
 	float	price;
-	int		lineCounter = 0;
 	while (std::getline(infile, line))
 	{
+		line.erase(std::remove(line.begin(), line.end(), '\r'), line.end());
+		// processDBLine(line, lineCounter);
 		int	n = sscanf(line.c_str(), "%d-%d-%d,%f", &year, &month, &day, &price);
 		if (n != 4)
 		{
@@ -172,22 +174,23 @@ void	BitcoinExchange::evaluate(char *fileName)
 
 void	BitcoinExchange::processLine(std::string const & line, int lineCounter)
 {
-	int		year, month, day;
 	float	amount;
+	std::tm	timeInfo = {};
 
 	// Validate and parse the line
-	if (!parseLine(line, year, month, day, amount, lineCounter))
+	if (!parseLine(line, "%d-%d-%d | %f", timeInfo, amount, lineCounter))
 		return;
+	std::cout << timeInfo.tm_year << "-" << timeInfo.tm_mon << "-" << timeInfo.tm_mday << std::endl;
 
-	if (!validateParsedData(year, month, day, amount, line, lineCounter))
-		return;
+	// if (!validateParsedData(year, month, day, amount, line, lineCounter))
+	// 	return;
 
-	processValidData(year, month, day, amount);
+	// processValidData(year, month, day, amount);
 }
 
-bool	BitcoinExchange::parseLine(std::string const & line, int &year, int &month, int &day, float &amount, int lineCounter)
+bool	BitcoinExchange::parseLine(std::string const & line, std::string const & format, std::tm & timeInfo, float & amount, int lineCounter) const
 {
-	int	n = sscanf(line.c_str(), "%d-%d-%d | %f", &year, &month, &day, &amount);
+	int	n = sscanf(line.c_str(), format.c_str(), &timeInfo.tm_year, &timeInfo.tm_mon, &timeInfo.tm_mday, &amount);
 	if (n != 4)
 	{
 		logFormatError(n, line, lineCounter);
@@ -273,7 +276,7 @@ float	BitcoinExchange::getPrice(std::time_t timestamp)
 // Logs functions
 // ==========================================
 
-void	BitcoinExchange::logFormatError(int n, std::string const & line, int lineCounter)
+void	BitcoinExchange::logFormatError(int n, std::string const & line, int lineCounter) const
 {
 	std::cerr << std::endl;
 	std::cerr << RED << "ERROR |" << WHITE << " Wrong format!" << RESET << std::endl;
