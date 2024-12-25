@@ -53,18 +53,18 @@ class BitcoinExchange
 	private:
 		std::map<std::time_t, double>	db;
 
-		bool	isValidDate(std::tm timeInfo, int year, int month, int day);
+		bool	isValidDate(std::tm timeInfo, int year, int month, int day) const;
 		void	processLine(std::string const & line, int lineCounter);
 		bool	parseLine(std::string const & line, std::string const & format, std::tm & timeInfo, float & amount, int lineCounter) const;
-		bool	validateParsedData(int year, int month, int day, float amount, std::string const & line, int lineCounter);
+		bool	validateParsedData(std::tm & timeInfo, float amount, std::string const & line, int lineCounter) const;
 		void	processValidData(int year, int month, int day, float amount);
 		float	getPrice(std::time_t timestamp);
 
 		// logs
 		void	logFormatError(int n, std::string const & line, int lineCounter) const;
-		void	logAmountError(std::string const & line, int lineCounter);
-		void	logDateError(std::string const & line, int lineCounter);
-		void	logInvalidDateError(std::tm const & timeInfo, int year, int month, int day, std::string const & line, int lineCounter);
+		void	logAmountError(std::string const & line, int lineCounter) const;
+		void	logDateError(std::string const & line, int lineCounter) const;
+		void	logInvalidDateError(std::tm const & timeInfo, int year, int month, int day, std::string const & line, int lineCounter) const;
 };
 
 #endif
