@@ -177,15 +177,13 @@ void	BitcoinExchange::processLine(std::string const & line, int lineCounter)
 	float	amount;
 	std::tm	timeInfo = {};
 
-	// Validate and parse the line
 	if (!parseLine(line, "%d-%d-%d | %f", timeInfo, amount, lineCounter))
 		return;
-	// std::cout << timeInfo.tm_year << "-" << timeInfo.tm_mon << "-" << timeInfo.tm_mday << std::endl;
 
 	if (!validateParsedData(timeInfo, amount, line, lineCounter))
 		return;
 
-	// processValidData(year, month, day, amount);
+	processValidData(timeInfo, amount);
 }
 
 bool	BitcoinExchange::parseLine(std::string const & line, std::string const & format, std::tm & timeInfo, float & amount, int lineCounter) const
@@ -199,16 +197,13 @@ bool	BitcoinExchange::parseLine(std::string const & line, std::string const & fo
 	return true;
 }
 
-void	BitcoinExchange::processValidData(int year, int month, int day, float amount)
-{
-	char buffer[80];
-	std::tm	timeInfo = {};
-	timeInfo.tm_year = year - 1900;
-	timeInfo.tm_mon = month - 1;
-	timeInfo.tm_mday = day;
 
-	std::time_t	timestamp = std::mktime(&timeInfo);
-	float		price = getPrice(timestamp);
+
+void	BitcoinExchange::processValidData(std::tm & timeInfo, float amount) const
+{
+	char			buffer[80];
+	std::time_t		timestamp = std::mktime(&timeInfo);
+	float			price = getPrice(timestamp);
 
 	if (price < 0)
 	{
@@ -217,11 +212,12 @@ void	BitcoinExchange::processValidData(int year, int month, int day, float amoun
 	}
 
 	strftime(buffer, sizeof(buffer),"%Y-%m-%d", &timeInfo);
-	std::string str(buffer);
 
-	std::cout << str
-		<< " => " << amount << " = " << std::fixed << std::setprecision(1) << price * amount << std::endl;
+	std::cout << buffer << " => " << amount << " = "
+		<< std::fixed << std::setprecision(1) << price * amount << std::endl;
 }
+
+
 
 bool	BitcoinExchange::validateParsedData(std::tm & timeInfo, float amount, std::string const & line, int lineCounter) const
 {
@@ -267,14 +263,18 @@ bool	BitcoinExchange::isValidDate(std::tm timeInfo, int year, int month, int day
 	return true;
 }
 
-float	BitcoinExchange::getPrice(std::time_t timestamp)
+
+
+float	BitcoinExchange::getPrice(std::time_t timestamp) const
 {
-	std::map<std::time_t, double>::iterator	it = db.lower_bound(timestamp);
+	std::map<std::time_t, double>::const_iterator	it = db.lower_bound(timestamp);
 	if (it == db.end())
 		it--;
 		// return -1;
 	return it->second;
 }
+
+
 
 // ==========================================
 // Logs functions
