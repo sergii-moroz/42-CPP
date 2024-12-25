@@ -28,8 +28,9 @@ int	main(int argc, char **argv)
 	catch(std::exception const & e)
 	{
 		std::cerr << e.what() << '\n';
+		return (1);
 	}
+	btc.evaluate(argv[1]);
 
-	std::cout << argv[0] << std::endl;
 	return (0);
 }
