@@ -61,7 +61,7 @@ class BitcoinExchange
 
 		// processing functions
 		void	processDBLine(std::string const & line, int lineCounter);
-		void	processValidData(std::tm & timeInfo, float amount) const;
+		void	processValidData(std::tm & timeInfo, float amount, std::string const & line, int lineCounter) const;
 		void	processLine(std::string const & line, int lineCounter) const;
 		bool	parseLine(std::string const & line, std::string const & format, std::tm & timeInfo, float & amount, int lineCounter) const;
 
@@ -77,6 +77,7 @@ class BitcoinExchange
 
 		// logs
 		void	logDateError(std::string const & line, int lineCounter) const;
+		void	logNoDataError(std::string const & line, int lineCounter) const;
 		void	logFormatError(int n, std::string const & line, int lineCounter) const;
 		void	logValueError(std::string const & msg, std::string const & line, int lineCounter) const;
 		void	logInvalidDateError(std::tm const & timeInfo, int year, int month, int day, std::string const & line, int lineCounter) const;

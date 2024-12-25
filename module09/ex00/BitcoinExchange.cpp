@@ -151,7 +151,7 @@ void	BitcoinExchange::processLine(std::string const & line, int lineCounter) con
 	if (!validateTimeInfo(timeInfo, line, lineCounter))
 		return;
 
-	processValidData(timeInfo, amount);
+	processValidData(timeInfo, amount, line, lineCounter);
 }
 
 
@@ -188,7 +188,7 @@ bool	BitcoinExchange::parseLine(std::string const & line, std::string const & fo
 
 
 
-void	BitcoinExchange::processValidData(std::tm & timeInfo, float amount) const
+void	BitcoinExchange::processValidData(std::tm & timeInfo, float amount, std::string const & line, int lineCounter) const
 {
 	char			buffer[80];
 	std::time_t		timestamp = std::mktime(&timeInfo);
@@ -196,7 +196,7 @@ void	BitcoinExchange::processValidData(std::tm & timeInfo, float amount) const
 
 	if (price < 0)
 	{
-		std::cerr << "No data" << std::endl;
+		logNoDataError(line, lineCounter);
 		return;
 	}
 
@@ -373,6 +373,14 @@ void	BitcoinExchange::logInvalidDateError(std::tm const & timeInfo, int year, in
 		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
 }
 
+void	BitcoinExchange::logNoDataError(std::string const & line, int lineCounter) const
+{
+	std::cerr << std::endl;
+	std::cerr << RED << "ERROR |" << WHITE << " No record in DB that less then specified date!" << RESET << std::endl;
+	std::cerr << RED << std::setw(7) << "|"
+		<< BLACK << " [" << lineCounter << "] : \""
+		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+}
 
 
 // ==========================================
