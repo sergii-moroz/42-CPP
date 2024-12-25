@@ -72,82 +72,82 @@ void	BitcoinExchange::loadDB(void)
 	if (!infile.is_open())
 		throw CouldNotOpenFileException();
 
-	int		year, month, day;
-	float	price;
+	// int		year, month, day;
+	// float	price;
 	while (std::getline(infile, line))
 	{
 		line.erase(std::remove(line.begin(), line.end(), '\r'), line.end());
-		// processDBLine(line, lineCounter);
-		int	n = sscanf(line.c_str(), "%d-%d-%d,%f", &year, &month, &day, &price);
-		if (n != 4)
-		{
-			std::cerr << std::endl;
-			std::cerr << RED << "ERROR |" << WHITE << " Wrong format!" << RESET << std::endl;
-			std::cerr << RED << std::setw(7) << "|"
-				<< BLACK << " expect 4 values (year-month-day,price), but got only "
-				<< n << RESET << std::endl;
-			std::cerr << RED << std::setw(7) << "|"
-				<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
-			lineCounter++;
-			continue;
-		}
-		if (price < 0)
-		{
-			std::cerr << std::endl;
-			std::cerr << RED << "ERROR |" << WHITE << " Price couldn't be negative!" << RESET << std::endl;
-			std::cerr << RED << std::setw(7) << "|"
-				<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
-			lineCounter++;
-			continue;
-		}
-		if (year < 0 || month < 0 || day < 0)
-		{
-			std::cerr << std::endl;
-			std::cerr << "ERROR |" << WHITE << " Year||month||day couldn't be negative!" << RESET << std::endl;
-			std::cerr << RED << std::setw(7) << "|"
-				<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
-			lineCounter++;
-			continue;
-		}
+		processDBLine(line, lineCounter);
+		// int	n = sscanf(line.c_str(), "%d-%d-%d,%f", &year, &month, &day, &price);
+		// if (n != 4)
+		// {
+		// 	std::cerr << std::endl;
+		// 	std::cerr << RED << "ERROR |" << WHITE << " Wrong format!" << RESET << std::endl;
+		// 	std::cerr << RED << std::setw(7) << "|"
+		// 		<< BLACK << " expect 4 values (year-month-day,price), but got only "
+		// 		<< n << RESET << std::endl;
+		// 	std::cerr << RED << std::setw(7) << "|"
+		// 		<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+		// 	lineCounter++;
+		// 	continue;
+		// }
+		// if (price < 0)
+		// {
+		// 	std::cerr << std::endl;
+		// 	std::cerr << RED << "ERROR |" << WHITE << " Price couldn't be negative!" << RESET << std::endl;
+		// 	std::cerr << RED << std::setw(7) << "|"
+		// 		<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+		// 	lineCounter++;
+		// 	continue;
+		// }
+		// if (year < 0 || month < 0 || day < 0)
+		// {
+		// 	std::cerr << std::endl;
+		// 	std::cerr << "ERROR |" << WHITE << " Year||month||day couldn't be negative!" << RESET << std::endl;
+		// 	std::cerr << RED << std::setw(7) << "|"
+		// 		<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+		// 	lineCounter++;
+		// 	continue;
+		// }
 
-		std::tm	timeInfo = {};
-		timeInfo.tm_year = year - 1900;
-		timeInfo.tm_mon = month - 1;
-		timeInfo.tm_mday = day;
-		std::time_t	timestamp = std::mktime(&timeInfo);
-		if (timestamp == -1)
-		{
-			std::cerr << std::endl;
-			std::cerr << RED << "ERROR |" << WHITE << " time processing!" << RESET << std::endl;
-			std::cerr << RED << std::setw(7) << "|"
-				<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
-			lineCounter++;
-			continue;
-		}
-		if (!isValidDate(timeInfo, year, month, day))
-		{
-			std::cerr << std::endl;
-			std::cerr << RED << "ERROR |" << WHITE << " Wrong date value!" << RESET << std::endl;
-			std::cerr << RED << std::setw(7) << "|"
-				<< BLACK << " date: " << CYAN << year << "-" << month << "-" << day
-				<< BLACK << " was converted to -> " << YELLOW << timeInfo.tm_year + 1900 << "-" << timeInfo.tm_mon + 1 << "-"
-				<< timeInfo.tm_mday << std::endl;
-			std::cerr << RED << std::setw(7) << "|"
-				<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
-			lineCounter++;
-			continue;
-		}
+		// std::tm	timeInfo = {};
+		// timeInfo.tm_year = year - 1900;
+		// timeInfo.tm_mon = month - 1;
+		// timeInfo.tm_mday = day;
+		// std::time_t	timestamp = std::mktime(&timeInfo);
+		// if (timestamp == -1)
+		// {
+		// 	std::cerr << std::endl;
+		// 	std::cerr << RED << "ERROR |" << WHITE << " time processing!" << RESET << std::endl;
+		// 	std::cerr << RED << std::setw(7) << "|"
+		// 		<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+		// 	lineCounter++;
+		// 	continue;
+		// }
+		// if (!isValidDate(timeInfo, year, month, day))
+		// {
+		// 	std::cerr << std::endl;
+		// 	std::cerr << RED << "ERROR |" << WHITE << " Wrong date value!" << RESET << std::endl;
+		// 	std::cerr << RED << std::setw(7) << "|"
+		// 		<< BLACK << " date: " << CYAN << year << "-" << month << "-" << day
+		// 		<< BLACK << " was converted to -> " << YELLOW << timeInfo.tm_year + 1900 << "-" << timeInfo.tm_mon + 1 << "-"
+		// 		<< timeInfo.tm_mday << std::endl;
+		// 	std::cerr << RED << std::setw(7) << "|"
+		// 		<< BLACK << " [" << lineCounter << "] : \"" << CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
+		// 	lineCounter++;
+		// 	continue;
+		// }
 
-		std::cout << line << std::endl;
-		std::cout << "timestamp: " << timestamp << std::endl;
-		db[timestamp] = price;
+		// std::cout << line << std::endl;
+		// std::cout << "timestamp: " << timestamp << std::endl;
+		// db[timestamp] = price;
 		lineCounter++;
 	}
 	infile.close();
 	std::cout << "db size: " << db.size() << std::endl;
 }
 
-void	BitcoinExchange::evaluate(char *fileName)
+void	BitcoinExchange::evaluate(char *fileName) const
 {
 	std::cout << BLACK << "BitcoinExchange: evaluate function called" << RESET << std::endl;
 
@@ -172,7 +172,7 @@ void	BitcoinExchange::evaluate(char *fileName)
 // Helpers functions
 // ==========================================
 
-void	BitcoinExchange::processLine(std::string const & line, int lineCounter)
+void	BitcoinExchange::processLine(std::string const & line, int lineCounter) const
 {
 	float	amount;
 	std::tm	timeInfo = {};
@@ -184,6 +184,18 @@ void	BitcoinExchange::processLine(std::string const & line, int lineCounter)
 		return;
 
 	processValidData(timeInfo, amount);
+}
+
+void	BitcoinExchange::processDBLine(std::string const & line, int lineCounter)
+{
+	float	price;
+	std::tm	timeInfo = {};
+
+	if (!parseLine(line, "%d-%d-%d,%f", timeInfo, price, lineCounter))
+		return; //throw Exception
+
+	if (!validateParsedDBData(timeInfo, price, line, lineCounter))
+		return; //throw Exception
 }
 
 bool	BitcoinExchange::parseLine(std::string const & line, std::string const & format, std::tm & timeInfo, float & amount, int lineCounter) const
@@ -215,6 +227,17 @@ void	BitcoinExchange::processValidData(std::tm & timeInfo, float amount) const
 
 	std::cout << buffer << " => " << amount << " = "
 		<< std::fixed << std::setprecision(1) << price * amount << std::endl;
+}
+
+
+
+bool	BitcoinExchange::validateParsedDBData(std::tm & timeInfo, float price, std::string const & line, int lineCounter) const
+{
+	if (price < 0)
+	{
+		logPriceError(line, lineCounter);
+		return false
+	}
 }
 
 
@@ -284,7 +307,7 @@ void	BitcoinExchange::logFormatError(int n, std::string const & line, int lineCo
 {
 	std::cerr << std::endl;
 	std::cerr << RED << "ERROR |" << WHITE << " Wrong format!" << RESET << std::endl;
-	std::cerr << RED << std::setw(7) << "|" << BLACK << " expect 4 values (year-month-day | amount), but got only "
+	std::cerr << RED << std::setw(7) << "|" << BLACK << " expect 4 values (year-month-day, separator [\"|\" or \",\"], value), but got only "
 		<< n << RESET << std::endl;
 	std::cerr << RED << std::setw(7) << "|"
 		<< BLACK << " [" << lineCounter << "] : \""

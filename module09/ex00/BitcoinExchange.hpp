@@ -42,7 +42,7 @@ class BitcoinExchange
 
 		static void	usage(void);
 		void	loadDB(void);
-		void	evaluate(char *fileName);
+		void	evaluate(char *fileName) const;
 
 		class CouldNotOpenFileException: public std::exception
 		{
@@ -54,7 +54,8 @@ class BitcoinExchange
 		std::map<std::time_t, double>	db;
 
 		bool	isValidDate(std::tm timeInfo, int year, int month, int day) const;
-		void	processLine(std::string const & line, int lineCounter);
+		void	processLine(std::string const & line, int lineCounter) const;
+		void	processDBLine(std::string const & line, int lineCounter);
 		bool	parseLine(std::string const & line, std::string const & format, std::tm & timeInfo, float & amount, int lineCounter) const;
 		bool	validateParsedData(std::tm & timeInfo, float amount, std::string const & line, int lineCounter) const;
 		void	processValidData(std::tm & timeInfo, float amount) const;
