@@ -44,7 +44,7 @@ class BitcoinExchange
 		void	loadDB(void);
 		void	evaluate(char *fileName);
 
-		class CouldNotOpenDBFileException: public std::exception
+		class CouldNotOpenFileException: public std::exception
 		{
 			public:
 				virtual const char *what() const throw();

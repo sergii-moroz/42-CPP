@@ -16,7 +16,7 @@
 // Exceptions
 // ==========================================
 
-const char *BitcoinExchange::CouldNotOpenDBFileException::what() const throw()
+const char *BitcoinExchange::CouldNotOpenFileException::what() const throw()
 {
-	return ( RED "ERROR: " RESET "Couldn't open the Bitcoin DB file!");
+	return ( RED "ERROR: " RESET "Couldn't open file!");
 }

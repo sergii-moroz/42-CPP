@@ -69,7 +69,7 @@ void	BitcoinExchange::loadDB(void)
 
 	infile.open(BTC_DB, std::ios::in);
 	if (!infile.is_open())
-		throw CouldNotOpenDBFileException();
+		throw CouldNotOpenFileException();
 
 	int		year, month, day;
 	float	price;
@@ -150,12 +150,13 @@ void	BitcoinExchange::evaluate(char *fileName)
 	std::cout << BLACK << "BitcoinExchange: evaluate function called" << RESET << std::endl;
 
 	std::fstream	infile;
+	std::string		line;
+	int				lineCounter = 0;
+
 	infile.open(fileName, std::ios::in);
 	if (!infile.is_open())
-		throw CouldNotOpenDBFileException();
+		throw CouldNotOpenFileException();
 
-	std::string	line;
-	int			lineCounter = 0;
 	while (std::getline(infile, line))
 	{
 		line.erase(std::remove(line.begin(), line.end(), '\r'), line.end());
