@@ -235,9 +235,11 @@ bool	BitcoinExchange::validateParsedDBData(std::tm & timeInfo, float price, std:
 {
 	if (price < 0)
 	{
-		logPriceError(line, lineCounter);
-		return false
+		logValueError(" Price couldn't be negative!", line, lineCounter);
+		return false;
 	}
+	return true;
+	(void)timeInfo;
 }
 
 
@@ -246,7 +248,7 @@ bool	BitcoinExchange::validateParsedData(std::tm & timeInfo, float amount, std::
 {
 	if (amount < 0 || amount > 1000)
 	{
-		logAmountError(line, lineCounter);
+		logValueError(" Amount couldn't be negative or exceed 1000!", line, lineCounter);
 		return false;
 	}
 
@@ -314,10 +316,10 @@ void	BitcoinExchange::logFormatError(int n, std::string const & line, int lineCo
 		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
 }
 
-void	BitcoinExchange::logAmountError(std::string const & line, int lineCounter) const
+void	BitcoinExchange::logValueError(std::string const & msg, std::string const & line, int lineCounter) const
 {
 	std::cerr << std::endl;
-	std::cerr << RED << "ERROR |" << WHITE << " Amount couldn't be negative or exceed 1000!" << RESET << std::endl;
+	std::cerr << RED << "ERROR |" << WHITE << msg << RESET << std::endl;
 	std::cerr << RED << std::setw(7) << "|"
 		<< BLACK << " [" << lineCounter << "] : \""
 		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;
