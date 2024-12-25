@@ -197,6 +197,7 @@ bool	BitcoinExchange::parseLine(std::string const & line, int &year, int &month,
 
 void	BitcoinExchange::processValidData(int year, int month, int day, float amount)
 {
+	char buffer[80];
 	std::tm	timeInfo = {};
 	timeInfo.tm_year = year - 1900;
 	timeInfo.tm_mon = month - 1;
@@ -207,11 +208,15 @@ void	BitcoinExchange::processValidData(int year, int month, int day, float amoun
 
 	if (price < 0)
 	{
-		std::cerr << std::endl;
+		std::cerr << "No data" << std::endl;
 		return;
 	}
-	std::cout << year << "-" << month << "-" << day
-		<< " => " << amount << "=" << price * amount << std::endl;
+
+	strftime(buffer, sizeof(buffer),"%Y-%m-%d", &timeInfo);
+	std::string str(buffer);
+
+	std::cout << str
+		<< " => " << amount << " = " << std::fixed << std::setprecision(1) << price * amount << std::endl;
 }
 
 bool	BitcoinExchange::validateParsedData(int year, int month, int day, float amount, std::string const & line, int lineCounter)
@@ -254,11 +259,12 @@ bool	BitcoinExchange::isValidDate(std::tm timeInfo, int year, int month, int day
 	return true;
 }
 
-float	BitcoinExchange::getPrice(std::time_t timestamp) const
+float	BitcoinExchange::getPrice(std::time_t timestamp)
 {
-	std::map<std::time_t, double>::const_iterator	it = db.lower_bound(timestamp);
+	std::map<std::time_t, double>::iterator	it = db.lower_bound(timestamp);
 	if (it == db.end())
-		return -1;
+		it--;
+		// return -1;
 	return it->second;
 }
 
@@ -280,7 +286,7 @@ void	BitcoinExchange::logFormatError(int n, std::string const & line, int lineCo
 void	BitcoinExchange::logAmountError(std::string const & line, int lineCounter)
 {
 	std::cerr << std::endl;
-	std::cerr << RED << "ERROR |" << WHITE << "Amount couldn't be negative or exceed 1000!" << RESET << std::endl;
+	std::cerr << RED << "ERROR |" << WHITE << " Amount couldn't be negative or exceed 1000!" << RESET << std::endl;
 	std::cerr << RED << std::setw(7) << "|"
 		<< BLACK << " [" << lineCounter << "] : \""
 		<< CYAN << line << BLACK << "\" - line would be ignored" << RESET << std::endl;

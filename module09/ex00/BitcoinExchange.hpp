@@ -58,7 +58,7 @@ class BitcoinExchange
 		bool	parseLine(std::string const & line, int &year, int &month, int &day, float &amount, int lineCounter);
 		bool	validateParsedData(int year, int month, int day, float amount, std::string const & line, int lineCounter);
 		void	processValidData(int year, int month, int day, float amount);
-		float	getPrice(std::time_t timestamp) const;
+		float	getPrice(std::time_t timestamp);
 
 		// logs
 		void	logFormatError(int n, std::string const & line, int lineCounter);
