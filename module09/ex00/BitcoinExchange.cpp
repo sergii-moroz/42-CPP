@@ -183,6 +183,9 @@ void	BitcoinExchange::processLine(std::string const & line, int lineCounter) con
 	if (!validateParsedData(timeInfo, amount, line, lineCounter))
 		return;
 
+	if (!validateTimeInfo(timeInfo, line, lineCounter))
+		return;
+
 	processValidData(timeInfo, amount);
 }
 
@@ -194,8 +197,11 @@ void	BitcoinExchange::processDBLine(std::string const & line, int lineCounter)
 	if (!parseLine(line, "%d-%d-%d,%f", timeInfo, price, lineCounter))
 		return; //throw Exception
 
-	if (!validateParsedDBData(timeInfo, price, line, lineCounter))
+	if (!validatePrice(price, line, lineCounter))
 		return; //throw Exception
+
+	if (!validateTimeInfo(timeInfo, line, lineCounter))
+		return;
 }
 
 bool	BitcoinExchange::parseLine(std::string const & line, std::string const & format, std::tm & timeInfo, float & amount, int lineCounter) const
@@ -230,28 +236,8 @@ void	BitcoinExchange::processValidData(std::tm & timeInfo, float amount) const
 }
 
 
-
-bool	BitcoinExchange::validateParsedDBData(std::tm & timeInfo, float price, std::string const & line, int lineCounter) const
+bool	BitcoinExchange::validateTimeInfo(std::tm & timeInfo, std::string const & line, int lineCounter) const
 {
-	if (price < 0)
-	{
-		logValueError(" Price couldn't be negative!", line, lineCounter);
-		return false;
-	}
-	return true;
-	(void)timeInfo;
-}
-
-
-
-bool	BitcoinExchange::validateParsedData(std::tm & timeInfo, float amount, std::string const & line, int lineCounter) const
-{
-	if (amount < 0 || amount > 1000)
-	{
-		logValueError(" Amount couldn't be negative or exceed 1000!", line, lineCounter);
-		return false;
-	}
-
 	if (timeInfo.tm_year < 0 || timeInfo.tm_mon < 0 || timeInfo.tm_mday < 0)
 	{
 		logDateError(line, lineCounter);
@@ -274,6 +260,30 @@ bool	BitcoinExchange::validateParsedData(std::tm & timeInfo, float amount, std::
 		return false;
 	}
 
+	return true;
+}
+
+
+
+bool	BitcoinExchange::validatePrice(float price, std::string const & line, int lineCounter) const
+{
+	if (price < 0)
+	{
+		logValueError(" Price couldn't be negative!", line, lineCounter);
+		return false;
+	}
+	return true;
+}
+
+
+
+bool	BitcoinExchange::validateParsedData(std::tm & timeInfo, float amount, std::string const & line, int lineCounter) const
+{
+	if (amount < 0 || amount > 1000)
+	{
+		logValueError(" Amount couldn't be negative or exceed 1000!", line, lineCounter);
+		return false;
+	}
 	return true;
 }
 
