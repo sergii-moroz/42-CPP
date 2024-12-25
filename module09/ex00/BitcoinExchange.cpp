@@ -203,7 +203,7 @@ void	BitcoinExchange::processValidData(std::tm & timeInfo, float amount, std::st
 	strftime(buffer, sizeof(buffer),"%Y-%m-%d", &timeInfo);
 
 	std::cout << buffer << " => " << amount << " = "
-		<< std::fixed << std::setprecision(1) << price * amount << std::endl;
+		<< std::fixed << std::setprecision(2) << price * amount << std::endl;
 }
 
 

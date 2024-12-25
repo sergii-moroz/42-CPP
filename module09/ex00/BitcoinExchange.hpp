@@ -23,7 +23,7 @@
 # define WHITE		"\033[1;37m"
 # define RESET		"\033[0m"
 
-# define BTC_DB		"small.csv"
+# define BTC_DB		"data.csv"
 
 # include <algorithm>
 # include <iostream>
