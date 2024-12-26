@@ -29,7 +29,25 @@ class PmergeMe
 		static bool	isValidInteger(char const *str, int & result);
 		static std::string	trim(std::string const & s);
 
-		class EmptyStringException : public std::exception
+		class NotANumber : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+
+		class NotAllStringWasConsumed : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+
+		class NotPositiveNumber : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+
+		class OutOfRange : public std::exception
 		{
 			public:
 				virtual const char *what() const throw();

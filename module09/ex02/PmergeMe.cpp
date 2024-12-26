@@ -87,15 +87,16 @@ bool	PmergeMe::isValidInteger(char const *str, int & result)
 	long value = std::strtol(str, &endptr, 10);
 
 	if (str == endptr)
-		throw EmptyStringException();
+		throw NotANumber();
 
 	if (*endptr != '\0')
-		return false;
+		throw NotAllStringWasConsumed();
 
-	if (errno == ERANGE || value < 0 || value > std::numeric_limits<int>::max())
-	{
-		return false;
-	}
+	if (errno == ERANGE ||value > std::numeric_limits<int>::max())
+		throw OutOfRange();
+
+	if (value < 0)
+		throw NotPositiveNumber();
 
 	result = static_cast<int>(value);
 	return true;
@@ -115,7 +116,22 @@ std::string	PmergeMe::trim(std::string const & s)
 // Exceptions
 // ==========================================
 
-const char	*PmergeMe::EmptyStringException::what() const throw()
+const char	*PmergeMe::NotANumber::what() const throw()
 {
-	return ("Error: Argument couldn't be empty string!");
+	return ("Error: Not a number!");
+}
+
+const char	*PmergeMe::NotAllStringWasConsumed::what() const throw()
+{
+	return ("Error: Not all string was consumed!");
+}
+
+const char	*PmergeMe::NotPositiveNumber::what() const throw()
+{
+	return ("Error: Not a positive number!");
+}
+
+const char	*PmergeMe::OutOfRange::what() const throw()
+{
+	return ("Error: Argument's value out of range!");
 }
