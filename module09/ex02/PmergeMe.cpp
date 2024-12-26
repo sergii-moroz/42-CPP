@@ -56,6 +56,48 @@ PmergeMe &	PmergeMe::operator=(PmergeMe const & rhs)
 
 void	PmergeMe::process(int size, char **arr)
 {
-	(void)size;
-	(void)arr;
+	std::vector<int>	vec;
+	std::list<int>		lst;
+	int	value;
+	for (int i=0; i<size; i++)
+	{
+		std::string	s = trim(arr[i]);
+		if (isValidInteger(s.c_str(), value))
+		{
+			vec.push_back(value);
+			lst.push_back(value);
+			std::cout << "i: " << i << " val: " << value << std::endl;
+		}
+	}
+}
+
+bool	PmergeMe::isValidInteger(char const *str, int & result)
+{
+	char* endptr;
+	errno = 0;
+
+	long value = std::strtol(str, &endptr, 10);
+
+	if (str == endptr || *endptr != '\0')
+	{
+		return false;
+	}
+
+	if (errno == ERANGE || value < 0 || value > std::numeric_limits<int>::max())
+	{
+		return false;
+	}
+
+	result = static_cast<int>(value);
+	return true;
+}
+
+std::string	PmergeMe::trim(std::string const & s)
+{
+	size_t	start = s.find_first_not_of("\f\n\r\t\v ");
+	if (start == std::string::npos)
+		return (s); // no content
+	size_t	end	= s.find_last_not_of("\f\n\r\t\v ");
+	size_t	range = end - start + 1;
+	return (s.substr(start, range));
 }

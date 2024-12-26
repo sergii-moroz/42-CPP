@@ -15,12 +15,19 @@
 
 # include <iostream>
 # include <iomanip>
+# include <cstdlib>
+# include <limits>
+# include <cerrno>
+# include <vector>
+# include <list>
 
 class PmergeMe
 {
 	public:
 		~PmergeMe();
 		static void	process(int size, char **arr);
+		static bool	isValidInteger(char const *str, int & result);
+		static std::string	trim(std::string const & s);
 
 	private:
 		PmergeMe();
