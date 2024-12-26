@@ -29,6 +29,12 @@ class PmergeMe
 		static bool	isValidInteger(char const *str, int & result);
 		static std::string	trim(std::string const & s);
 
+		class EmptyStringException : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+
 	private:
 		PmergeMe();
 		PmergeMe(PmergeMe const &);

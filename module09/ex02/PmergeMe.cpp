@@ -66,9 +66,17 @@ void	PmergeMe::process(int size, char **arr)
 		{
 			vec.push_back(value);
 			lst.push_back(value);
-			std::cout << "i: " << i << " val: " << value << std::endl;
 		}
 	}
+
+	// debug:
+	// for (std::vector<int>::iterator it=vec.begin(); it!=vec.end(); it++)
+	// 	std::cout << "i: " << " val: " << *it << std::endl;
+	for (unsigned int i=0; i<vec.size(); i++)
+		std::cout << "i: " << i << " val: " << vec[i] << std::endl;
+
+	std::cout << "Vector:" << std::endl;
+	std::cout << "List:" << std::endl;
 }
 
 bool	PmergeMe::isValidInteger(char const *str, int & result)
@@ -78,10 +86,11 @@ bool	PmergeMe::isValidInteger(char const *str, int & result)
 
 	long value = std::strtol(str, &endptr, 10);
 
-	if (str == endptr || *endptr != '\0')
-	{
+	if (str == endptr)
+		throw EmptyStringException();
+
+	if (*endptr != '\0')
 		return false;
-	}
 
 	if (errno == ERANGE || value < 0 || value > std::numeric_limits<int>::max())
 	{
@@ -100,4 +109,13 @@ std::string	PmergeMe::trim(std::string const & s)
 	size_t	end	= s.find_last_not_of("\f\n\r\t\v ");
 	size_t	range = end - start + 1;
 	return (s.substr(start, range));
+}
+
+// ==========================================
+// Exceptions
+// ==========================================
+
+const char	*PmergeMe::EmptyStringException::what() const throw()
+{
+	return ("Error: Argument couldn't be empty string!");
 }
