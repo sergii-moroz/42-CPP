@@ -16,4 +16,16 @@
 # include <iostream>
 # include <iomanip>
 
+class PmergeMe
+{
+	public:
+		~PmergeMe();
+		static void	process(int size, char **arr);
+
+	private:
+		PmergeMe();
+		PmergeMe(PmergeMe const &);
+		PmergeMe &	operator=(PmergeMe const &);
+};
+
 #endif
