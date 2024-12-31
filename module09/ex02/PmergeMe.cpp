@@ -69,22 +69,34 @@ void	PmergeMe::process(int size, char **arr)
 		}
 	}
 
+	std::clock_t	start, end;
 	std::cout << MAGENTA << "=== Vector ===" << RESET << std::endl;
 	std::cout << "Before ";
 	print(vec);
 	std::cout << std::endl;
+	start = std::clock();
+	// Sorting algorithm here
+	end = std::clock();
 	std::cout << "After  ";
 	print(vec);
+	std::cout << std::endl;
+	std::cout << "Time to process a range of " << vec.size()
+		<< " elements with std::vector<int> : " << elapsedTime(start, end) << " us" << std::endl;
 	std::cout << std::endl << std::endl;
 
 	std::cout << MAGENTA << "=== List ===" << RESET << std::endl;
 	std::cout << "Before ";
 	print(lst);
 	std::cout << std::endl;
+	start = std::clock();
+	// Sorting algorithm here
+	end = std::clock();
 	std::cout << "After  ";
 	print(lst);
 	std::cout << std::endl;
-
+	std::cout << "Time to process a range of " << lst.size()
+		<< " elements with std::list<int> : " << elapsedTime(start, end) << " us" << std::endl;
+	std::cout << std::endl;
 }
 
 bool	PmergeMe::isValidInteger(char const *str, int & result)
@@ -158,4 +170,13 @@ void	PmergeMe::print(std::list<int> const & lst)
 {
 	for (std::list<int>::const_iterator it=lst.begin(); it!=lst.end(); it++)
 		std::cout << *it << " ";
+}
+
+// ==========================================
+// Time functions
+// ==========================================
+
+double	PmergeMe::elapsedTime(std::time_t start, std::time_t end)
+{
+	return (static_cast<double>(end - start) / CLOCKS_PER_SEC * 1.0e6);
 }

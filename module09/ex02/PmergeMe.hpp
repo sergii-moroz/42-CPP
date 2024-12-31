@@ -19,6 +19,7 @@
 # include <limits>
 # include <cerrno>
 # include <vector>
+# include <ctime>
 # include <list>
 
 # define BLACK		"\033[1;30m"
@@ -66,10 +67,11 @@ class PmergeMe
 	private:
 		PmergeMe();
 		PmergeMe(PmergeMe const &);
-		PmergeMe &	operator=(PmergeMe const &);
+		PmergeMe &		operator=(PmergeMe const &);
 
-		static void	print(std::vector<int> const & v);
-		static void	print(std::list<int> const & l);
+		static void		print(std::vector<int> const & v);
+		static void		print(std::list<int> const & l);
+		static double	elapsedTime(std::time_t start, std::time_t end);
 };
 
 #endif
