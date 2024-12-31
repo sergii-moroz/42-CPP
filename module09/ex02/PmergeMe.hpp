@@ -19,6 +19,7 @@
 # include <limits>
 # include <cerrno>
 # include <vector>
+# include <deque>
 # include <ctime>
 # include <list>
 
@@ -70,8 +71,14 @@ class PmergeMe
 		PmergeMe &		operator=(PmergeMe const &);
 
 		static void		print(std::vector<int> const & v);
-		static void		print(std::list<int> const & l);
+		static void		print(std::deque<int> const & l);
 		static double	elapsedTime(std::time_t start, std::time_t end);
+
+		template <typename T>
+		static void	pairwiseRangeSort(T & v, std::size_t & range);
+
 };
+
+#include "PmergeMe.tpp"
 
 #endif
