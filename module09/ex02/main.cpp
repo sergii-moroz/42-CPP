@@ -22,5 +22,15 @@ int	main(int argc, char **argv)
 			<< " 25 1 48 24 75 13 8" << std::endl;
 		return (1);
 	}
+
+	try
+	{
+		PmergeMe::process(argc - 1, argv + 1);
+	}
+	catch(std::exception const & e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
 	return (0);
 }

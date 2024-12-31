@@ -58,7 +58,7 @@ void	PmergeMe::process(int size, char **arr)
 {
 	std::vector<int>	vec;
 	std::list<int>		lst;
-	int	value;
+	int					value;
 	for (int i=0; i<size; i++)
 	{
 		std::string	s = trim(arr[i]);
@@ -69,22 +69,30 @@ void	PmergeMe::process(int size, char **arr)
 		}
 	}
 
-	// debug:
-	// for (std::vector<int>::iterator it=vec.begin(); it!=vec.end(); it++)
-	// 	std::cout << "i: " << " val: " << *it << std::endl;
-	for (unsigned int i=0; i<vec.size(); i++)
-		std::cout << "i: " << i << " val: " << vec[i] << std::endl;
+	std::cout << MAGENTA << "=== Vector ===" << RESET << std::endl;
+	std::cout << "Before ";
+	print(vec);
+	std::cout << std::endl;
+	std::cout << "After  ";
+	print(vec);
+	std::cout << std::endl << std::endl;
 
-	std::cout << "Vector:" << std::endl;
-	std::cout << "List:" << std::endl;
+	std::cout << MAGENTA << "=== List ===" << RESET << std::endl;
+	std::cout << "Before ";
+	print(lst);
+	std::cout << std::endl;
+	std::cout << "After  ";
+	print(lst);
+	std::cout << std::endl;
+
 }
 
 bool	PmergeMe::isValidInteger(char const *str, int & result)
 {
-	char* endptr;
 	errno = 0;
 
-	long value = std::strtol(str, &endptr, 10);
+	char	*endptr;
+	long	value = std::strtol(str, &endptr, 10);
 
 	if (str == endptr)
 		throw NotANumber();
@@ -134,4 +142,20 @@ const char	*PmergeMe::NotPositiveNumber::what() const throw()
 const char	*PmergeMe::OutOfRange::what() const throw()
 {
 	return ("Error: Argument's value out of range!");
+}
+
+// ==========================================
+// Print functions
+// ==========================================
+
+void	PmergeMe::print(std::vector<int> const & v)
+{
+	for (std::vector<int>::const_iterator it=v.begin(); it!=v.end(); it++)
+		std::cout << *it << " ";
+}
+
+void	PmergeMe::print(std::list<int> const & lst)
+{
+	for (std::list<int>::const_iterator it=lst.begin(); it!=lst.end(); it++)
+		std::cout << *it << " ";
 }
