@@ -77,6 +77,9 @@ class PmergeMe
 		template <typename T>
 		static void	pairwiseRangeSort(T & v, std::size_t & range);
 
+		template <typename T>
+		static void	fordJohnsonSort(T & v);
+
 };
 
 #include "PmergeMe.tpp"

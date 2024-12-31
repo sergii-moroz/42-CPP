@@ -57,7 +57,7 @@ PmergeMe &	PmergeMe::operator=(PmergeMe const & rhs)
 void	PmergeMe::process(int size, char **arr)
 {
 	std::vector<int>	vec;
-	std::list<int>		lst;
+	std::deque<int>		deq;
 	int					value;
 	for (int i=0; i<size; i++)
 	{
@@ -65,7 +65,7 @@ void	PmergeMe::process(int size, char **arr)
 		if (isValidInteger(s.c_str(), value))
 		{
 			vec.push_back(value);
-			lst.push_back(value);
+			deq.push_back(value);
 		}
 	}
 
@@ -75,26 +75,26 @@ void	PmergeMe::process(int size, char **arr)
 	print(vec);
 	std::cout << std::endl;
 	start = std::clock();
-	// Sorting algorithm here
+	fordJohnsonSort(vec);
 	end = std::clock();
 	std::cout << "After  ";
 	print(vec);
 	std::cout << std::endl;
 	std::cout << "Time to process a range of " << vec.size()
 		<< " elements with std::vector<int> : " << elapsedTime(start, end) << " us" << std::endl;
-	std::cout << std::endl << std::endl;
+	std::cout << std::endl;
 
 	std::cout << MAGENTA << "=== List ===" << RESET << std::endl;
 	std::cout << "Before ";
-	print(lst);
+	print(deq);
 	std::cout << std::endl;
 	start = std::clock();
-	// Sorting algorithm here
+	fordJohnsonSort(deq);
 	end = std::clock();
 	std::cout << "After  ";
-	print(lst);
+	print(deq);
 	std::cout << std::endl;
-	std::cout << "Time to process a range of " << lst.size()
+	std::cout << "Time to process a range of " << deq.size()
 		<< " elements with std::list<int> : " << elapsedTime(start, end) << " us" << std::endl;
 	std::cout << std::endl;
 }
@@ -166,9 +166,9 @@ void	PmergeMe::print(std::vector<int> const & v)
 		std::cout << *it << " ";
 }
 
-void	PmergeMe::print(std::list<int> const & lst)
+void	PmergeMe::print(std::deque<int> const & lst)
 {
-	for (std::list<int>::const_iterator it=lst.begin(); it!=lst.end(); it++)
+	for (std::deque<int>::const_iterator it=lst.begin(); it!=lst.end(); it++)
 		std::cout << *it << " ";
 }
 

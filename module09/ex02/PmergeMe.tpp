@@ -27,3 +27,18 @@ void	PmergeMe::pairwiseRangeSort(T & v, std::size_t & range)
 	// last valid range
 	range /= 2;
 }
+
+template <typename T>
+void	PmergeMe::fordJohnsonSort(T & v)
+{
+	// step 1: sort pairs (Forwart)
+	std::size_t	range = 1;
+	pairwiseRangeSort(v, range);
+
+	// Step 2:
+	while (range > 0)
+	{
+		// processRange(v, range);
+		range /= 2;
+	}
+}
