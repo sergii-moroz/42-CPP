@@ -80,6 +80,12 @@ class PmergeMe
 		template <typename T>
 		static void	fordJohnsonSort(T & v);
 
+		template <typename T, typename U>
+		static void	createABR(T const & v, U & a, U & b, T & rest, std::size_t range);
+
+		template <typename T>
+		static void	processRange(T & v, std::size_t range);
+
 };
 
 #include "PmergeMe.tpp"
