@@ -89,8 +89,17 @@ class PmergeMe
 		template <typename T>
 		static void	ai_init(T & v);
 
+		template <typename T>
+		static void	ai_update(T & v, std::size_t n);
+
 		template <typename T, typename U>
 		static void	ABRToMainPendOdd(U const & a, U const & b, U & main, U & pend, T & odd);
+
+		template <typename U>
+		static std::size_t	binarySearch(U const & main, int val, int low, int high);
+
+		template <typename T, typename U>
+		static void	insertSinglePend(	U & main, U & pend, T & ai );
 
 		// DEBUG
 		template <typename T>

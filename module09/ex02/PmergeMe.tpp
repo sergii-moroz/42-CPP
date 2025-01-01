@@ -81,6 +81,10 @@ void	PmergeMe::processRange(T & v, std::size_t range)
 				print_dv(pend, "pend");	// DEBUG -> DEL
 				std::cout << "odd: "; print_v(odd); std::cout << std::endl;	// DEBUG -> DEL
 
+	// !!! if pend have not enough elements to insert with Jacobsthal numbers !!!
+	if (pend.size() == 1)
+		insertSinglePend(main, pend, ai);
+
 }
 
 template <typename T, typename U>
@@ -110,6 +114,13 @@ void	PmergeMe::ai_init(T & v)
 	}
 }
 
+template <typename T>
+void	PmergeMe::ai_update(T & v, std::size_t n)
+{
+	for (typename T::iterator it=v.begin() + n; it!=v.end(); ++it)
+		(*it)++;
+}
+
 template <typename T, typename U>
 void	PmergeMe::ABRToMainPendOdd(U const & a, U const & b, U & main, U & pend, T & odd)
 {
@@ -127,6 +138,36 @@ void	PmergeMe::ABRToMainPendOdd(U const & a, U const & b, U & main, U & pend, T 
 		odd.clear();
 		pend.assign(b.begin() + 1, b.end());
 	}
+}
+
+template <typename T, typename U>
+void	PmergeMe::insertSinglePend(	U & main, U & pend, T & ai )
+{
+						std::cout << "!!! pend have not enough elements to use Jacobsthal numbers for insertion !!!" << std::endl;
+	for (typename U::iterator p = pend.begin(); p != pend.end(); p++)
+	{
+						std::cout << "I want to insert b2: ";
+						print_v(*p);
+						std::cout << " between 0 and " << *(ai.begin() + 2) - 1 << std::endl;
+		std::size_t	idx = binarySearch(main, *((*p).end() - 1), 0, *(ai.begin() + 2) - 1);
+						std::cout << "idx: " << idx << std::endl;
+		ai_update(ai, idx);
+						std::cout << "a_i:"; print_v(ai); std::cout << std::endl;
+		main.insert(main.begin() + idx, p, p+1);
+	}
+}
+
+template <typename U>
+std::size_t	PmergeMe::binarySearch(U const & main, int val, int low, int high)
+{
+	if (high <= low)
+		return (val > *(main[low].end() - 1) ? (low + 1) : low);
+	std::size_t	mid = (low + high) / 2;
+	if (val == *(main[mid].end() - 1))
+		return mid + 1;
+	 if (val > *(main[mid].end() - 1))
+		return binarySearch(main, val, mid + 1, high);
+	return binarySearch(main, val, low, mid - 1);
 }
 
 // ==========
