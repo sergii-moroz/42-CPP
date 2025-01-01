@@ -132,6 +132,25 @@ std::string	PmergeMe::trim(std::string const & s)
 	return (s.substr(start, range));
 }
 
+unsigned long long	PmergeMe::jacobsthal(std::size_t n)
+{
+	if (n == 0) return 0;
+	if (n == 1) return 1;
+
+	unsigned long long prev2 = 0; // J(0)
+	unsigned long long prev1 = 1; // J(1)
+	unsigned long long current = 0;
+
+	for (std::size_t i = 2; i <= n; ++i)
+	{
+		current = prev1 + 2 * prev2;
+		prev2 = prev1;
+		prev1 = current;
+	}
+
+	return current;
+}
+
 // ==========================================
 // Exceptions
 // ==========================================

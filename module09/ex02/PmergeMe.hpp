@@ -73,6 +73,7 @@ class PmergeMe
 		static void		print(std::vector<int> const & v);
 		static void		print(std::deque<int> const & l);
 		static double	elapsedTime(std::time_t start, std::time_t end);
+		static unsigned long long	jacobsthal(std::size_t n);
 
 		template <typename T>
 		static void	pairwiseRangeSort(T & v, std::size_t & range);
@@ -100,6 +101,10 @@ class PmergeMe
 
 		template <typename T, typename U>
 		static void	insertSinglePend(	U & main, U & pend, T & ai );
+
+		template <typename T, typename U>
+		static void	insertUsingJacobsthal(U & main, U & pend, T & ai );
+
 
 		// DEBUG
 		template <typename T>

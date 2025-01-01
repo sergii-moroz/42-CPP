@@ -84,6 +84,8 @@ void	PmergeMe::processRange(T & v, std::size_t range)
 	// !!! if pend have not enough elements to insert with Jacobsthal numbers !!!
 	if (pend.size() == 1)
 		insertSinglePend(main, pend, ai);
+	else
+		insertUsingJacobsthal(main, pend, ai);
 
 }
 
@@ -168,6 +170,44 @@ std::size_t	PmergeMe::binarySearch(U const & main, int val, int low, int high)
 	 if (val > *(main[mid].end() - 1))
 		return binarySearch(main, val, mid + 1, high);
 	return binarySearch(main, val, low, mid - 1);
+}
+
+template <typename T, typename U>
+void	PmergeMe::insertUsingJacobsthal(U & main, U & pend, T & ai )
+{
+	// use Jabocstal numbers to effective insert numbers
+						std::cout << "!!! use Jabocstal numbers to effective insert numbers !!!" << std::endl;
+	std::size_t	jn_curr, jn_prev, jn_delt, n = 3;
+	while (jacobsthal(n) <= pend.size() + 1)
+	{
+		jn_curr = jacobsthal(n);
+		jn_prev = jacobsthal(n - 1);
+		jn_delt = jn_curr - jn_prev;
+		std::cout << "n: " << n << " "
+			<< "jn_curr: " << jn_curr << " "
+			<< "jn_prev: " << jn_prev << " "
+			<< "jn_delt: " << jn_delt << std::endl;
+
+		// insert
+		// typedef typename MyContainer<T>::NestedContainer	NestedContainer;
+		for (std::size_t i=0; i < jn_delt; i++)
+		{
+			typename U::iterator p=pend.begin() + jn_curr - i - 2; // index in pend start from b2, b3, b4
+						std::cout << "I want to insert b" << jn_curr - i << ": ";
+						print_v(*p);
+						std::cout << " between 0 and " << ai[jn_curr - i] - 1 << std::endl;
+			std::size_t	idx = binarySearch(main, *((*p).end() - 1), 0, ai[jn_curr - i] - 1);
+						std::cout << "idx: " << idx << std::endl;
+			ai_update(ai, idx);
+						std::cout << "ai:"; print_v(ai); std::cout << std::endl;
+			main.insert(main.begin() + idx, p, p+1);
+						print_dv(main, "main");
+						print_dv(pend, "pend");
+						// std::cout << "odd: "; print_v(odd); std::cout << std::endl;
+		}
+		n++;
+	}
+	// insertRemainingPend(main, pend, a_i, n-1);
 }
 
 // ==========
