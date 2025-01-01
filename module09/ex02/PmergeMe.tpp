@@ -233,10 +233,10 @@ T	PmergeMe::mainRToV(U const & main, T const & rest)
 template <typename T>
 void	PmergeMe::print_v(T const & v)
 {
-	std::cout << "[ ";
+	// std::cout << "[ ";
 	for (typename T::const_iterator it=v.begin(); it!=v.end(); ++it)
-		std::cout << *it << ", ";
-	std::cout << " ]";
+		std::cout << *it << " ";
+	// std::cout << " ]";
 }
 
 template <typename U>

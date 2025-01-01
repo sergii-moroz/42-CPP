@@ -38,8 +38,6 @@ class PmergeMe
 	public:
 		~PmergeMe();
 		static void	process(int size, char **arr);
-		static bool	isValidInteger(char const *str, int & result);
-		static std::string	trim(std::string const & s);
 
 		class NotANumber : public std::exception
 		{
@@ -68,11 +66,11 @@ class PmergeMe
 	private:
 		PmergeMe();
 		PmergeMe(PmergeMe const &);
-		PmergeMe &		operator=(PmergeMe const &);
+		PmergeMe &					operator=(PmergeMe const &);
 
-		static void		print(std::vector<int> const & v);
-		static void		print(std::deque<int> const & l);
-		static double	elapsedTime(std::time_t start, std::time_t end);
+		static bool					isValidInteger(char const *str, int & result);
+		static std::string			trim(std::string const & s);
+		static double				elapsedTime(std::time_t start, std::time_t end);
 		static unsigned long long	jacobsthal(std::size_t n);
 
 		template <typename T>

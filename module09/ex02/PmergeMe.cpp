@@ -72,13 +72,13 @@ void	PmergeMe::process(int size, char **arr)
 	std::clock_t	start, end;
 	std::cout << MAGENTA << "=== Vector ===" << RESET << std::endl;
 	std::cout << "Before ";
-	print(vec);
+	print_v(vec);
 	std::cout << std::endl;
 	start = std::clock();
 	fordJohnsonSort(vec);
 	end = std::clock();
 	std::cout << "After  ";
-	print(vec);
+	print_v(vec);
 	std::cout << std::endl;
 	std::cout << "Time to process a range of " << CYAN << vec.size() << RESET
 		<< " elements with std::" << CYAN << "vector" << RESET << "<int> : " << WHITE << elapsedTime(start, end) << RESET
@@ -87,13 +87,13 @@ void	PmergeMe::process(int size, char **arr)
 
 	std::cout << MAGENTA << "=== Deque ===" << RESET << std::endl;
 	std::cout << "Before ";
-	print(deq);
+	print_v(deq);
 	std::cout << std::endl;
 	start = std::clock();
 	fordJohnsonSort(deq);
 	end = std::clock();
 	std::cout << "After  ";
-	print(deq);
+	print_v(deq);
 	std::cout << std::endl;
 	std::cout << "Time to process a range of " << CYAN << deq.size() << RESET
 		<< " elements with std::" << CYAN <<"deque" << RESET << "<int> : " << WHITE << elapsedTime(start, end) << RESET
@@ -174,22 +174,6 @@ const char	*PmergeMe::NotPositiveNumber::what() const throw()
 const char	*PmergeMe::OutOfRange::what() const throw()
 {
 	return ("Error: Argument's value out of range!");
-}
-
-// ==========================================
-// Print functions
-// ==========================================
-
-void	PmergeMe::print(std::vector<int> const & v)
-{
-	for (std::vector<int>::const_iterator it=v.begin(); it!=v.end(); it++)
-		std::cout << *it << " ";
-}
-
-void	PmergeMe::print(std::deque<int> const & lst)
-{
-	for (std::deque<int>::const_iterator it=lst.begin(); it!=lst.end(); it++)
-		std::cout << *it << " ";
 }
 
 // ==========================================
