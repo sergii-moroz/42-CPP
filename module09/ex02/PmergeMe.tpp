@@ -243,7 +243,6 @@ void	PmergeMe::sortAndShowTime(T & v, std::string const & s)
 	std::cout << "Time to process a range of " << CYAN << v.size() << RESET
 		<< " elements with std::" << CYAN << s << RESET << "<int> : "
 		<< WHITE << elapsedTime(start, end) << RESET << " us" << std::endl;
-	std::cout << std::endl;
 }
 
 // ==========

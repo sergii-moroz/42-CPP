@@ -70,6 +70,7 @@ void	PmergeMe::process(int size, char **arr)
 	}
 
 	PmergeMe::sortAndShowTime(vec, "vector");
+	std::cout << std::endl;
 	PmergeMe::sortAndShowTime(deq, "deque");
 }
 
