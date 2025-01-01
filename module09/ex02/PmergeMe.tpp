@@ -226,6 +226,26 @@ T	PmergeMe::mainRToV(U const & main, T const & rest)
 	return v;
 }
 
+template <typename T>
+void	PmergeMe::sortAndShowTime(T & v, std::string const & s)
+{
+	std::clock_t	start, end;
+	std::cout << MAGENTA << "=== " << s << " ===" << RESET << std::endl;
+	std::cout << "Before ";
+	PmergeMe::print_v(v);
+	std::cout << std::endl;
+	start = std::clock();
+	PmergeMe::fordJohnsonSort(v);
+	end = std::clock();
+	std::cout << "After  ";
+	PmergeMe::print_v(v);
+	std::cout << std::endl;
+	std::cout << "Time to process a range of " << CYAN << v.size() << RESET
+		<< " elements with std::" << CYAN << s << RESET << "<int> : "
+		<< WHITE << elapsedTime(start, end) << RESET << " us" << std::endl;
+	std::cout << std::endl;
+}
+
 // ==========
 // DEBUG
 // ==========
