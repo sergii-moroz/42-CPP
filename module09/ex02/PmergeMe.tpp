@@ -64,12 +64,22 @@ void	PmergeMe::processRange(T & v, std::size_t range)
 	T	rest;
 
 	createABR(v, a, b, rest, range);
+				std::cout << "size a: " << a.size() << " size b: " << b.size() << std::endl; // DEGUG -> DEL
+				// print_AB(a, b);			// DEGUG -> DEL
+				std::cout << "rest: ";	// DEGUG -> DEL
+				print_v(rest);			// DEGUG -> DEL
+				std::cout << std::endl;	// DEGUG -> DEL
 	T	ai(a.size() + 1);
 	ai_init(ai);
+				std::cout << "a_i:"; print_v(ai); std::cout << std::endl; // DEGUG -> DEL
 
-	for (std::size_t i = 0; i<ai.size(); i++)
-		std::cout << ai[i] << " ";
-	std::cout << std::endl;
+	NestedContainer	main, pend;
+	T	odd;
+	ABRToMainPendOdd(a, b, main, pend, odd);
+				print_dv(main, "main");	// DEGUG -> DEL
+				print_dv(pend, "pend");	// DEGUG -> DEL
+				std::cout << "odd: "; print_v(odd); std::cout << std::endl;	// DEGUG -> DEL
+
 }
 
 template <typename T, typename U>
@@ -97,4 +107,48 @@ void	PmergeMe::ai_init(T & v)
 		*it = static_cast<int>(i);
 		i++;
 	}
+}
+
+template <typename T, typename U>
+void	PmergeMe::ABRToMainPendOdd(U const & a, U const & b, U & main, U & pend, T & odd)
+{
+	main.assign(a.begin(), a.end());
+	main.insert(main.begin(), b.begin(), b.begin() + 1);
+	T	b_last = *(b.end() - 1);
+
+	if (b.size() > a.size())
+	{
+		odd.assign(b_last.begin(), b_last.end());
+		pend.assign(b.begin() + 1, b.end() - 1);
+	}
+	else
+	{
+		odd.clear();
+		pend.assign(b.begin() + 1, b.end());
+	}
+}
+
+// ==========
+// DEBUG
+// ==========
+
+template <typename T>
+void	PmergeMe::print_v(T const & v)
+{
+	std::cout << "[ ";
+	for (typename T::const_iterator it=v.begin(); it!=v.end(); ++it)
+		std::cout << *it << ", ";
+	std::cout << " ]";
+}
+
+template <typename U>
+void	PmergeMe::print_dv(U const & main, std::string const & s)
+{
+	std::cout << s << ": [ ";
+	for (typename U::const_iterator it=main.begin(); it!=main.end(); ++it)
+	{
+		print_v(*it);
+		std::cout << ", ";
+	}
+	std::cout << " ]" << std::endl;
 }

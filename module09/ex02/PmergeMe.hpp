@@ -89,6 +89,16 @@ class PmergeMe
 		template <typename T>
 		static void	ai_init(T & v);
 
+		template <typename T, typename U>
+		static void	ABRToMainPendOdd(U const & a, U const & b, U & main, U & pend, T & odd);
+
+		// DEBUG
+		template <typename T>
+		static void	print_v(T const & v);
+
+		template <typename U>
+		static void	print_dv(U const & main, std::string const & s);
+
 };
 
 #include "PmergeMe.tpp"
