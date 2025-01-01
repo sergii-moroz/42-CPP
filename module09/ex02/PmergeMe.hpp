@@ -21,7 +21,6 @@
 # include <vector>
 # include <deque>
 # include <ctime>
-# include <list>
 
 # define BLACK		"\033[1;30m"
 # define RED		"\033[1;31m"
@@ -111,6 +110,9 @@ class PmergeMe
 
 		template <typename T, typename U>
 		static T	mainRToV(U const & main, T const & rest);
+
+		template <typename T>
+		static void	sortAndShowTime(T & v, std::string const & s);
 
 
 		// DEBUG
