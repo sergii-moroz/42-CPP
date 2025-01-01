@@ -207,7 +207,26 @@ void	PmergeMe::insertUsingJacobsthal(U & main, U & pend, T & ai )
 		}
 		n++;
 	}
-	// insertRemainingPend(main, pend, a_i, n-1);
+	insertRemainingPend(main, pend, ai, n-1);
+}
+
+template <typename T, typename U>
+void	PmergeMe::insertRemainingPend(U & main, U & pend, T & ai, std::size_t n)
+{
+	// if number of element in pend was bigger than last Jacobstal number
+	// and less than next Jacobsthal number
+						std::cout << "!!! insert remaining elements after last Jacobsthal number !!!" << std::endl;
+	std::size_t	jn_curr = jacobsthal(n);
+						std::cout << "jn_curr: " << jn_curr << std::endl;
+	for (std::size_t i=jn_curr; i<=pend.size(); i++)
+	{
+		typename U::iterator p=pend.begin() + i - 1;
+		std::cout << "I want to insert b" << i+1 << ": ";
+						print_v(*p);
+						std::cout << " between 0 and " << ai[i+1] - 1 << std::endl;
+		std::size_t	idx = binarySearch(main, *((*p).end() - 1), 0, ai[i + 1] - 1);
+		main.insert(main.begin() + idx, p, p+1);
+	}
 }
 
 // ==========

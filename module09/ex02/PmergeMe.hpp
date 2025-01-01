@@ -105,6 +105,9 @@ class PmergeMe
 		template <typename T, typename U>
 		static void	insertUsingJacobsthal(U & main, U & pend, T & ai );
 
+		template <typename T, typename U>
+		static void	insertRemainingPend(U & main, U & pend, T & ai, std::size_t n);
+
 
 		// DEBUG
 		template <typename T>
