@@ -301,5 +301,6 @@ void	PmergeMe::print_AB(U const & a, U const & b)
 		std::cout << ", a: ";
 		print_v(*ita);
 		std::cout << std::endl;
+		++itb;
 	}
 }
