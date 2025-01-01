@@ -89,7 +89,11 @@ void	PmergeMe::processRange(T & v, std::size_t range)
 
 	insertOddElements(main, odd);
 					print_dv(main, "main");
-
+	v = mainRToV(main, rest);
+				std::cout << "v: ";
+				print_v(v);
+				std::cout << std::endl;
+				std::cout << "==========================" << std::endl;
 }
 
 template <typename T, typename U>
@@ -242,6 +246,23 @@ void	PmergeMe::insertOddElements(U & main, T & odd)
 		std::size_t	idx = binarySearch(main, *(odd.end() - 1), 0, main.size()-1);
 		main.insert(main.begin() + idx, &odd, &odd + 1);
 	}
+}
+
+template <typename T, typename U>
+T	PmergeMe::mainRToV(U const & main, T const & rest)
+{
+	T	v;
+	for(typename U::const_iterator it=main.begin(); it != main.end(); ++it)
+	{
+		for (typename T::const_iterator it2=(*it).begin(); it2!=(*it).end(); ++it2)
+			v.push_back(*it2);
+	}
+	if (rest.size())
+	{
+		for (typename T::const_iterator it=rest.begin(); it != rest.end(); ++it)
+			v.push_back(*it);
+	}
+	return v;
 }
 
 // ==========

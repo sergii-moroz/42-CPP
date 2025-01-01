@@ -111,6 +111,9 @@ class PmergeMe
 		template <typename T, typename U>
 		static void	insertOddElements(U & main, T & odd);
 
+		template <typename T, typename U>
+		static T	mainRToV(U const & main, T const & rest);
+
 
 		// DEBUG
 		template <typename T>
