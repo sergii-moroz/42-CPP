@@ -64,6 +64,12 @@ void	PmergeMe::processRange(T & v, std::size_t range)
 	T	rest;
 
 	createABR(v, a, b, rest, range);
+	T	ai(a.size() + 1);
+	ai_init(ai);
+
+	for (std::size_t i = 0; i<ai.size(); i++)
+		std::cout << ai[i] << " ";
+	std::cout << std::endl;
 }
 
 template <typename T, typename U>
@@ -80,4 +86,15 @@ void	PmergeMe::createABR(T const & v, U & a, U & b, T & rest, std::size_t range)
 		i++;
 	}
 	rest = T(v.begin() + i * range, v.end());
+}
+
+template <typename T>
+void	PmergeMe::ai_init(T & v)
+{
+	std::size_t	i = 0;
+	for (typename T::iterator it=v.begin(); it != v.end(); ++it)
+	{
+		*it = static_cast<int>(i);
+		i++;
+	}
 }

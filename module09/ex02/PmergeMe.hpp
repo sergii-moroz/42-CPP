@@ -86,6 +86,9 @@ class PmergeMe
 		template <typename T>
 		static void	processRange(T & v, std::size_t range);
 
+		template <typename T>
+		static void	ai_init(T & v);
+
 };
 
 #include "PmergeMe.tpp"
