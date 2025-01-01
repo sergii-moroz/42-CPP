@@ -112,7 +112,7 @@ void	PmergeMe::ai_init(T & v)
 template <typename T>
 void	PmergeMe::ai_update(T & v, std::size_t n)
 {
-	for (typename T::iterator it=v.begin() + n; it!=v.end(); ++it)
+	for (typename T::iterator it=v.begin() + n; it < v.end(); ++it)
 		(*it)++;
 }
 
@@ -253,8 +253,10 @@ template <typename T>
 void	PmergeMe::print_v(T const & v)
 {
 	// std::cout << "[ ";
+	std::cout << BLACK;
 	for (typename T::const_iterator it=v.begin(); it!=v.end(); ++it)
 		std::cout << *it << " ";
+	std::cout << RESET;
 	// std::cout << " ]";
 }
 

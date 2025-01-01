@@ -32,4 +32,17 @@ test1:
 test2:
 			./PmergeMe 5 3 4 1
 
+test5:
+			./PmergeMe `shuf -i 1-100000 -n 5 | tr "\n" " "`
+test10:
+			./PmergeMe `shuf -i 1-100000 -n 10 | tr "\n" " "`
+test50:
+			./PmergeMe `shuf -i 1-100000 -n 50 | tr "\n" " "`
+test100:
+			./PmergeMe `shuf -i 1-100000 -n 100 | tr "\n" " "`
+test500:
+			./PmergeMe `shuf -i 1-100000 -n 500 | tr "\n" " "`
+test3000:
+			./PmergeMe `shuf -i 1-100000 -n 3000 | tr "\n" " "`
+
 .PHONY:		all clean fclean re
