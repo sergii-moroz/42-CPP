@@ -29,6 +29,7 @@ test:
 test1:
 			./PmergeMe 5 3 7 9 4 8 2 6
 
-test2:		./PmergeMe 5 3 4 1
+test2:
+			./PmergeMe 5 3 4 1
 
 .PHONY:		all clean fclean re
