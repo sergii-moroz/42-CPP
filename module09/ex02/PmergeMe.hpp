@@ -108,6 +108,9 @@ class PmergeMe
 		template <typename T, typename U>
 		static void	insertRemainingPend(U & main, U & pend, T & ai, std::size_t n);
 
+		template <typename T, typename U>
+		static void	insertOddElements(U & main, T & odd);
+
 
 		// DEBUG
 		template <typename T>

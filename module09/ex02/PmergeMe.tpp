@@ -87,6 +87,9 @@ void	PmergeMe::processRange(T & v, std::size_t range)
 	else
 		insertUsingJacobsthal(main, pend, ai);
 
+	insertOddElements(main, odd);
+					print_dv(main, "main");
+
 }
 
 template <typename T, typename U>
@@ -226,6 +229,18 @@ void	PmergeMe::insertRemainingPend(U & main, U & pend, T & ai, std::size_t n)
 						std::cout << " between 0 and " << ai[i+1] - 1 << std::endl;
 		std::size_t	idx = binarySearch(main, *((*p).end() - 1), 0, ai[i + 1] - 1);
 		main.insert(main.begin() + idx, p, p+1);
+	}
+}
+
+template <typename T, typename U>
+void	PmergeMe::insertOddElements(U & main, T & odd)
+{
+	// INSERT ODD ELEMENTS
+	if (odd.size())
+	{
+		std::cout << "!!! insert Odd element !!!" << std::endl;
+		std::size_t	idx = binarySearch(main, *(odd.end() - 1), 0, main.size()-1);
+		main.insert(main.begin() + idx, &odd, &odd + 1);
 	}
 }
 
