@@ -80,11 +80,12 @@ void	PmergeMe::process(int size, char **arr)
 	std::cout << "After  ";
 	print(vec);
 	std::cout << std::endl;
-	std::cout << "Time to process a range of " << vec.size()
-		<< " elements with std::vector<int> : " << elapsedTime(start, end) << " us" << std::endl;
+	std::cout << "Time to process a range of " << CYAN << vec.size() << RESET
+		<< " elements with std::" << CYAN << "vector" << RESET << "<int> : " << WHITE << elapsedTime(start, end) << RESET
+		<< " us" << std::endl;
 	std::cout << std::endl;
 
-	std::cout << MAGENTA << "=== List ===" << RESET << std::endl;
+	std::cout << MAGENTA << "=== Deque ===" << RESET << std::endl;
 	std::cout << "Before ";
 	print(deq);
 	std::cout << std::endl;
@@ -94,9 +95,9 @@ void	PmergeMe::process(int size, char **arr)
 	std::cout << "After  ";
 	print(deq);
 	std::cout << std::endl;
-	std::cout << "Time to process a range of " << deq.size()
-		<< " elements with std::list<int> : " << elapsedTime(start, end) << " us" << std::endl;
-	std::cout << std::endl;
+	std::cout << "Time to process a range of " << CYAN << deq.size() << RESET
+		<< " elements with std::" << CYAN <<"deque" << RESET << "<int> : " << WHITE << elapsedTime(start, end) << RESET
+		<< " us" << std::endl;
 }
 
 bool	PmergeMe::isValidInteger(char const *str, int & result)
