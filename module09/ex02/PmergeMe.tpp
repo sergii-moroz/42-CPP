@@ -63,22 +63,23 @@ void	PmergeMe::processRange(T & v, std::size_t range)
 	NestedContainer	a, b;
 	T	rest;
 
+				std::cout << MAGENTA << " === RANGE: " << range << " ===" RESET << std::endl;
 	createABR(v, a, b, rest, range);
-				std::cout << "size a: " << a.size() << " size b: " << b.size() << std::endl; // DEGUG -> DEL
-				// print_AB(a, b);			// DEGUG -> DEL
-				std::cout << "rest: ";	// DEGUG -> DEL
-				print_v(rest);			// DEGUG -> DEL
-				std::cout << std::endl;	// DEGUG -> DEL
+				std::cout << "size a: " << a.size() << " size b: " << b.size() << std::endl; // DEBUG -> DEL
+				print_AB(a, b);			// DEBUG -> DEL
+				std::cout << "rest: ";	// DEBUG -> DEL
+				print_v(rest);			// DEBUG -> DEL
+				std::cout << std::endl;	// DEBUG -> DEL
 	T	ai(a.size() + 1);
 	ai_init(ai);
-				std::cout << "a_i:"; print_v(ai); std::cout << std::endl; // DEGUG -> DEL
+				std::cout << "a_i:"; print_v(ai); std::cout << std::endl; // DEBUG -> DEL
 
 	NestedContainer	main, pend;
 	T	odd;
 	ABRToMainPendOdd(a, b, main, pend, odd);
-				print_dv(main, "main");	// DEGUG -> DEL
-				print_dv(pend, "pend");	// DEGUG -> DEL
-				std::cout << "odd: "; print_v(odd); std::cout << std::endl;	// DEGUG -> DEL
+				print_dv(main, "main");	// DEBUG -> DEL
+				print_dv(pend, "pend");	// DEBUG -> DEL
+				std::cout << "odd: "; print_v(odd); std::cout << std::endl;	// DEBUG -> DEL
 
 }
 
@@ -151,4 +152,18 @@ void	PmergeMe::print_dv(U const & main, std::string const & s)
 		std::cout << ", ";
 	}
 	std::cout << " ]" << std::endl;
+}
+
+template <typename U>
+void	PmergeMe::print_AB(U const & a, U const & b)
+{
+	typename U::const_iterator itb = b.begin();
+	for (typename U::const_iterator ita=a.begin(); ita!=a.end(); ++ita)
+	{
+		std::cout << "b: ";
+		print_v(*itb);
+		std::cout << ", a: ";
+		print_v(*ita);
+		std::cout << std::endl;
+	}
 }

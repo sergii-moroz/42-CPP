@@ -99,6 +99,9 @@ class PmergeMe
 		template <typename U>
 		static void	print_dv(U const & main, std::string const & s);
 
+		template <typename U>
+		static void	print_AB(U const & a, U const & b);
+
 };
 
 #include "PmergeMe.tpp"
