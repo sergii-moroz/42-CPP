@@ -112,8 +112,11 @@ void	PmergeMe::ai_init(T & v)
 template <typename T>
 void	PmergeMe::ai_update(T & v, std::size_t n)
 {
-	for (typename T::iterator it=v.begin() + n; it < v.end(); ++it)
-		(*it)++;
+	for (typename T::iterator it=v.begin(); it < v.end(); ++it)
+	{
+		if (*it >= static_cast<int>(n))
+			(*it)++;
+	}
 }
 
 template <typename T, typename U>
