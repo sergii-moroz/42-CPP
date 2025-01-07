@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 16:47:26 by smoroz            #+#    #+#             */
-/*   Updated: 2024/12/31 16:47:26 by smoroz           ###   ########.fr       */
+/*   Updated: 2025/01/07 16:33:16 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	PmergeMe::processRange(T & v, std::size_t range)
 	else
 		insertUsingJacobsthal(main, pend, ai);
 
-	insertOddElements(main, odd);
+	insertOddElements(main, odd, ai);
 	v = mainRToV(main, rest);
 }
 
@@ -194,17 +194,19 @@ void	PmergeMe::insertRemainingPend(U & main, U & pend, T & ai, std::size_t n)
 	{
 		typename U::iterator p=pend.begin() + i - 1;
 		std::size_t	idx = binarySearch(main, *((*p).end() - 1), 0, ai[i + 1] - 1);
+		ai_update(ai, idx);
 		main.insert(main.begin() + idx, p, p+1);
 	}
 }
 
 template <typename T, typename U>
-void	PmergeMe::insertOddElements(U & main, T & odd)
+void	PmergeMe::insertOddElements(U & main, T & odd, T & ai)
 {
 	// INSERT ODD ELEMENTS
 	if (odd.size())
 	{
 		std::size_t	idx = binarySearch(main, *(odd.end() - 1), 0, main.size()-1);
+		ai_update(ai, idx);
 		main.insert(main.begin() + idx, &odd, &odd + 1);
 	}
 }
@@ -239,7 +241,8 @@ void	PmergeMe::sortAndShowTime(T & v, std::string const & s)
 	end = std::clock();
 	std::cout << "After  ";
 	PmergeMe::print_v(v);
-	std::cout << std::endl;
+	// std::cout << std::endl;
+	isSorted(v) ? std::cout << GREEN << "OK \U0001F44C" << RESET << std::endl : std::cout << RED << "KO" << RESET << std::endl;
 	std::cout << "Time to process a range of " << CYAN << v.size() << RESET
 		<< " elements with std::" << CYAN << s << RESET << "<int> : "
 		<< WHITE << elapsedTime(start, end) << RESET << " us" << std::endl;
@@ -285,4 +288,15 @@ void	PmergeMe::print_AB(U const & a, U const & b)
 		std::cout << std::endl;
 		++itb;
 	}
+}
+
+template <typename T>
+bool	PmergeMe::isSorted(T const & v)
+{
+	for (typename T::const_iterator	it = v.begin(); it < v.end() - 1; ++it)
+	{
+		if (*it > *(it + 1))
+			return false;
+	}
+	return true;
 }

@@ -36,6 +36,8 @@ test5:
 			./PmergeMe `shuf -i 1-100000 -n 5 | tr "\n" " "`
 test10:
 			./PmergeMe `shuf -i 1-100000 -n 10 | tr "\n" " "`
+test20:
+			./PmergeMe `jot -r 20 1 200 | tr '\n' ' '`
 test50:
 			./PmergeMe `shuf -i 1-100000 -n 50 | tr "\n" " "`
 test100:

@@ -6,7 +6,7 @@
 /*   By: smoroz <smoroz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:57:50 by smoroz            #+#    #+#             */
-/*   Updated: 2024/12/26 13:57:50 by smoroz           ###   ########.fr       */
+/*   Updated: 2025/01/07 16:23:56 by smoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ class PmergeMe
 		static void	insertRemainingPend(U & main, U & pend, T & ai, std::size_t n);
 
 		template <typename T, typename U>
-		static void	insertOddElements(U & main, T & odd);
+		static void	insertOddElements(U & main, T & odd, T & ai);
 
 		template <typename T, typename U>
 		static T	mainRToV(U const & main, T const & rest);
@@ -124,6 +124,9 @@ class PmergeMe
 
 		template <typename U>
 		static void	print_AB(U const & a, U const & b);
+
+		template <typename T>
+		static bool	isSorted(T const & v);
 
 };
 
